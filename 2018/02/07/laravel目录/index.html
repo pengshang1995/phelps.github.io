@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>laravel目录 | Coding World Without End | Peng Shang&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Laravel">
+    <meta name="description" content="文件夹结构表1.1：Laravel文件夹结构简介    文件夹名称 简介     app 应用程序的业务逻辑代码存放文件夹   app/Console 存放自定义Artisan命令文件   app/Http/Controllers 存放控制器文件   app/Http/Middleware 存放[中间件]文件   bootstrap 框架启动与自动加载设置相关的文件   composer.json">
+<meta name="keywords" content="Laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="laravel目录">
+<meta property="og:url" content="http://blog.psonlyweb.cn/2018/02/07/laravel目录/index.html">
+<meta property="og:site_name" content="Coding World Without End">
+<meta property="og:description" content="文件夹结构表1.1：Laravel文件夹结构简介    文件夹名称 简介     app 应用程序的业务逻辑代码存放文件夹   app/Console 存放自定义Artisan命令文件   app/Http/Controllers 存放控制器文件   app/Http/Middleware 存放[中间件]文件   bootstrap 框架启动与自动加载设置相关的文件   composer.json">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-02-28T10:01:23.384Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="laravel目录">
+<meta name="twitter:description" content="文件夹结构表1.1：Laravel文件夹结构简介    文件夹名称 简介     app 应用程序的业务逻辑代码存放文件夹   app/Console 存放自定义Artisan命令文件   app/Http/Controllers 存放控制器文件   app/Http/Middleware 存放[中间件]文件   bootstrap 框架启动与自动加载设置相关的文件   composer.json">
+    
+        <link rel="alternate" type="application/atom+xml" title="Coding World Without End" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+   
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+     <!-- highlight.js代码高亮主题 css 引入-->
+    <link rel="stylesheet" href="/plugins/highlight/styles/monokai-sublime.css">
+    <style>
+        pre {
+            position: relative;
+            margin-bottom: 24px;
+            border-radius: 3px;
+            border: 1px solid #263238;
+            background: #263238;
+            overflow: hidden;
+        }
+
+        code {
+            display: block;
+            padding: 12px 24px;
+            overflow-y: auto;
+            font-weight: 300;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+        }
+
+        code.has-numbering {
+            margin-left: 21px;
+        }
+        .pre-numbering li {
+           list-style-type: none;
+        }
+        .pre-numbering {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            padding: 12px 2px 12px 0;
+            border-right: 1px solid #263238;
+            border-radius: 3px 0 0 3px;
+            background-color: #263238;
+            text-align: right;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+            color: #AAA;
+        }
+    </style>
+    <!-- highlight.js代码高亮主题 css 引入-->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Peng Shang</h5>
+          <a href="mailto:pengshang1995@gmail.com" title="pengshang1995@gmail.com" class="mail">pengshang1995@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                日程
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/pengshang1995" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">laravel目录</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">laravel目录</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-02-07T09:48:56.000Z" itemprop="datePublished" class="page-time">
+  2018-02-07
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Laravel/">Laravel</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Laravel/PHP/">PHP</a></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#文件夹结构"><span class="post-toc-number">1.</span> <span class="post-toc-text">文件夹结构</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-laravel目录"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">laravel目录</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-02-07 17:48:56" datetime="2018-02-07T09:48:56.000Z"  itemprop="datePublished">2018-02-07</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Laravel/">Laravel</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Laravel/PHP/">PHP</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="文件夹结构"><a href="#文件夹结构" class="headerlink" title="文件夹结构"></a>文件夹结构</h3><p>表1.1：Laravel文件夹结构简介</p>
+<table>
+<thead>
+<tr>
+<th>文件夹名称</th>
+<th>简介</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app</td>
+<td>应用程序的业务逻辑代码存放文件夹</td>
+</tr>
+<tr>
+<td>app/Console</td>
+<td>存放自定义Artisan命令文件</td>
+</tr>
+<tr>
+<td>app/Http/Controllers</td>
+<td>存放控制器文件</td>
+</tr>
+<tr>
+<td>app/Http/Middleware</td>
+<td>存放[中间件]文件</td>
+</tr>
+<tr>
+<td>bootstrap</td>
+<td>框架启动与自动加载设置相关的文件</td>
+</tr>
+<tr>
+<td>composer.json</td>
+<td>应用依赖的扩展包</td>
+</tr>
+<tr>
+<td>composer.lock</td>
+<td>扩展包列表，确保这个应用的副本</td>
+</tr>
+<tr>
+<td>config</td>
+<td>应用程序的配置文件</td>
+</tr>
+<tr>
+<td>database</td>
+<td>数据库操作相关文件</td>
+</tr>
+<tr>
+<td>node_modules</td>
+<td>存放npm依赖模块</td>
+</tr>
+<tr>
+<td>package.json</td>
+<td>应用所需的NPM包配置文件</td>
+</tr>
+<tr>
+<td>phpunit.xml</td>
+<td>测试工具PHPUnit的配置文件</td>
+</tr>
+<tr>
+<td>public</td>
+<td>前端控制和资源相关文件(图片、JavaScript、CSS)</td>
+</tr>
+<tr>
+<td>resource</td>
+<td>应用资源</td>
+</tr>
+<tr>
+<td>resourse/assets</td>
+<td>未编译的应用资源文件（图片、JavaScript、CSS）</td>
+</tr>
+<tr>
+<td>resource/lang</td>
+<td>多语言文件</td>
+</tr>
+<tr>
+<td>resource/views</td>
+<td>视图文件</td>
+</tr>
+<tr>
+<td>routes/api.php</td>
+<td>用于定义API类型的路由</td>
+</tr>
+<tr>
+<td>routes/channels.php</td>
+<td>事件转播注册信息</td>
+</tr>
+<tr>
+<td>routes/console.php</td>
+<td>用于定义Artisan命令</td>
+</tr>
+<tr>
+<td>server.php</td>
+<td>使用PHP内置服务器时的URL重写（类似于Apache的“mod_rewrite”）</td>
+</tr>
+<tr>
+<td>storage</td>
+<td>编译后的视图、基于会话、文件缓存和其他框架生成的文件</td>
+</tr>
+<tr>
+<td>storage/app</td>
+<td>目录可用于存储应用程序的任何文件</td>
+</tr>
+<tr>
+<td>storage/framework</td>
+<td>目录被用于保存框架生成的文件及缓存</td>
+</tr>
+<tr>
+<td>storage/logs</td>
+<td>应用程序的日志文件</td>
+</tr>
+<tr>
+<td>tests</td>
+<td>应用测试相关文件</td>
+</tr>
+<tr>
+<td>vendor</td>
+<td>Composer依赖模块</td>
+</tr>
+<tr>
+<td>webpack.mix.js</td>
+<td>Laravel的前端工作流配置文件</td>
+</tr>
+<tr>
+<td>yarn.lock</td>
+<td>Yarn依赖版本锁定文件</td>
+</tr>
+<tr>
+<td>.env</td>
+<td>环境变量配置文件</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-02-28T10:01:23.384Z" itemprop="dateUpdated">2018-02-28 18:01:23</time>
+</span><br>
+
+
+        
+        本文链接：<a href="/2018/02/07/laravel目录/" target="_blank" rel="external">http://blog.psonlyweb.cn/2018/02/07/laravel目录/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.psonlyweb.cn">
+            <img src="/img/avatar.jpg" alt="Peng Shang">
+            Peng Shang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/">Laravel</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2018/02/07/laravel目录/&title=《laravel目录》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2018/02/07/laravel目录/&title=《laravel目录》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2018/02/07/laravel目录/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《laravel目录》 — Coding World Without End&url=http://blog.psonlyweb.cn/2018/02/07/laravel目录/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2018/02/07/laravel目录/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/02/08/Laravel学习笔记/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Laravel学习笔记</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/02/07/laravel常见错误/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">laravel常见错误</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Peng Shang &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2018/02/07/laravel目录/&title=《laravel目录》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2018/02/07/laravel目录/&title=《laravel目录》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2018/02/07/laravel目录/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《laravel目录》 — Coding World Without End&url=http://blog.psonlyweb.cn/2018/02/07/laravel目录/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2018/02/07/laravel目录/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACNElEQVR42u3azY7CMAxFYd7/pTubWSDNEM61A1KdkxUqtORjYfyTxwOv62k9X3n1+u/n109bX9+2ZMiQcVvGtVxrBtku+Rb+o7z8RhkyZBzAIJtY48ldtfC93psMGTJk1BJB/hkefGXIkCGjFnA7YToNvjJkyJCRBj5SxNYAH6/FZciQcUMG77p///VH5hsyZMi4FeMK1zo5qyWCnf38PkeGDBmjGTzApaNKvsVdiaYMGTKmMniI7JSj6SCTB+g40suQIWMEY30zub5OGT8xFpUhQ8ZsBnlEJ7B2nha33mTIkDGawQ89pCVop1jlbT4ZMmScwCAlazraJInjXrYMGTKmMjhgw/yh9C4qj2XIkDGasbe5xgMrD8rBwECGDBlDGTy08RyMjwd40olOi8iQIWMoozO25AMGflfnigwZMqYyyLGG/shzV+EapIYyZMgYxODt+LRkTX+OGhvNYGXIkHFzRrFQBKGWB9P0UMU/d8mQIWM0g4S5tDW2qyVHSuughpYhQ8YIBg+CtcZcv8R98zPJkCHjAAZ/NG/SdVLMuDyWIUPGAQyyIdJE4yt95pu/BBkyZAxlXOGqlb5p4ywerMqQIWM0Iw2OtWSxFlhraasMGTKmMjYcydoUxNNjHDJkyDiN0Ql8nQFk+g+ADlvIkCHjeEatpOQjB74r9IYMGTKOZPBitXa8jAfoDf8bMmTIuBWDFLFpUthv1QVgGTJkjGakiR0vMmsHLEgbrjjUlCFDxv0YP6atYL7Z5Jt0AAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+<script
+  src="http://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
+  <script>
+  $(function(){
+          $('pre code').each(function(){
+              var lines = $(this).text().split('\n').length - 1;
+              var $numbering = $('<ul/>').addClass('pre-numbering');
+              $(this)
+                  .addClass('has-numbering')
+                  .parent()
+                  .append($numbering);
+              for(i=1;i<=lines;i++){
+                  $numbering.append($('<li/>').text(i));
+              }
+          });
+      });
+  </script>
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+
+
+</body>
+</html>

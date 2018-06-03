@@ -1,0 +1,951 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Coding World Without End</title>
+  
+  <subtitle>Peng Shang&#39;s Blog</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.psonlyweb.cn/"/>
+  <updated>2018-05-16T06:08:47.000Z</updated>
+  <id>http://blog.psonlyweb.cn/</id>
+  
+  <author>
+    <name>Peng Shang</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>计数排序</title>
+    <link href="http://blog.psonlyweb.cn/2018/05/16/%E8%AE%A1%E6%95%B0%E6%8E%92%E5%BA%8F/"/>
+    <id>http://blog.psonlyweb.cn/2018/05/16/计数排序/</id>
+    <published>2018-05-16T06:08:47.000Z</published>
+    <updated>2018-05-16T06:08:47.000Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>快速排序</title>
+    <link href="http://blog.psonlyweb.cn/2018/05/14/%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"/>
+    <id>http://blog.psonlyweb.cn/2018/05/14/快速排序/</id>
+    <published>2018-05-14T06:55:18.000Z</published>
+    <updated>2018-05-14T09:12:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h4><p>快速排序基于分治思想来实现。</p><ol><li><strong>分解</strong>：数组A[start,end]被划分为两个（可能为空）子数组A[start,postion-1]和A[postion+1,end]中的,使A[start,postion-1]的每一个元素都小于等于A[postion],A[postion+1,end]的每一个元素都大于等于A[postion]。</li><li><strong>解决</strong>：通过递归调用快速排序，对子数组A[start,postion-1]和A[postion+1,end]进行排序。</li><li><strong>合并</strong>：因为数组是原址排序，因此A[start,end]是有序的。</li></ol><h4 id="数组的划分（解决）实现思想图"><a href="#数组的划分（解决）实现思想图" class="headerlink" title="数组的划分（解决）实现思想图"></a>数组的划分（解决）实现思想图</h4><p><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-14/60412907.jpg" alt=""></p><h4 id="PHP实现快速排序"><a href="#PHP实现快速排序" class="headerlink" title="PHP实现快速排序"></a>PHP实现快速排序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function quickSort(&amp;$array,$start,$end)</span><br><span class="line">&#123;</span><br><span class="line">    if ($start &lt; $end) &#123;</span><br><span class="line">        $postion = partition($array, $start, $end);</span><br><span class="line">        quickSort($array,$start,$postion-1);</span><br><span class="line">        quickSort($array,$postion+1,$end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function partition(&amp;$arr,$start,$end) &#123;</span><br><span class="line">    $flag = $arr[$end];</span><br><span class="line">    $i = $start-1;</span><br><span class="line">    for ( $j=$start; $j&lt;= $end-1; $j++) &#123;</span><br><span class="line">        if($arr[$j] &lt;= $flag) &#123;</span><br><span class="line">            $i = $i+1;</span><br><span class="line">            swap($arr,$i,$j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap($arr,$i+1,$end);</span><br><span class="line"></span><br><span class="line">    return $i+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function swap (&amp;$arr,$exist,$replace) &#123;</span><br><span class="line">    $temp = $arr[$exist];</span><br><span class="line">    $arr[$exist] = $arr[$replace];</span><br><span class="line">    $arr[$replace] = $temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$array = array(1,6,5,4);</span><br><span class="line">quickSort($array,0,3);</span><br><span class="line">var_dump($array);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h4&gt;&lt;p&gt;快速排序基于分治思想来实现。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;分解&lt;/strong&gt;：数组A[start,end]被划分为两个（可
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://blog.psonlyweb.cn/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="排序" scheme="http://blog.psonlyweb.cn/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>优先队列(PriorityQueue)</title>
+    <link href="http://blog.psonlyweb.cn/2018/05/08/%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97PriorityQueue/"/>
+    <id>http://blog.psonlyweb.cn/2018/05/08/优先队列PriorityQueue/</id>
+    <published>2018-05-08T03:53:16.000Z</published>
+    <updated>2018-05-10T10:10:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h4><p>优先队列（priority queue）是一种用来维护由一组元素构成的集合S的数据结构，其中每一个元素都有一个相关的值，称为关键字（key）。<br><strong>队列的定义</strong><br>队列属于先进先出型，Frist in Frist out（FIFO）<br>优先队列基于堆排序的方法进行实现的，堆排序每次都要进行建立最大堆，第一个元素为整个队列中的最大值，优先队列也是利用了堆排序这个性质达到优先队列中权值最大的先出的效果。<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/77248587.jpg" alt=""></p><h4 id="优先队列的方法"><a href="#优先队列的方法" class="headerlink" title="优先队列的方法"></a>优先队列的方法</h4><ol><li>HeapMaximum方法实现了返回最大值</li><li>HeapExtractMax方法实现删除队列中的最大值并返回最大值</li><li>HeapIncreaseKey方法实现更改某个值。</li><li>MaxHeapInsert方法实现将元素插入到队列队尾</li></ol><h4 id="PHP实现优先队列"><a href="#PHP实现优先队列" class="headerlink" title="PHP实现优先队列"></a>PHP实现优先队列</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">public function HeapMaximum($arr) &#123;</span><br><span class="line">return $arr[0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public function HeapExtractMax(&amp;$arr,$length) &#123;</span><br><span class="line">if($length &lt; 1) &#123;</span><br><span class="line">return false;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$max = $arr[0];</span><br><span class="line">$arr[0] = $arr[$length-1];</span><br><span class="line">$length = $length - 1;</span><br><span class="line">$this-&gt;MaxHeapify($arr,1,$length);</span><br><span class="line">return $max;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public function HeapIncreaseKey(&amp;$arr,$i,$key) &#123;</span><br><span class="line">    if ($key &lt; $arr[$i]) &#123;</span><br><span class="line">        return false;</span><br><span class="line">       &#125;</span><br><span class="line">       $arr[$i] = $key;</span><br><span class="line">    $flag = $this-&gt;parent($i);</span><br><span class="line">    while ($i &gt; 1 &amp;&amp; $arr[$flag] &lt; $arr[$i]) &#123;</span><br><span class="line">        $this-&gt;swap($arr,$flag,$i);</span><br><span class="line">        $i = $this-&gt;parent($i);</span><br><span class="line">       &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   public function MaxHeapInsert(&amp;$arr,$key) &#123;</span><br><span class="line">    $length = count($arr) + 1;</span><br><span class="line">    $arr[$length] = 0;</span><br><span class="line">    $this-&gt;HeapIncreaseKey($arr,$length,$key);</span><br><span class="line">   &#125;</span><br></pre></td></tr></table></figure><h4 id="基于堆排序的PHP的部分代码"><a href="#基于堆排序的PHP的部分代码" class="headerlink" title="基于堆排序的PHP的部分代码"></a>基于堆排序的PHP的部分代码</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">class PriorityQueue</span><br><span class="line">&#123;</span><br><span class="line">public function __construct(&amp;$arr) &#123;</span><br><span class="line">$arr_length = count($arr)-1;</span><br><span class="line">$this-&gt;BuildMaxHeap($arr,$arr_length);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public function BuildMaxHeap(&amp;$arr,$arr_length) &#123;</span><br><span class="line">$count = count($arr)-1;</span><br><span class="line">for ($i = floor($count/2); $i &gt;=0; $i--) &#123;</span><br><span class="line">$this-&gt;MaxHeapify($arr,$i,$arr_length);</span><br><span class="line">&#125;</span><br><span class="line">    &#125;</span><br><span class="line">public function MaxHeapify(&amp;$arr,$i,$arr_length) &#123;</span><br><span class="line">        $left = $this-&gt;left($i);</span><br><span class="line">        $right = $this-&gt;right($i);</span><br><span class="line">        if($left &lt;= $arr_length &amp;&amp; $arr[$left] &gt;= $arr[$i]) &#123;</span><br><span class="line">            $this-&gt;swap($arr,$i,$left);</span><br><span class="line">            $largest = $left;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            $largest = $i;</span><br><span class="line">        &#125;</span><br><span class="line">        if ($right &lt;= $arr_length &amp;&amp; $arr[$right] &gt;= $arr[$largest]) &#123;</span><br><span class="line">            $this-&gt;swap($arr,$largest,$right);</span><br><span class="line">            $largest = $right;</span><br><span class="line">        &#125;</span><br><span class="line">        if ($largest != $i) &#123;</span><br><span class="line">            $this-&gt;MaxHeapify($arr,$largest);</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public function swap(&amp;$arr,$exist,$largest) &#123;</span><br><span class="line">$temp = $arr[$exist];</span><br><span class="line">$arr[$exist] = $arr[$largest];</span><br><span class="line">$arr[$largest] = $temp;</span><br><span class="line">&#125;</span><br><span class="line">private function left($i) &#123;</span><br><span class="line">return 2*$i+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private function right($i) &#123;</span><br><span class="line">return 2*$i+2;</span><br><span class="line">&#125;</span><br><span class="line">private  function parent($i) &#123;</span><br><span class="line">    return floor($i/2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">//以下是队列操作</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h4&gt;&lt;p&gt;优先队列（priority queue）是一种用来维护由一组元素构成的集合S的数据结构，其中每一个元素都有一个相关的值，称为关键字（key）
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://blog.psonlyweb.cn/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="队列" scheme="http://blog.psonlyweb.cn/tags/%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>网络分层TCP/IP</title>
+    <link href="http://blog.psonlyweb.cn/2018/05/07/%E7%BD%91%E7%BB%9C%E5%88%86%E5%B1%82TCP-IP/"/>
+    <id>http://blog.psonlyweb.cn/2018/05/07/网络分层TCP-IP/</id>
+    <published>2018-05-07T02:41:46.000Z</published>
+    <updated>2018-05-07T10:55:05.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>互联网分为五层，自下而上分为应用层、传输层、网络层、链接层、实体层。<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-7/33785501.jpg" alt=""></p><h4 id="实体层"><a href="#实体层" class="headerlink" title="实体层"></a>实体层</h4><p>实体层就是把电脑连接在一起的物理手段。它主要规定了网络的一些电气特性，作用是负责传送0和1的电信号。</p><h4 id="链接层"><a href="#链接层" class="headerlink" title="链接层"></a>链接层</h4><p>拥有唯一的MAC地址进行标识，有了数据包和网卡MAC地址、广播的发送方式，链路层就可以在多台计算机之间传送数据。</p><h4 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h4><p>网络层关心的是如何把一个数据从一台设备发送到另一台设备。是主机到主机之间的通信。</p><h4 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h4><p>有了MAC地址和IP地址，我们可以在互联网任意两个主机上建立通信。区分一台主机中的接收的数据包属于哪个程序使用，是靠端口判断的。传输层的功能是从端口到端口的通信。因此Unix系统就把主机和端口叫作套接字(socket)</p><h5 id="UDP协议"><a href="#UDP协议" class="headerlink" title="UDP协议"></a>UDP协议</h5><p>UDP数据包，也是由”标头”和”数据”两部分组成。<br>“标头”部分主要定义了发出端口和接收端口，”数据”部分就是具体的内容。然后，把整个UDP数据包放入IP数据包的”数据”部分，而前面说过，IP数据包又是放在以太网数据包之中的，所以整个以太网数据包现在变成了下面这样：<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-7/2213727.jpg" alt=""></p><h5 id="TCP协议"><a href="#TCP协议" class="headerlink" title="TCP协议"></a>TCP协议</h5><p>UDP协议的优点是比较简单，容易实现，但是缺点是可靠性差，一旦数据发出后，无法知道对方是否收到。<br>为了解决这个问题，TCP协议诞生。TCP协议可以理解为有确认机制的UDP协议。如果发送一个数据包遗失，就收不到确认，发送方就知道有必要重新发送数据包。<br>而且TCP数据包没有长度限制，理论上可以无限长，但是为了保证网络效率通常TCP数据包的长度不会超过IP数据包长度，以保证单个TCP数据包不被分割。</p><h4 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h4><p>应用层的作用就是规定应用程序的数据格式。<br>TCP协议可以为各种各样的程序传递数据，比如Email、WWW、FTP。必须有不同的协议规定电子邮件、网页、FTP数据格式，这些应用程序协议构成了“应用层”。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h3&gt;&lt;p&gt;互联网分为五层，自下而上分为应用层、传输层、网络层、链接层、实体层。&lt;br&gt;&lt;img src=&quot;http://ps-blog.oss-cn-
+      
+    
+    </summary>
+    
+      <category term="计算机网络" scheme="http://blog.psonlyweb.cn/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+      <category term="TCP/IP" scheme="http://blog.psonlyweb.cn/tags/TCP-IP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>堆排序</title>
+    <link href="http://blog.psonlyweb.cn/2018/05/04/%E5%A0%86%E6%8E%92%E5%BA%8F/"/>
+    <id>http://blog.psonlyweb.cn/2018/05/04/堆排序/</id>
+    <published>2018-05-04T03:06:56.000Z</published>
+    <updated>2018-05-04T09:44:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="堆排序概念"><a href="#堆排序概念" class="headerlink" title="堆排序概念"></a>堆排序概念</h3><p>堆排序是利用堆这种数据结构而设计的一种排序算法。时间复杂度为O(nlogn)。</p><blockquote><p>堆排序具有如下性质的完全二叉树:每个节点的值都大于或等于其左右孩子节点的值，称为最大堆；或每个节点都小于或者等于其左右孩子节点被称为最小堆。</p></blockquote><p><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/77248587.jpg" alt=""><br>对堆中的节点进行编号，将这种逻辑映射到数组中，如下：<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/48665903.jpg" alt=""><br>堆排序的基本性质：<br>最大堆：左右子节点小于父节点<br>最小堆：左右子节点大于父节点</p><h3 id="堆排序流程"><a href="#堆排序流程" class="headerlink" title="堆排序流程"></a>堆排序流程</h3><p>1.<strong>构建最大堆</strong><br><strong>构建最大堆之前呈现效果如下</strong>：<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/33025115.jpg" alt=""><br><strong>构建最大堆之后呈现效果如下：</strong><br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/90896261.jpg" alt=""><br>保证了堆排序中的最大堆的性质。<br>2.<strong>堆排序算法实现</strong><br>取出构建最大堆中的最大值，放在尾部<br>然后重新构建最大堆。<br><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-4/97733012.jpg" alt=""><br>以此类推最终达到从小到大的排序效果，完成堆排序。</p><h3 id="PHP实现堆排序"><a href="#PHP实现堆排序" class="headerlink" title="PHP实现堆排序"></a>PHP实现堆排序</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">/**</span><br><span class="line">* </span><br><span class="line">*/</span><br><span class="line">class HeapSort </span><br><span class="line">&#123;</span><br><span class="line">public function __construct(&amp;$arr) &#123;</span><br><span class="line">$arr_length = count($arr)-1;</span><br><span class="line">$this-&gt;HeapMaxSort($arr,$arr_length);</span><br><span class="line">&#125;</span><br><span class="line">private function HeapMaxSort(&amp;$arr,$arr_length) &#123;;</span><br><span class="line">$this-&gt;BuildMaxHeap($arr,$arr_length);</span><br><span class="line"></span><br><span class="line">for($i = $arr_length;$i &gt;= 0; $i--) &#123;</span><br><span class="line">$this-&gt;swap($arr,$i,0);</span><br><span class="line">$arr_length--;</span><br><span class="line">$this-&gt;MaxHeapify($arr,0,$arr_length);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line">private function BuildMaxHeap(&amp;$arr,$arr_length) &#123;</span><br><span class="line">$count = count($arr)-1;</span><br><span class="line">for ($i = floor($count/2); $i &gt;=0; $i--) &#123;</span><br><span class="line">$this-&gt;MaxHeapify($arr,$i,$arr_length);</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public function MaxHeapify(&amp;$arr,$i,$arr_length) &#123;</span><br><span class="line">$left = $this-&gt;left($i);</span><br><span class="line">$right = $this-&gt;right($i);</span><br><span class="line">if($left &lt;= $arr_length &amp;&amp; $arr[$left] &gt;= $arr[$i]) &#123;</span><br><span class="line">$this-&gt;swap($arr,$i,$left);</span><br><span class="line">$largest = $left;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">$largest = $i;</span><br><span class="line">&#125;</span><br><span class="line">if ($right &lt;= $arr_length &amp;&amp; $arr[$right] &gt;= $arr[$largest]) &#123;</span><br><span class="line">$this-&gt;swap($arr,$largest,$right);</span><br><span class="line">$largest = $right;</span><br><span class="line">&#125;</span><br><span class="line">if ($largest != $i) &#123;</span><br><span class="line">$this-&gt;MaxHeapify($arr,$largest);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">public function swap(&amp;$arr,$exist,$largest) &#123;</span><br><span class="line">$temp = $arr[$exist];</span><br><span class="line">$arr[$exist] = $arr[$largest];</span><br><span class="line">$arr[$largest] = $temp;</span><br><span class="line">&#125;</span><br><span class="line">private function left($i) &#123;</span><br><span class="line">return 2*$i+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">private function right($i) &#123;</span><br><span class="line">return 2*$i+2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">$array = array(5,2,3,1,4,6);</span><br><span class="line">$Heap_Model = new HeapSort($array);</span><br><span class="line">var_dump($array);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;堆排序概念&quot;&gt;&lt;a href=&quot;#堆排序概念&quot; class=&quot;headerlink&quot; title=&quot;堆排序概念&quot;&gt;&lt;/a&gt;堆排序概念&lt;/h3&gt;&lt;p&gt;堆排序是利用堆这种数据结构而设计的一种排序算法。时间复杂度为O(nlogn)。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://blog.psonlyweb.cn/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="排序" scheme="http://blog.psonlyweb.cn/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>最大子数组</title>
+    <link href="http://blog.psonlyweb.cn/2018/04/26/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/"/>
+    <id>http://blog.psonlyweb.cn/2018/04/26/最大子数组/</id>
+    <published>2018-04-26T09:47:41.000Z</published>
+    <updated>2018-05-03T08:49:59.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="暴力求解最大子数组"><a href="#暴力求解最大子数组" class="headerlink" title="暴力求解最大子数组"></a>暴力求解最大子数组</h3><pre><code>function violentMax($array,$count,&amp;$start,&amp;$end) {    $sum = 0;    $max = 0;    for($i=0; $i &lt;= $count-1; $i++) {        for ($j = $i; $j &lt;= $count-1 ; $j++) {             $sum = 0;            for($k = $i; $k &lt;= $j; $k++) {                $sum += $array[$k];            }            if ($sum &gt; $max) {                $start = $i;                $end = $j;                $max = $sum;            }        }    }    return $max;}$array = array(3,-1,2,5,-3,4,-6,-7,1,8,-3,5,9);$count = count($array);$start = 0;$end = 0;$max = violentMax($array,$count,$start,$end);echo &#39;&lt;hr&gt;&#39;;echo $start;echo &#39;&lt;hr&gt;&#39;;echo $end;echo &#39;&lt;hr&gt;&#39;;echo $max;</code></pre><p>上面方法的时间复杂度为O( n^2 );</p><h3 id="分治策略实现最大子数组"><a href="#分治策略实现最大子数组" class="headerlink" title="分治策略实现最大子数组"></a>分治策略实现最大子数组</h3><pre><code>&lt;?phpclass divideRule {    public $left_pos;    public $right_pos;    public function divide($arr,$start,$end) {        if ($start == $end) {            return $arr[$start];        } else {            $mid = floor(($start+$end)/2);            $left_max = $this-&gt;divide($arr,$start,$mid);            $right_max = $this-&gt;divide($arr,$mid+1,$end);            $middle_max = $this-&gt;middleMax($arr,$start,$mid,$end);            if ($left_max &gt;= $right_max &amp;&amp; $left_max &gt;= $middle_max) {                return $left_max;            } else if($right_max &gt;= $left_max &amp;&amp; $right_max &gt;= $middle_max) {                return $right_max;            } else {                return $middle_max;            }        }    }    public function middleMax($arr,$start,$mid,$end) {        $left_sum = 0;        $sum = 0;        for($i = $mid; $i &gt;= 0; $i--) {            $sum = $sum + $arr[$i];            if ($sum &gt; $left_sum) {                $left_sum = $sum;                $this-&gt;left_pos = $i;            }        }        $right_sum = 0;        $sum = 0;        for ($j = $mid+1; $j &lt;= $end ; $j++) {             $sum = $sum + $arr[$j];            if ($sum &gt; $right_sum) {                $right_sum = $sum;                $this-&gt;right_pos = $j;            }        }        $count_sum = $right_sum + $left_sum;        return $count_sum;    }}$array = array(3,-1,2,5,-3,4,-6,-7,1,8,-3,5,9);$count = count($array)-1;$rule_class = new divideRule();$max = $rule_class-&gt;divide($array,0,$count);echo $rule_class-&gt;left_pos;echo $rule_class-&gt;right_pos;var_dump($max);</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;暴力求解最大子数组&quot;&gt;&lt;a href=&quot;#暴力求解最大子数组&quot; class=&quot;headerlink&quot; title=&quot;暴力求解最大子数组&quot;&gt;&lt;/a&gt;暴力求解最大子数组&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;function violentMax($array,$count,
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://blog.psonlyweb.cn/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="最大子数组" scheme="http://blog.psonlyweb.cn/tags/%E6%9C%80%E5%A4%A7%E5%AD%90%E6%95%B0%E7%BB%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>归并排序</title>
+    <link href="http://blog.psonlyweb.cn/2018/04/25/%E5%BD%92%E5%B9%B6%E6%8E%92%E5%BA%8F/"/>
+    <id>http://blog.psonlyweb.cn/2018/04/25/归并排序/</id>
+    <published>2018-04-25T03:27:46.000Z</published>
+    <updated>2018-06-03T05:22:14.852Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="PHP实现归并排序算法"><a href="#PHP实现归并排序算法" class="headerlink" title="PHP实现归并排序算法"></a>PHP实现归并排序算法</h3><pre><code>&lt;?php    function merger_sort(&amp;$arr,$frist,$end) {        if($frist &lt; $end) {            $middle = floor(($frist+$end)/2);            merger_sort($arr,$frist,$middle);            merger_sort($arr,$middle+1,$end);            merger($arr,$frist,$middle,$end);        }    }    function merger(&amp;$arr,$start,$mid,$end) {        $i = $start;        $j=$mid + 1;        $k = $start;        $temparr = array();        while($i!=$mid+1 &amp;&amp; $j!=$end+1)        {           if($arr[$i] &gt;= $arr[$j]){               $temparr[$k++] = $arr[$j++];           }           else{               $temparr[$k++] = $arr[$i++];           }        }        while($i != $mid+1){            $temparr[$k++] = $arr[$i++];        }        while($j != $end+1){            $temparr[$k++] = $arr[$j++];        }        for($i=$start; $i&lt;=$end; $i++){            $arr[$i] = $temparr[$i];        }    }    function MergeSort(&amp;$arr){        $start = 0;        $end = count($arr) - 1;        merger_sort($arr,$start,$end);    }    $array = array(5,2,7,4);    MergeSort($array);    var_dump($array);</code></pre><h3 id="分治策略的步骤"><a href="#分治策略的步骤" class="headerlink" title="分治策略的步骤"></a>分治策略的步骤</h3><ol><li><strong>分解</strong> 原问题为若干个子问题,这些子问题是原问题的规模较小的实例。</li><li><strong>解决</strong> 这些子问题，递归地求解各子问题。然而子问题的规模足够小，则直接求解。</li><li><strong>合并</strong> 这些子问题的解成原问题的解。</li></ol><h3 id="归并排序遵从分治策略"><a href="#归并排序遵从分治策略" class="headerlink" title="归并排序遵从分治策略"></a>归并排序遵从分治策略</h3><ol><li>merger_sort函数完成了分解的步骤，将原数组array(5,2,7,4)最终分解为array(5,2)和array(7,4)</li><li>merger函数完成了解决（排序）和合并的操作首先对分解的array(5,2)和array(7,4)进行排序，得到 array(2,5)和array(4,7),然后合并为array(2,5,4,7),然后继续merge进行解决，流程是将2与4进行比较拿出较小的放在原数组中，然后将4和5进行比较，然后比较5和7，完成归并排序。</li></ol><h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>归并排序的时间复杂度是o(nlogn)</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;PHP实现归并排序算法&quot;&gt;&lt;a href=&quot;#PHP实现归并排序算法&quot; class=&quot;headerlink&quot; title=&quot;PHP实现归并排序算法&quot;&gt;&lt;/a&gt;PHP实现归并排序算法&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+    function merg
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://blog.psonlyweb.cn/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="排序" scheme="http://blog.psonlyweb.cn/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模型工厂</title>
+    <link href="http://blog.psonlyweb.cn/2018/02/28/%E6%A8%A1%E5%9E%8B%E5%B7%A5%E5%8E%82/"/>
+    <id>http://blog.psonlyweb.cn/2018/02/28/模型工厂/</id>
+    <published>2018-02-28T09:53:56.000Z</published>
+    <updated>2018-03-01T03:36:26.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>实际项目开发中我们经常会用到一些假数据来对数据库进行填充以方便调试程序,原始的做法是手工的一个个在数据创建。Laravel提供了一套更加现代化、非常简单易用的数据填充方案。接下来让我们使用Laravel提供的数据填充来批量生成一批假数据。<br>假数据的生成分为两个阶段：<br>1.对要生成假数据的模型指定字段进行赋值- {模型工厂}<br>2.批量生成假数据模型 - {数据填充}</p><h2 id="模型工厂"><a href="#模型工厂" class="headerlink" title="模型工厂"></a>模型工厂</h2><p>Laravel默认集成了<a href="https://github.com/fzaninotto/Faker" target="_blank" rel="noopener">Faker</a>扩展包，使用该扩展包可以方便我们生成一些假数据。<br>示例如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//使用factory 来创建一个Faker\Generator实例</span><br><span class="line">$faker = Faker\Factory::create();</span><br><span class="line">$faker-&gt;name;</span><br><span class="line">$faker-&gt;safeEmail;</span><br><span class="line">$faker-&gt;date;</span><br><span class="line">$faker-&gt;time;</span><br></pre></td></tr></table></figure><p>借助Faker和Eloquent模型工厂来为指定模型的每个字段设置随机值。<br>Laravel生成模型工厂<br><code>php artisan make:factory UserFactory</code><br>实例UserFactory如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Faker\Generator as Faker;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">|--------------------------------------------------------------------------</span><br><span class="line">| Model Factories</span><br><span class="line">|--------------------------------------------------------------------------</span><br><span class="line">|</span><br><span class="line">| This directory should contain each of the model factory definitions for</span><br><span class="line">| your application. Factories provide a convenient way to generate new</span><br><span class="line">| model instances for testing / seeding your application&apos;s database.</span><br><span class="line">|</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">$factory-&gt;define(App\Models\User::class, function (Faker $faker) &#123;</span><br><span class="line">    static $password;</span><br><span class="line"></span><br><span class="line">    return [</span><br><span class="line">        &apos;name&apos; =&gt; $faker-&gt;name,</span><br><span class="line">        &apos;email&apos; =&gt; $faker-&gt;unique()-&gt;safeEmail,</span><br><span class="line">        &apos;password&apos; =&gt; $password ?: $password = bcrypt(&apos;secret&apos;),</span><br><span class="line">        &apos;remember_token&apos; =&gt; str_random(10),</span><br><span class="line">    ];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure><p><strong>define</strong>定义了一个指定数据模型(如此例子<strong>User</strong>)的模型工厂。define方法接收两个参数,第一个参数指定的Eloquent模型类,第二个参数为一个闭包函数，该闭包函数接受一个<strong>Faker</strong>PHP函数库的实例，让我们可以在函数内部使用Faker方法生成假数据。</p><h2 id="数据填充"><a href="#数据填充" class="headerlink" title="数据填充"></a>数据填充</h2><p>Laravel中我们使用<strong>Seeder</strong>类来给数据库填充测试数据。所有seeder类在<strong>database/seeds</strong>，文件名需要按照【驼峰式】来命名,且严格遵循大小写规范。Laravel默认定义了<strong>DatabaseSeeder</strong>类，可在该类中使用<strong>call</strong>方法来运行其他的<strong>Seeder</strong>类，以此控制数据填充的顺序。我们可以使用如下命令生成 UserTableSeeder文件。<br><code>$ php artisan make:seeder UserTableSeeder</code><br>定义好模型工厂后,在UserTableSeeder中使用<strong>factory</strong>方法来生成一个使用假数据的用户对象。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">use Illuminate\Database\Seeder;</span><br><span class="line">use App\Models\User;</span><br><span class="line"></span><br><span class="line">class UserSeeder extends Seeder</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the database seeds.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        //</span><br><span class="line">        $user = factory(User::class);</span><br><span class="line">        User::insert($user-&gt;makeVisible([&apos;password&apos;,&apos;remember_token&apos;]));</span><br><span class="line"></span><br><span class="line">        $user = User::find(1);</span><br><span class="line">        $user-&gt;name = &apos;PS&apos;;</span><br><span class="line">        $user-&gt;email = &apos;ps@qq.com&apos;;</span><br><span class="line">        $user-&gt;password = bcrypt(&apos;password&apos;);</span><br><span class="line">        $user-&gt;save();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>最后一步 在<strong>DatabaseSeeder</strong>中调用<strong>call</strong>方法来指定我们要运行假数据填充的文件。</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Illuminate\Database\Seeder;</span><br><span class="line">use Illuminate\Database\Eloquent\Model;</span><br><span class="line"></span><br><span class="line">class DatabaseSeeder extends Seeder</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the database seeds.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        // $this-&gt;call(UsersTableSeeder::class);</span><br><span class="line">        Model::unguard();</span><br><span class="line">        $this-&gt;call(UserSeeder::class);</span><br><span class="line">        Model::reguard();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>运行命令重置数据库，执行数据填充</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan migrate:refresh</span><br><span class="line">$ php artisan db:seed</span><br></pre></td></tr></table></figure><p>单独执行某个UserSeeder文件如下：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan migrate:refresh</span><br><span class="line">$ php artisan db:seed --class=UserSeeder</span><br></pre></td></tr></table></figure><p>一条命令同时完成数据库重置和填充操作:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan migrate:refresh --seed</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;目的&quot;&gt;&lt;a href=&quot;#目的&quot; class=&quot;headerlink&quot; title=&quot;目的&quot;&gt;&lt;/a&gt;目的&lt;/h2&gt;&lt;p&gt;实际项目开发中我们经常会用到一些假数据来对数据库进行填充以方便调试程序,原始的做法是手工的一个个在数据创建。Laravel提供了一套更加现代
+      
+    
+    </summary>
+    
+      <category term="Laravel" scheme="http://blog.psonlyweb.cn/categories/Laravel/"/>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/categories/Laravel/PHP/"/>
+    
+    
+      <category term="Laravel" scheme="http://blog.psonlyweb.cn/tags/Laravel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>npm相关</title>
+    <link href="http://blog.psonlyweb.cn/2018/02/27/npm%E7%9B%B8%E5%85%B3/"/>
+    <id>http://blog.psonlyweb.cn/2018/02/27/npm相关/</id>
+    <published>2018-02-27T01:16:43.000Z</published>
+    <updated>2018-02-27T02:14:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="npm命令"><a href="#npm命令" class="headerlink" title="npm命令"></a>npm命令</h2><table><thead><tr><th>命令</th><th>说明</th></tr></thead><tbody><tr><td>npm run dev</td><td>编译</td></tr><tr><td>npm run watch-poll</td><td>当文件发生变化时自动编译</td></tr><tr><td>npm install</td><td>安装第三方模块(扩展包)</td></tr><tr><td>npm install -f</td><td>检查是否安装 如果已安装则跳过安装</td></tr></tbody></table><h2 id="sass语法基础"><a href="#sass语法基础" class="headerlink" title="sass语法基础"></a>sass语法基础</h2><p>1.样式文件导入<br>Sass使用 <code>@import</code>来导入其他的样式文件。<br>2.变量<br>Sass 允许在代码中添加变量，所有变量均以<code>$</code>开头<br>3.嵌套<br>Sass 允许代码之间相互嵌套，以减少代码量</p><pre><code>body div {    color: red}body h1 {    margin-top: 10px}//可写成body {    div{        color:red    }    h1 {        margin-top:10px    }}</code></pre><p>4.引用父级选择器<br>Sass嵌套中使用<code>&amp;</code>对父选择器进行引用</p><pre><code>a {    color:white;}a:hover {    color:blue;}a {    color: white;    &amp;:hover {        color:blue;    }}</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;npm命令&quot;&gt;&lt;a href=&quot;#npm命令&quot; class=&quot;headerlink&quot; title=&quot;npm命令&quot;&gt;&lt;/a&gt;npm命令&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;命令&lt;/th&gt;
+&lt;th&gt;说明&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://blog.psonlyweb.cn/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="npm" scheme="http://blog.psonlyweb.cn/tags/npm/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>git</title>
+    <link href="http://blog.psonlyweb.cn/2018/02/26/git/"/>
+    <id>http://blog.psonlyweb.cn/2018/02/26/git/</id>
+    <published>2018-02-26T01:19:00.000Z</published>
+    <updated>2018-03-01T03:19:46.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="git的基本设置"><a href="#git的基本设置" class="headerlink" title="git的基本设置"></a>git的基本设置</h2><pre><code>//设置用户名git config --global user.name &quot;Your Name&quot;//设置邮箱git config --global user.email 786188095@qq.com//git 推送分支时的相关配置git config --global push.default simple</code></pre><h2 id="git项目初始化"><a href="#git项目初始化" class="headerlink" title="git项目初始化"></a>git项目初始化</h2><pre><code>//对Git进行初始化$ cd ~/Code/Laravel$ git init//将项目所有文件纳入到Git中$ git add -A//检查git状态$ git status//保留改动并提交$ git commit -m “说明内容”// 查看历史提交记录$ git log</code></pre><h2 id="git上传github-Repository"><a href="#git上传github-Repository" class="headerlink" title="git上传github Repository"></a>git上传github Repository</h2><p>将SSH Key添加到ssh-agent中</p><pre><code>eval &quot;$(ssh-agent -s)&quot;ssh-add ~/.ssh/id_rsa//添加github地址$ git remote add origin git@github.com:your_username/hello_laravel.git//将修改提交至github中$ git push -u origin master</code></pre><h2 id="git命令"><a href="#git命令" class="headerlink" title="git命令"></a>git命令</h2><table><thead><tr><th>命令</th><th>说明</th></tr></thead><tbody><tr><td>git add -A</td><td>添加本地库</td></tr><tr><td>git commit -m “说明信息”</td><td>提交</td></tr><tr><td>git push 分支名称</td><td>上传至线上版本</td></tr><tr><td>git branch 分支名称</td><td>创建分支</td></tr><tr><td>git checkout 分支名称</td><td>切换分支</td></tr><tr><td>git checkout -b 分支名称</td><td>创建并切换分支</td></tr><tr><td>git merge 分支</td><td>合并分支</td></tr><tr><td>git pull</td><td>将线上的文件拉取到本地</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;git的基本设置&quot;&gt;&lt;a href=&quot;#git的基本设置&quot; class=&quot;headerlink&quot; title=&quot;git的基本设置&quot;&gt;&lt;/a&gt;git的基本设置&lt;/h2&gt;&lt;pre&gt;&lt;code&gt;//设置用户名
+git config --global user.name 
+      
+    
+    </summary>
+    
+      <category term="管理工具" scheme="http://blog.psonlyweb.cn/categories/%E7%AE%A1%E7%90%86%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="git" scheme="http://blog.psonlyweb.cn/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Laravel学习笔记</title>
+    <link href="http://blog.psonlyweb.cn/2018/02/08/Laravel%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://blog.psonlyweb.cn/2018/02/08/Laravel学习笔记/</id>
+    <published>2018-02-08T03:04:07.000Z</published>
+    <updated>2018-03-01T06:09:03.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="任务管理内容"><a href="#任务管理内容" class="headerlink" title="任务管理内容"></a>任务管理内容</h4><p>任务 Task<br><code>artisan make:model Task -m</code> -m 生成数据库迁移文件<br>工程 Project<br><code>artisan make:model Project -m</code><br>用户 User<br>理解需求：<br>一个用户可以拥有多个Project<br>一个用户通过Project可以拥有多个Task<br>User.php</p><pre><code>public function projects() {    return $this-&gt;hasMany(&#39;App\Project&#39;);}public function tasks() {    return $this-&gt;hasManyThrough(&#39;App\Task&#39;,&#39;App\Project&#39;);}</code></pre><p>一个Project必定属于一个用户<br>一个Project拥有多个Task<br>Project.php</p><pre><code>public function user() {    return $this-&gt;belongsTo(&#39;App\User&#39;);}public function tasks() {    return $this-&gt;hasMany(&#39;App\Task&#39;);}</code></pre><p>一个任务Task必定属于一个Project<br>Task.php</p><pre><code>public function project() {    return $this-&gt;belongsTo(&#39;App\Project&#39;);}</code></pre><h3 id="Laravel模型关系表"><a href="#Laravel模型关系表" class="headerlink" title="Laravel模型关系表"></a>Laravel模型关系表</h3><table><thead><tr><th>定义关联关系</th><th>定义</th><th>调用</th></tr></thead><tbody><tr><td>一对一</td><td>hasOne</td><td>User::find(1)-&gt;phone</td></tr><tr><td>一对多</td><td>hasMany</td><td>App\Post::find(1)-&gt;comments</td></tr><tr><td>多对多</td><td>belongsToMany</td><td>App\User::find(1) foreach ($user-&gt;roles</td></tr><tr><td>远层的一对多</td><td>hasManyThrough</td><td></td></tr><tr><td>多态关联</td><td>morphMany</td><td></td></tr><tr><td>多对多的多态关联</td><td>morphToMany</td></tr></tbody></table><h3 id="数据表设计与数据表迁移"><a href="#数据表设计与数据表迁移" class="headerlink" title="数据表设计与数据表迁移"></a>数据表设计与数据表迁移</h3><pre><code> public function up() {   Schema::create(&#39;tasks&#39;, function (Blueprint $table) {       $table-&gt;increments(&#39;id&#39;);       $table-&gt;string(&#39;title&#39;);       $table-&gt;integer(&#39;project_id&#39;);       $table-&gt;boolean(&#39;completed&#39;);       $table-&gt;timestamps();   });}</code></pre><p>设计数据表之后执行<br><code>php artisan migrate</code></p><h2 id="artisan常用命令"><a href="#artisan常用命令" class="headerlink" title="artisan常用命令"></a>artisan常用命令</h2><ol><li>artisan make:auth 生成登录注册代码</li><li>artisan make:model Project -m 生成model</li><li>artisan migrate 生成数据表</li><li>artisan migrate:rollback 撤销刚刚生成的数据表</li><li>artisan make:controller ProjectController 生成Controller 加上–resource可生成基础的方法 增删改查</li><li>artisan make:request CreateProjectRequest 验证表单数据</li><li>artisan make:policy 授权策略文件名称 生成授权策略文件</li><li></li></ol><h3 id="laravel组件安装"><a href="#laravel组件安装" class="headerlink" title="laravel组件安装"></a>laravel组件安装</h3><h5 id="Form-amp-Html-组件"><a href="#Form-amp-Html-组件" class="headerlink" title="Form &amp; Html 组件"></a>Form &amp; Html 组件</h5><p><code>composer require &quot;laravelcollective/html&quot;:&quot;^5.4.0&quot;</code></p><h5 id="图片上传组件"><a href="#图片上传组件" class="headerlink" title="图片上传组件"></a>图片上传组件</h5><ol><li><code>composer require intervention/image</code></li><li><p>在config/app.php里<br><code>$providers</code>里添加<br><code>Intervention\Image\ImageServiceProvider::class</code></p></li><li><p>在<code>$aliases</code>里添加<br><code>&#39;Image&#39; =&gt; Intervention\Image\Facades\Image::class</code></p></li><li><code>php artisan vendor:publish --provider=&quot;Intervention\Image\ImageServiceProviderLaravel5&quot;</code> 生成image的配置文件</li></ol><h5 id="添加语言包"><a href="#添加语言包" class="headerlink" title="添加语言包"></a>添加语言包</h5><p>1.使用<code>composer require &quot;overtrue/laravel-lang:~3.0&quot;</code><br>2.config/app.php</p><pre><code>&lt;?phpreturn [    .    .    .    &#39;locale&#39; =&gt; &#39;zh-CN&#39;,    .    .    .];</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;任务管理内容&quot;&gt;&lt;a href=&quot;#任务管理内容&quot; class=&quot;headerlink&quot; title=&quot;任务管理内容&quot;&gt;&lt;/a&gt;任务管理内容&lt;/h4&gt;&lt;p&gt;任务 Task&lt;br&gt;&lt;code&gt;artisan make:model Task -m&lt;/code&gt; -m 
+      
+    
+    </summary>
+    
+      <category term="Laravel" scheme="http://blog.psonlyweb.cn/categories/Laravel/"/>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/categories/Laravel/PHP/"/>
+    
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/tags/PHP/"/>
+    
+      <category term="笔记" scheme="http://blog.psonlyweb.cn/tags/%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>laravel目录</title>
+    <link href="http://blog.psonlyweb.cn/2018/02/07/laravel%E7%9B%AE%E5%BD%95/"/>
+    <id>http://blog.psonlyweb.cn/2018/02/07/laravel目录/</id>
+    <published>2018-02-07T09:48:56.000Z</published>
+    <updated>2018-02-28T10:01:23.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="文件夹结构"><a href="#文件夹结构" class="headerlink" title="文件夹结构"></a>文件夹结构</h3><p>表1.1：Laravel文件夹结构简介</p><table><thead><tr><th>文件夹名称</th><th>简介</th></tr></thead><tbody><tr><td>app</td><td>应用程序的业务逻辑代码存放文件夹</td></tr><tr><td>app/Console</td><td>存放自定义Artisan命令文件</td></tr><tr><td>app/Http/Controllers</td><td>存放控制器文件</td></tr><tr><td>app/Http/Middleware</td><td>存放[中间件]文件</td></tr><tr><td>bootstrap</td><td>框架启动与自动加载设置相关的文件</td></tr><tr><td>composer.json</td><td>应用依赖的扩展包</td></tr><tr><td>composer.lock</td><td>扩展包列表，确保这个应用的副本</td></tr><tr><td>config</td><td>应用程序的配置文件</td></tr><tr><td>database</td><td>数据库操作相关文件</td></tr><tr><td>node_modules</td><td>存放npm依赖模块</td></tr><tr><td>package.json</td><td>应用所需的NPM包配置文件</td></tr><tr><td>phpunit.xml</td><td>测试工具PHPUnit的配置文件</td></tr><tr><td>public</td><td>前端控制和资源相关文件(图片、JavaScript、CSS)</td></tr><tr><td>resource</td><td>应用资源</td></tr><tr><td>resourse/assets</td><td>未编译的应用资源文件（图片、JavaScript、CSS）</td></tr><tr><td>resource/lang</td><td>多语言文件</td></tr><tr><td>resource/views</td><td>视图文件</td></tr><tr><td>routes/api.php</td><td>用于定义API类型的路由</td></tr><tr><td>routes/channels.php</td><td>事件转播注册信息</td></tr><tr><td>routes/console.php</td><td>用于定义Artisan命令</td></tr><tr><td>server.php</td><td>使用PHP内置服务器时的URL重写（类似于Apache的“mod_rewrite”）</td></tr><tr><td>storage</td><td>编译后的视图、基于会话、文件缓存和其他框架生成的文件</td></tr><tr><td>storage/app</td><td>目录可用于存储应用程序的任何文件</td></tr><tr><td>storage/framework</td><td>目录被用于保存框架生成的文件及缓存</td></tr><tr><td>storage/logs</td><td>应用程序的日志文件</td></tr><tr><td>tests</td><td>应用测试相关文件</td></tr><tr><td>vendor</td><td>Composer依赖模块</td></tr><tr><td>webpack.mix.js</td><td>Laravel的前端工作流配置文件</td></tr><tr><td>yarn.lock</td><td>Yarn依赖版本锁定文件</td></tr><tr><td>.env</td><td>环境变量配置文件</td></tr></tbody></table>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;文件夹结构&quot;&gt;&lt;a href=&quot;#文件夹结构&quot; class=&quot;headerlink&quot; title=&quot;文件夹结构&quot;&gt;&lt;/a&gt;文件夹结构&lt;/h3&gt;&lt;p&gt;表1.1：Laravel文件夹结构简介&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件夹名称&lt;/th
+      
+    
+    </summary>
+    
+      <category term="Laravel" scheme="http://blog.psonlyweb.cn/categories/Laravel/"/>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/categories/Laravel/PHP/"/>
+    
+    
+      <category term="Laravel" scheme="http://blog.psonlyweb.cn/tags/Laravel/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>laravel常见错误</title>
+    <link href="http://blog.psonlyweb.cn/2018/02/07/laravel%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF/"/>
+    <id>http://blog.psonlyweb.cn/2018/02/07/laravel常见错误/</id>
+    <published>2018-02-07T01:39:37.000Z</published>
+    <updated>2018-02-07T01:44:14.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="错误1"><a href="#错误1" class="headerlink" title="错误1"></a>错误1</h5><p>问题:使用laravel框架时 出现No supported encrypter found. The cipher and / or key length are invalid<br>原因：因为需要配置config/app.php里面的key的值<br>解决方法: php artisan key:generate</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;错误1&quot;&gt;&lt;a href=&quot;#错误1&quot; class=&quot;headerlink&quot; title=&quot;错误1&quot;&gt;&lt;/a&gt;错误1&lt;/h5&gt;&lt;p&gt;问题:使用laravel框架时 出现No supported encrypter found. The cipher and / o
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>SplDoublylinkedList双向链表</title>
+    <link href="http://blog.psonlyweb.cn/2018/02/06/SplDoublylinkedList%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8/"/>
+    <id>http://blog.psonlyweb.cn/2018/02/06/SplDoublylinkedList双向链表/</id>
+    <published>2018-02-06T02:46:42.000Z</published>
+    <updated>2018-02-06T03:00:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="SplDoublyLinkedList相关方法"><a href="#SplDoublyLinkedList相关方法" class="headerlink" title="SplDoublyLinkedList相关方法"></a>SplDoublyLinkedList相关方法</h3><ol><li>rewind 使链表的当前指针指向链表的底部(头部)</li><li>push 向链表的顶部(尾部)插入一个节点</li><li>pop: 获取链表中的顶部(尾部)节点，并且从链表中删除这个节点；操作不改变当前指针的位置</li><li>current指向链表当前节点的指针，必须调用之前先调用rewind。当指向的节点被删除之后，会指向一个空节点。(使用current方法之前首先判断节点是否有效 valid方法进行判断)</li><li>next 让链表当前节点的指针指向下一节点，current的返回值随之改变</li><li>unshift 向链表的底部(头部)插入一个节点</li><li>shift 删除一个链表底部(头部)节点</li><li>bottom 获得链表底部(头部)元素，当前指针位置不变</li><li>top: 获得链表顶部（尾部）元素，当前指针位置不变</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;SplDoublyLinkedList相关方法&quot;&gt;&lt;a href=&quot;#SplDoublyLinkedList相关方法&quot; class=&quot;headerlink&quot; title=&quot;SplDoublyLinkedList相关方法&quot;&gt;&lt;/a&gt;SplDoublyLinkedLi
+      
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/categories/PHP/"/>
+    
+    
+      <category term="SPL" scheme="http://blog.psonlyweb.cn/tags/SPL/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Socket通信编程</title>
+    <link href="http://blog.psonlyweb.cn/2018/02/01/Socket%E9%80%9A%E4%BF%A1%E7%BC%96%E7%A8%8B/"/>
+    <id>http://blog.psonlyweb.cn/2018/02/01/Socket通信编程/</id>
+    <published>2018-02-01T09:41:21.000Z</published>
+    <updated>2018-02-02T09:01:41.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>##Socket连接过程</p><ul><li>服务器监听：服务端套接字并不定位具体的客户端套接字，而是处于等待连接的状态，实时监控网络状态，等待客户端的连接请求。</li><li>客户端请求：指客户端的套接字提出连接请求，要连接的目标是服务器端的套接字。为此客户端的套接字必须首先描述它所要连接的服务器的套接字，并给出服务器端的套接字的地址和端口号，然后向服务器端提出连接请求。</li><li>连接确认：当服务器端套接字监听或者接收到客户端套接字的连接请求时，就响应客户端套接字的请求，建立一个新的线程，把服务器端的套接字的描述发给客户端，一旦客户端确认了此描述，双方就正式建立连接。而服务器端套接字继续处于监听状态，继续接受其他客户端套接字的连接请求。</li></ul><h2 id="PHP安全"><a href="#PHP安全" class="headerlink" title="PHP安全"></a>PHP安全</h2><h6 id="XSS防御"><a href="#XSS防御" class="headerlink" title="XSS防御"></a>XSS防御</h6><ol><li>转义/编码 htmlspecialchars()</li><li>过滤 strip_tags</li><li>CSP(Content Security Policy)</li><li>第三方库<ul><li>HTML purifier</li><li>htmLawed</li><li>Zend_Filter_Input</li></ul></li></ol><h6 id="会话攻击防御"><a href="#会话攻击防御" class="headerlink" title="会话攻击防御"></a>会话攻击防御</h6><ul><li>session_regenerate_id()</li><li>二级令牌</li><li>检测UA和用户IP </li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;##Socket连接过程&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;服务器监听：服务端套接字并不定位具体的客户端套接字，而是处于等待连接的状态，实时监控网络状态，等待客户端的连接请求。&lt;/li&gt;
+&lt;li&gt;客户端请求：指客户端的套接字提出连接请求，要连接的目标是服务器端的套接字。为此客户端的
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>PHP异步并行</title>
+    <link href="http://blog.psonlyweb.cn/2018/02/01/PHP%E5%BC%82%E6%AD%A5%E5%B9%B6%E8%A1%8C/"/>
+    <id>http://blog.psonlyweb.cn/2018/02/01/PHP异步并行/</id>
+    <published>2018-02-01T02:33:59.000Z</published>
+    <updated>2018-02-02T03:08:25.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一个PHP-Web程序的执行过程"><a href="#一个PHP-Web程序的执行过程" class="headerlink" title="一个PHP Web程序的执行过程"></a>一个PHP Web程序的执行过程</h2><ol><li>请求开始 (GET/Post/Cookie/Session)</li><li>Mysql数据库查询/Redis查询</li><li>模板渲染输出HTML/json_encode</li><li>请求结束(回收所有内存和资源)</li></ol><h2 id="PHP-FPM进程的完整流程"><a href="#PHP-FPM进程的完整流程" class="headerlink" title="PHP-FPM进程的完整流程"></a>PHP-FPM进程的完整流程</h2><ol><li>请求1 处理请求 发送响应</li><li>请求2 处理请求 发送响应</li><li>请求3 处理请求 发送响应</li><li>。。。。</li></ol><p>Accept-&gt;Recv(处理)-&gt;Send-&gt;Close-&gt;Accept-&gt;Recv-&gt;Send-&gt;Close</p><h3 id="多进程并发地处理请求"><a href="#多进程并发地处理请求" class="headerlink" title="多进程并发地处理请求"></a>多进程并发地处理请求</h3><ul><li>进程1 请求1-&gt;请求2-&gt;……-&gt;请求N</li><li>进程2</li><li>进程3</li><li>…</li><li>进程N</li></ul><h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展"></a>扩展</h2><ol><li>stream</li><li>sockets</li><li>libevent/event</li><li>pcntl/posix</li><li>pthread</li><li>sysvsem/sysvmsg</li><li>shmop/sysvshm</li></ol><h2 id="PHP同步阻塞"><a href="#PHP同步阻塞" class="headerlink" title="PHP同步阻塞"></a>PHP同步阻塞</h2><pre><code>$serv = stream_socket_server(&quot;tcp://0.0.0.0:8000&quot;,$errno,$errstr) or die (&quot;服务创建失败&quot;);for ($i=0; $i&lt;32 ;$i++) {    if (pcntl_fork() == 0) {        while(1) {            $conn = stream_socket_accept($serv);            $request = fread($conn);            $response = &quot;Hello 异步并行&quot;;            fwrite($response);            fclose($conn);            }        exit(0);    }}</code></pre><h2 id="安装Swoole扩展"><a href="#安装Swoole扩展" class="headerlink" title="安装Swoole扩展"></a>安装Swoole扩展</h2><h6 id="下载稳定版或者最新版的Swoole"><a href="#下载稳定版或者最新版的Swoole" class="headerlink" title="下载稳定版或者最新版的Swoole"></a>下载稳定版或者最新版的Swoole</h6><pre><code>wget https://github.com/swoole/swoole-src/archive/v1.9.1-stable.tar.gztar -xzvf v1.9.1-stable.tar.gzcd swoole-src-1.9.1-stable</code></pre><h6 id="编译安装"><a href="#编译安装" class="headerlink" title="编译安装"></a>编译安装</h6><pre><code>phpize./configuresudo makesudo make install// swoole的./configure有很多额外参数，可以通过./configure --help命令查看,这里均选择默认项)</code></pre><h6 id="加入swoole-so扩展到php-ini中"><a href="#加入swoole-so扩展到php-ini中" class="headerlink" title="加入swoole.so扩展到php.ini中"></a>加入swoole.so扩展到php.ini中</h6><pre><code>//简单的方式1 直接在php.ini文件中加入extension=swoole.so//方式2 在mods-available文件中创建 对应的ini文件cd mods-availablesudo touch swoole.inisudo vim swoole.ini //在文件中加入添加extension=swoole.sosudo ln -s /etc/php5/mods-available/swoole.ini /etc/php5/fpm/conf.d/swoole.inisudo ln -s /etc/php5/mods-available/swoole.ini /etc/php5/cli/conf.d/swoole.ini//最后重启php-fpm 和 nginx配置完成php -m 查看扩展是否安装成功</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;一个PHP-Web程序的执行过程&quot;&gt;&lt;a href=&quot;#一个PHP-Web程序的执行过程&quot; class=&quot;headerlink&quot; title=&quot;一个PHP Web程序的执行过程&quot;&gt;&lt;/a&gt;一个PHP Web程序的执行过程&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;请求开始 (GE
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Vagrant使用</title>
+    <link href="http://blog.psonlyweb.cn/2018/01/26/Vagrant/"/>
+    <id>http://blog.psonlyweb.cn/2018/01/26/Vagrant/</id>
+    <published>2018-01-26T08:50:16.000Z</published>
+    <updated>2018-01-30T07:42:22.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Vagrant常用命令"><a href="#Vagrant常用命令" class="headerlink" title="Vagrant常用命令"></a>Vagrant常用命令</h2><ol><li>vagrant box list  查看目前已有的box</li><li>vagrant box add  新增一个box</li><li>vagrant box remove 删除指定的box</li><li>vagrant init 初始化配置vagrantfile</li><li>vagrant up 启动虚拟机</li><li>vagrant ssh ssh登录虚拟机</li><li>vagrant suspend 挂起虚拟机</li><li>vagrant reload 重启虚拟机</li><li>vagrant half 关闭虚拟机</li><li>vagrant status 查看虚拟机状态</li><li>vagrant destroy 删除虚拟机</li></ol><h2 id="对虚拟机的优化"><a href="#对虚拟机的优化" class="headerlink" title="对虚拟机的优化"></a>对虚拟机的优化</h2><blockquote><h2 id="替换源"><a href="#替换源" class="headerlink" title="替换源"></a><strong>替换源</strong></h2><ul><li>sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak #备份源文件</li><li>sudo vim /etc/apt/source.list #修改源</li><li>sudo apt-get update #更新列表</li><li>源内容如下：</li></ul></blockquote><pre><code>deb http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiversedeb http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ trusty main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ trusty-security main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ trusty-updates main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ trusty-proposed main restricted universe multiversedeb-src http://mirrors.aliyun.com/ubuntu/ trusty-backports main restricted universe multiverse</code></pre><blockquote><h2 id="安装Apache-Nginx-PHP"><a href="#安装Apache-Nginx-PHP" class="headerlink" title="安装Apache Nginx PHP"></a>安装Apache Nginx PHP</h2><p>sudo apt-get install 对应名称<br>对应名称 -v 可以查看版本号</p><h2 id="Apache更改端口，将端口设置为8888"><a href="#Apache更改端口，将端口设置为8888" class="headerlink" title="Apache更改端口，将端口设置为8888"></a>Apache更改端口，将端口设置为8888</h2><ol><li>修改 ports.conf 文件</li><li>curl -I ‘<a href="http://127.0.0.1:8888" target="_blank" rel="noopener">http://127.0.0.1:8888</a>‘</li></ol><h2 id="Mysql-安装"><a href="#Mysql-安装" class="headerlink" title="Mysql 安装"></a>Mysql 安装</h2><ol><li>sudo apt-get install mysql-server #服务器端</li><li>安装期间会提示输入为mysql设置root密码，我这边不操作，直接enter 不设置密码</li><li>sudo apt-get install mysql-client #客户端</li><li>mysql -uroot -p #测试连接库，上面安装服务端没有设置密码，这里直接enter进入</li></ol><h2 id="php扩展-sudo-apt-get-install-名称"><a href="#php扩展-sudo-apt-get-install-名称" class="headerlink" title="php扩展 sudo apt-get install 名称"></a>php扩展 sudo apt-get install 名称</h2><ol><li>php5-mcrypt</li><li>php5-mysql</li><li>php5-gd</li></ol><h2 id="支持apache2的php"><a href="#支持apache2的php" class="headerlink" title="支持apache2的php"></a>支持apache2的php</h2><ol><li>sudo apt-get install libapache2-mod-php5</li><li>开启rewrite功能</li><li>sudo a2enmod rewrite<br>支持nginx fastcgi</li></ol><hr><ol><li>sudo apt-get install php5-cgi php5-fpm</li></ol><h2 id="修改成9000端口-，默认sock模式"><a href="#修改成9000端口-，默认sock模式" class="headerlink" title="修改成9000端口 ，默认sock模式"></a>修改成9000端口 ，默认sock模式</h2><ol><li>cd /etc/php5/fpm/pool.d</li><li>sudo vim www.conf # search listen = 127.0.0.1:9000</li><li>sudo /etc/init.d/php5-fpm restart</li></ol></blockquote><p>##Vagrant高级知识</p><ol><li>端口转发 <code>config.vm.network &quot;forwarded_port&quot;, guest: 8888, host: 8889</code></li><li>共享文件夹<code>config.vm.synced_folder &quot;/Users/ps/www&quot;,&quot;/home/www&quot;,:nfs=&gt;true</code></li><li>私有网络设置 <code>config.vm.network &quot;private_network&quot;, ip: &quot;192.168.33.10&quot;</code></li></ol><h2 id="虚拟机优化"><a href="#虚拟机优化" class="headerlink" title="虚拟机优化"></a>虚拟机优化</h2><ol><li>虚拟机名称 <code>vb.name = &quot;ubuntu_ps&quot;</code></li><li>虚拟机主机名 <code>config.vm.hostname = &quot;ps&quot;</code></li><li>配置虚拟机内存和CPU<ul><li><code>vb.memory = &quot;1024&quot;</code></li><li><code>vb.cpus = 2</code></li></ul></li></ol><h2 id="打包分发"><a href="#打包分发" class="headerlink" title="打包分发"></a>打包分发</h2><p>1.打包<br>vagrant package –output  xxx.box<br>vagrant package –output  xxx.box –base 虚拟机名称</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Vagrant常用命令&quot;&gt;&lt;a href=&quot;#Vagrant常用命令&quot; class=&quot;headerlink&quot; title=&quot;Vagrant常用命令&quot;&gt;&lt;/a&gt;Vagrant常用命令&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;vagrant box list  查看目前已有的box
+      
+    
+    </summary>
+    
+      <category term="Linux" scheme="http://blog.psonlyweb.cn/categories/Linux/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.psonlyweb.cn/tags/Linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“Mysql优化”</title>
+    <link href="http://blog.psonlyweb.cn/2018/01/26/Mysql%E4%BC%98%E5%8C%96/"/>
+    <id>http://blog.psonlyweb.cn/2018/01/26/Mysql优化/</id>
+    <published>2018-01-26T03:49:35.000Z</published>
+    <updated>2018-01-26T03:49:35.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="建表原则"><a href="#建表原则" class="headerlink" title="建表原则"></a>建表原则</h3><ol><li>定长与变长相分离</li><li>常用字段和不常用字段要分离</li><li>1对多，需要关联统计的字段上，添加冗余字段(空间和时间上的转换)</li></ol><h3 id="列选择原则"><a href="#列选择原则" class="headerlink" title="列选择原则"></a>列选择原则</h3><ol><li><p>字段类型优先级 整形 &gt; date,time &gt; enum,char &gt; varchar &gt; blob,text</p><blockquote><p>time 定长,运算快，节省空间,考虑时区，写sql时不方便 where &gt; ‘2005-10-12’;<br>enum 能起到约束值的目的，内部用整形来存储<br>char 定长 需要考虑字符集和(排序校对集)<br>varchar 不定长 要考虑字符集的转换与排序时校对集，速度慢<br>text/Blob 无法使用内存临时表（排序等操作只能在磁盘上进行）</p></blockquote></li><li><p>够用就行，不要慷慨</p><blockquote><p>原因：大的字段浪费内存，影响速度<br>以年龄为例，tinyint unsigned not null 可以存储255岁,足够使用 ,用int浪费了3个字节<br>以varchar(10) 和 varchar(300) 存储的内容相同，但是在表的联查上varchar(300)要花费更多的内存。</p></blockquote></li><li><p>尽量避免使用NULL</p><blockquote><p>原因：NULL 不利于索引 要用特殊字节来标注</p></blockquote></li></ol><h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><h4 id="索引的类型"><a href="#索引的类型" class="headerlink" title="索引的类型"></a>索引的类型</h4><blockquote><p>索引类型分为bTree索引和hash索引</p></blockquote><ol><li>btree 索引原理 二叉树</li><li>hash索引 在memory里，默认是hash索引，hash索引的理论上时间复杂度为O(1)。(拉链算法)</li></ol><h5 id="btree索引的误区"><a href="#btree索引的误区" class="headerlink" title="btree索引的误区"></a>btree索引的误区</h5><ol><li>where 条件常用列上都加上索引(错误)</li><li>在多列上建立索引发挥作用，需要满足左前缀要求</li></ol><p>以index(a,b,c)为例(注意和顺序有关)</p><table><thead><tr><th>语句</th><th>索引是否发挥作用</th></tr></thead><tbody><tr><td>where a =3</td><td>是 只使用了a列</td></tr><tr><td>where a=3 and b=5</td><td>是 使用了a,b列</td></tr><tr><td>where a=3 and b=5 and c=5</td><td>是 a,b,c均使用</td></tr><tr><td>where c=3 where b=4</td><td>否</td></tr><tr><td>where a=3 and c=4</td><td>a列能发挥索引,c不能</td></tr><tr><td>where a=3 and b&gt;10 and c=7</td><td>a能利用，b能利用，c不能利用</td></tr></tbody></table><h3 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h3><ol><li>非聚簇索引<ul><li style="list-style: none"><input type="checkbox"> Myisam 索引与数据的关系</li><li style="list-style: none"><input type="checkbox"> Myisam 索引指向行所在磁盘的位置</li><li style="list-style: none"><input type="checkbox"> 数据都有自己的地址</li><li style="list-style: none"><input type="checkbox"> 数据和索引相互独立</li></ul></li><li>聚簇索引<ul><li style="list-style: none"><input type="checkbox"> 主键索引 既存索引值，又在叶子中存储行的数据</li><li style="list-style: none"><input type="checkbox"> 如果没有主键（primary key），则会Unique key做主键</li><li style="list-style: none"><input type="checkbox"> 如果没有unique，则系统生成一个内部的rowid做主键</li><li style="list-style: none"><input type="checkbox"> 像innodb中，主键的索引结构中既存储了主键值，又存储了行数据的这样的结构c称为“聚簇索引”   </li></ul></li><li><p>聚簇索引和非聚簇索引的优缺点</p><p> 优势：根据主键查询条目比较少，不用回行(数据就在主键节点下)<br> 劣势: 如果碰到不规则数据插入时会造成频繁的页分裂。<br>####索引覆盖<br>索引覆盖是指查询的列恰好是索引的一部分，那么查询只需要在索引文件上进行，不需要回行到磁盘在查找数据，这样查询速度非常快</p></li></ol><h4 id="理想的索引"><a href="#理想的索引" class="headerlink" title="理想的索引"></a>理想的索引</h4><ol><li>查询频繁</li><li>区分度高</li><li>长度小</li><li>尽可能覆盖常用字段</li></ol><h4 id="SQL语句优化"><a href="#SQL语句优化" class="headerlink" title="SQL语句优化"></a>SQL语句优化</h4><blockquote><p><strong>提高查询速度的方法</strong></p><ol><li>查询的快，联合索引的顺序，区分度，长度</li><li>取得快，采用索引覆盖</li><li>传输的少，更少的行和列</li></ol><p><strong>切分查询： 按数据拆分多次</strong><br>例如：插入10000行数据，每1000条为单位插入</p><p><strong>分解查询</strong><br>将逻辑把多表连接查询分解成多个简单的sql</p></blockquote><h2 id="sql语句的优化思路"><a href="#sql语句的优化思路" class="headerlink" title="sql语句的优化思路"></a>sql语句的优化思路</h2><p>不查 -&gt; 少查 -&gt; 高效的查</p><ol><li>不查，通过业务逻辑来计算<br>2.少查 尽量精准数据，少取行<br>3.必须要查 尽量在索引上查询</li></ol><h2 id="explain-的列分析"><a href="#explain-的列分析" class="headerlink" title="explain 的列分析"></a>explain 的列分析</h2><p><strong>id 代表select语句的编号</strong></p><blockquote><p><strong>select_type类型</strong> </p><ol><li>简单查询 SIMPLE</li><li>子查询派生子查询 </li><li>PRIMARY 主语句</li><li>subquery 非from子查询</li><li>derived  from子查询</li><li>union</li><li>union result</li></ol></blockquote><p><strong>table 表名</strong><br><strong>key</strong><br>使用的索引列<br><strong>type</strong><br>查数据过程的重要依据<br>可选项 </p><ol><li>all 意味着从表的第一行，往后逐行做全表扫描</li><li>index 扫描所有的索引节点</li><li>range 查询</li><li>const </li><li>ref 通过索引列,可以直接引用某行数据<br><strong>ref</strong><br>连接查询 表之间的引用关系<br><strong>rows</strong><br>估计要扫描多少行<br><strong>extra</strong><br>index:是指用到了索引覆盖效率非常高<br>using where 是光靠索引定位不了还得where判断一下<br>using temporary 是指用到了临时表<br>using filesort 文件排序<br>注:如果取出的列含有text，filesort会发生在磁盘上</li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;建表原则&quot;&gt;&lt;a href=&quot;#建表原则&quot; class=&quot;headerlink&quot; title=&quot;建表原则&quot;&gt;&lt;/a&gt;建表原则&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;定长与变长相分离&lt;/li&gt;
+&lt;li&gt;常用字段和不常用字段要分离&lt;/li&gt;
+&lt;li&gt;1对多，需要关联统计的字段上，
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://blog.psonlyweb.cn/categories/Mysql/"/>
+    
+    
+      <category term="Mysql" scheme="http://blog.psonlyweb.cn/tags/Mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式之装饰器模式</title>
+    <link href="http://blog.psonlyweb.cn/2018/01/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A3%85%E9%A5%B0%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.psonlyweb.cn/2018/01/02/设计模式之装饰器模式/</id>
+    <published>2018-01-02T03:07:37.000Z</published>
+    <updated>2018-01-02T03:07:37.000Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>文章类获取初始的文章内容</p></blockquote><pre><code>class Art{    protected $content = null;    public function __construct($content) {        $this-&gt;content = $content;    }    public function decorator() {        return $this-&gt;content;    }}</code></pre><blockquote><p>定义装饰文章类<br>art 参数 保存着 文章类的初始化对象</p></blockquote><pre><code>class ArtDesc extends Art{    protected $art = null;    public function __construct($art)    {        $this-&gt;art = $art;    }    public function decorator() {    }}</code></pre><blockquote><p>SEO类和AD类继承装饰器类达到对文章内容的添加的效果</p></blockquote><pre><code>class SeoArt extends ArtDesc{    public function decorator()    {        return $this-&gt;art-&gt;decorator().&#39;SEO KEYWORDS&#39;;    }}class AdArt extends  ArtDesc {    public function decorator() {        return $this-&gt;art-&gt;decorator().&#39;广告内容&#39;;    }}</code></pre><blockquote><p>调用<br>将初始化文章基础对象 传入装饰器类</p></blockquote><pre><code>$art = new Art(&#39;文章内容&#39;);$art = new SeoArt($art);$art = new AdArt($art);echo $art-&gt;decorator();</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;blockquote&gt;
+&lt;p&gt;文章类获取初始的文章内容&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;pre&gt;&lt;code&gt;class Art
+{
+    protected $content = null;
+
+    public function __construct($conte
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/tags/PHP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式之策略模式</title>
+    <link href="http://blog.psonlyweb.cn/2018/01/02/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.psonlyweb.cn/2018/01/02/设计模式之策略模式/</id>
+    <published>2018-01-02T02:01:34.000Z</published>
+    <updated>2018-01-02T02:01:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="设计模式之策略模式"><a href="#设计模式之策略模式" class="headerlink" title="设计模式之策略模式"></a>设计模式之策略模式</h2><hr><ul><li style="list-style: none"><input type="checkbox" checked> 面向对象中有什么比是什么更灵活 </li><li style="list-style: none"><input type="checkbox" checked> 组合比继承更灵活</li><li style="list-style: none"><input type="checkbox" checked> 饭店和厨师的关系  是 一对多</li><li style="list-style: none"><input type="checkbox" checked> 比如新开饭店 如果单纯的复制饭店 这样不能会造成很多浪费的方法 但是如果以饭店拥有厨师的方式处理 那么 饭店的样式可以随机变换，因此首先声明一个饭店类</li></ul><pre><code>class FD{    protected $tangCreator = null;    protected $caiCreator = null;    protected $fanCreator = null;    public function __construct($f,$c,$t) {        $this-&gt;fanCreator = $f;        $this-&gt;tangCreator = $t;        $this-&gt;caiCreator = $c;    }    public function createFan() {        return $this-&gt;fanCreator-&gt;fan();    }    public function createCai() {        return $this-&gt;caiCreator-&gt;cai();    }    public function createTang() {        return $this-&gt;tangCreator-&gt;tang();    }}</code></pre><p>再声明厨师类</p><pre><code>class SouthDinner {    public function fan() {        return &#39;米饭&#39;;    }    public function cai() {        return &#39;甜食&#39;;    }    public function tang() {        return &#39;蛋花汤&#39;;    }}class NorthDinner {    public function fan() {        return &#39;馒头&#39;;    }    public function cai() {        return &#39;炒菜&#39;;    }    public function tang() {        return &#39;粥&#39;;    }}</code></pre><p>最后调用 </p><pre><code>$fd = new FD(new SouthDinner(),new NorthDinner(),new SouthDinner());echo $fd-&gt;createCai(),&#39;&lt;br&gt;&#39;;echo $fd-&gt;createTang(),&#39;&lt;br&gt;&#39;;</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;设计模式之策略模式&quot;&gt;&lt;a href=&quot;#设计模式之策略模式&quot; class=&quot;headerlink&quot; title=&quot;设计模式之策略模式&quot;&gt;&lt;/a&gt;设计模式之策略模式&lt;/h2&gt;&lt;hr&gt;
+&lt;ul&gt;
+&lt;li style=&quot;list-style: none&quot;&gt;&lt;input
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/tags/PHP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“设计模式之责任链”</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/29/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%B4%A3%E4%BB%BB%E9%93%BE/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/29/设计模式之责任链/</id>
+    <published>2017-12-29T02:46:17.000Z</published>
+    <updated>2017-12-29T02:46:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="设计模式之责任链"><a href="#设计模式之责任链" class="headerlink" title="设计模式之责任链"></a>设计模式之责任链</h2><hr><blockquote><p><strong>定义子类</strong><br>首先定义三个类，要声明power权值,以power来判断是否有权利去操作，传过来的数据，还需要声明上一级，责任链模式，要有层级关系</p></blockquote><pre><code>class Banzhu extends Admin{   protected $power = 1;   protected $top = &#39;Police&#39;;   public function doProc() {       echo &#39;删帖&#39;;   }}class Police extends Admin{   protected $power = 2;   protected $top = &#39;Guoan&#39;;   public function doProc() {       echo &#39;抓人&#39;;   }}class Guoan extends Admin{   protected $power = 3;   protected $top = null;   public function doProc() {       echo &#39;灭口&#39;;   }}</code></pre><blockquote><p><strong>定义父类</strong><br>子类均要继承父类方法Admin,Admin的__construct构造方法中，首先判断该类的上一级是否为空,如果是，那么该类是这个责任链中的顶级。</p></blockquote><pre><code>class Admin{  public function __construct() {      if ($this-&gt;top == null) {          return;      }      $this-&gt;toper = new $this-&gt;top();  }  public function proc($danger) {      if($danger &lt;= $this-&gt;power) {          $this-&gt;doProc();      } else {          $this-&gt;toper-&gt;proc($danger);      }  }}</code></pre><blockquote><p><strong>调用</strong><br>实例化最底层类，然后调用方法传入power</p></blockquote><pre><code>$obj = new Banzhu();$obj-&gt;proc(3);</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;设计模式之责任链&quot;&gt;&lt;a href=&quot;#设计模式之责任链&quot; class=&quot;headerlink&quot; title=&quot;设计模式之责任链&quot;&gt;&lt;/a&gt;设计模式之责任链&lt;/h2&gt;&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;定义子类&lt;/strong&gt;&lt;br&gt;首先定
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/tags/PHP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql的事务处理</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/Mysql%E7%9A%84%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/Mysql的事务处理/</id>
+    <published>2017-12-26T09:22:07.000Z</published>
+    <updated>2017-12-26T09:22:07.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>事务的定义：将多条sql操作（增删改）作为一个操作单元，要么都成功，要么都失败Mysql 对事务的支持：</p><p>–被操作的表必须是InnoDB类型的表（支持事务）</p><p>–Mysql常用的表类型：</p><p>MylSAM(非事务)增删改查速度快</p><p>InnoDB(事务类型)安全性高</p><p>事务处理MYSQL 命令行处理</p><ul><li>Mysql&gt; set autocommit =0;</li><li>Mysql&gt; start transaction;</li><li>Mysql&gt;commit</li><li>Mysql&gt;rollback<br>PDO 事务处理</li></ul><p>1、关闭自动提交$pdo -&gt;setattribute(_PDO::ATTR<em>AUTOCOMMIT,0</em>);</p><p>2、开启一个事务<code>$pdo -&gt; beginTransaction ();</code></p><p>$price =50;</p><p>$affect_rows=$pdo-&gt;exec(“update demo set ye=ye-{$price} where id=1”);//转出</p><p>if($affect_rows){</p><p>echo “转出成功”;</p><p>}else{</p><p>throw new PDOException(“转出失败！”)；</p><p>}</p><p>$affect_out=$pdo-&gt;exec(“update demo set ye=ye+{$price} where id =2”);//转入</p><p>if($affect_out){</p><p>echo “转入成功”;</p><p>}else{</p><p>throw new PDOException(“转入失败！”)；</p><p>}</p><p>$pdo-&gt;commit();//提交以上事务</p><p>如有错误 转入PDO Exception异常处理；</p><p>手动抛出PDOException异常</p><p>throw new PDOException(“转入失败！”)；如果捕捉到异常就$pdo-&gt;rollback();</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;事务的定义：将多条sql操作（增删改）作为一个操作单元，要么都成功，要么都失败Mysql 对事务的支持：&lt;/p&gt;
+&lt;p&gt;–被操作的表必须是InnoDB类型的表（支持事务）&lt;/p&gt;
+&lt;p&gt;–Mysql常用的表类型：&lt;/p&gt;
+&lt;p&gt;MylSAM(非事务)增删改查速度快&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://blog.psonlyweb.cn/categories/Mysql/"/>
+    
+    
+      <category term="事务处理" scheme="http://blog.psonlyweb.cn/tags/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“设计模式之工厂模式 抽象工厂”</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F%20%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/设计模式之工厂模式 抽象工厂/</id>
+    <published>2017-12-26T07:59:38.000Z</published>
+    <updated>2017-12-26T07:59:38.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="设计模式之工厂模式-抽象工厂"><a href="#设计模式之工厂模式-抽象工厂" class="headerlink" title="设计模式之工厂模式 抽象工厂"></a>设计模式之工厂模式 抽象工厂</h4><p>多个类具有相同的属性和方法</p><p>1.首先声明类</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">class Mysql</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class Sqlite</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MyPdo</span><br><span class="line">&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>2.建立一个工厂类接口，工厂类中可以声明属性和方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">interface Factory &#123;</span><br><span class="line"></span><br><span class="line">    public static function getDB();</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>3.然后声明抽象工厂类 实现工厂类接口中的静态方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">class MysqlFactory implements Factory</span><br><span class="line">&#123;</span><br><span class="line">    public static  function getDB() &#123;</span><br><span class="line">        return new Mysql();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MyPdoFactory implements Factory</span><br><span class="line">&#123;</span><br><span class="line">    public static function getDB()</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement getDB() method.</span><br><span class="line">        return new MyPdo();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">class MysqlliteFactory implements Factory</span><br><span class="line">&#123;</span><br><span class="line">    public static function getDB()</span><br><span class="line">    &#123;</span><br><span class="line">        // TODO: Implement getDB() method.</span><br><span class="line">        return new Sqlite();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>4、最后调用工厂类中的静态方法</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$factory = &apos;MysqlFactory&apos;;</span><br><span class="line">$db = $factory::getDB();</span><br><span class="line">print_r($db);</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;设计模式之工厂模式-抽象工厂&quot;&gt;&lt;a href=&quot;#设计模式之工厂模式-抽象工厂&quot; class=&quot;headerlink&quot; title=&quot;设计模式之工厂模式 抽象工厂&quot;&gt;&lt;/a&gt;设计模式之工厂模式 抽象工厂&lt;/h4&gt;&lt;p&gt;多个类具有相同的属性和方法&lt;/p&gt;
+&lt;p&gt;1
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="抽象工厂" scheme="http://blog.psonlyweb.cn/tags/%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“事务处理封装方法 Thinkphp”</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86%E5%B0%81%E8%A3%85%E6%96%B9%E6%B3%95%20Thinkphp/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/事务处理封装方法 Thinkphp/</id>
+    <published>2017-12-26T07:59:17.000Z</published>
+    <updated>2017-12-26T07:59:17.000Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $sqls 执行语句数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool 返回真假 是否执行成功</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">transExecuteSql</span><span class="params">($sqls)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&amp;gt;startTrans();</span><br><span class="line">    <span class="keyword">if</span>(is_array($sqls)) &#123;</span><br><span class="line">        <span class="keyword">foreach</span>($sqls <span class="keyword">as</span> $k =&amp;gt; $sql)</span><br><span class="line">        &#123;</span><br><span class="line">            $result=<span class="keyword">$this</span>-&amp;gt;db-&amp;gt;execute($sql);</span><br><span class="line">            <span class="keyword">if</span>(!$result) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&amp;gt;rollBack();</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        $result=<span class="keyword">$this</span>-&amp;gt;db-&amp;gt;execute($sqls);</span><br><span class="line">        <span class="keyword">if</span>(!$result) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&amp;gt;rollBack();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">$this</span>-&amp;gt;commit();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;figure class=&quot;highlight php&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;
+      
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/categories/PHP/"/>
+    
+    
+      <category term="事务处理" scheme="http://blog.psonlyweb.cn/tags/%E4%BA%8B%E5%8A%A1%E5%A4%84%E7%90%86/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“JS设计模式之观察者模式”</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E8%A7%82%E5%AF%9F%E8%80%85%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/设计模式之观察者模式/</id>
+    <published>2017-12-26T07:58:16.000Z</published>
+    <updated>2017-12-26T07:58:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="设计模式之观察者模式"><a href="#设计模式之观察者模式" class="headerlink" title="设计模式之观察者模式"></a>设计模式之观察者模式</h2><hr><pre><code>&lt;script&gt;var sel =document.getElementById(&#39;sel&#39;);    sel.observes =[];    sel.attach =function (obj) {        sel.observes[sel.observes.length] = obj;    };    sel.detach = function (obj) {        for( var i=0; i &lt; sel.observes.length; i++) {            if(this.observes[i] == obj) {                delete this.observes[i];            }        }    };    sel.onchange = sel.notify =function () {        for( var i=0; i &lt; sel.observes.length; i++) {//              this.observes[i].update(this);        }    };    var test2 = document.getElementById(&#39;test2&#39;);    var test3 = document.getElementById(&#39;test3&#39;);    test3.update = function (sel) {        if(sel.value == &#39;1&#39;){            this.innerHTML = &#39;2&#39;;        } else if(sel.value == &#39;0&#39;) {            this.innerHTML =&#39;a&#39;;        }    };    test2.update = function (sel) {        if(sel.value == &#39;1&#39;){            this.innerHTML = &#39;1&#39;;        } else if(sel.value == &#39;0&#39;) {            this.innerHTML =&#39;s&#39;;        }    };    sel.attach(test2);    sel.attach(test3);    &lt;/script&gt;</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;设计模式之观察者模式&quot;&gt;&lt;a href=&quot;#设计模式之观察者模式&quot; class=&quot;headerlink&quot; title=&quot;设计模式之观察者模式&quot;&gt;&lt;/a&gt;设计模式之观察者模式&lt;/h2&gt;&lt;hr&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;script&amp;gt;
+var sel =d
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+      <category term="JS" scheme="http://blog.psonlyweb.cn/tags/JS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“JQ 1.6 获取属性 prop方法”</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/JQ%201.6%20%E8%8E%B7%E5%8F%96%E5%B1%9E%E6%80%A7%20%20prop%E6%96%B9%E6%B3%95/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/JQ 1.6 获取属性  prop方法/</id>
+    <published>2017-12-26T07:58:00.000Z</published>
+    <updated>2017-12-26T07:58:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在JQ1.6之前的版本，我们会这样写我们的代码：</p><ol><li>&lt;input type=<span class="string">‘checkbox’</span> id=<span class="string">‘cb’</span>/&gt;</li><li>&lt;script&gt;</li><li><span class="comment">//获取是否选中 </span></li><li><span class="keyword">var</span> isChecked = $(<span class="string">‘#cb’</span>).attr(<span class="string">‘checked’</span>);<br>5.6.  <span class="comment">//设置选中 </span></li><li>$(<span class="string">‘#cb’</span>).attr(<span class="string">‘checked’</span>,<span class="keyword">true</span>);</li><li>&lt;/script&gt;<br>可是当我们升级JQ1.6到更高的版本时，问题就来了，此时我们会发现：<br>$(‘#cb’).attr(‘checked’); 返回的是checked或者是undefined，不是原来的true和false了。 并且checked属性在页面初始化的时候已经初始化好了，不会随着状态的改变而改变。所以如果checkbox一开始是选中的，那么返回的是checked，如果一开始没被选中，则返回的是undefined</li></ol><p>它将“属性”与“特性”做了区别，属性指的是“name，id”等等，特性指的是“selectedIndex, tagName, nodeName”等等。<br>JQ1.6之后，可以通过attr方法去获得属性，通过prop方法去获得特性</p><ol><li>$(<span class="string">“#cb”</span>).attr(<span class="string">“tagName”</span>); <span class="comment">//undefined </span></li><li>$(<span class="string">“#cb”</span>).prop(<span class="string">“tagName”</span>); <span class="comment">//INPUT </span></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在JQ1.6之前的版本，我们会这样写我们的代码：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&amp;lt;input type=&lt;span class=&quot;string&quot;&gt;‘checkbox’&lt;/span&gt; id=&lt;span class=&quot;string&quot;&gt;‘cb’&lt;/span&gt;/&amp;gt;&lt;/li&gt;
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://blog.psonlyweb.cn/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="JS" scheme="http://blog.psonlyweb.cn/tags/JS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>移动设备上设置原始大小显示和是否缩放声明</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/%E7%A7%BB%E5%8A%A8%E8%AE%BE%E5%A4%87%E4%B8%8A%E8%AE%BE%E7%BD%AE%E5%8E%9F%E5%A7%8B%E5%A4%A7%E5%B0%8F%E6%98%BE%E7%A4%BA%E5%92%8C%E6%98%AF%E5%90%A6%E7%BC%A9%E6%94%BE%E5%A3%B0%E6%98%8E/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/移动设备上设置原始大小显示和是否缩放声明/</id>
+    <published>2017-12-26T07:57:52.000Z</published>
+    <updated>2017-12-26T07:57:52.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在页面的头部&lt;head&gt;&lt;/head&gt;之间加上下面语句：</p><p>&lt;meta name=”viewport” content=”width=device-width;initial-scale=1.0”/&gt;</p><p>或者&lt;meta name=”viewport” content=”width=600px”/&gt;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在页面的头部&amp;lt;head&amp;gt;&amp;lt;/head&amp;gt;之间加上下面语句：&lt;/p&gt;
+&lt;p&gt;&amp;lt;meta name=”viewport” content=”width=device-width;initial-scale=1.0”/&amp;gt;&lt;/p&gt;
+&lt;p&gt;或者&amp;lt
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://blog.psonlyweb.cn/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="HTML" scheme="http://blog.psonlyweb.cn/tags/HTML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PDO中执行语句的exec()和query()区别</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/PDO%E4%B8%AD%E6%89%A7%E8%A1%8C%E8%AF%AD%E5%8F%A5%E7%9A%84exec()%E5%92%8Cquery()%E5%8C%BA%E5%88%AB/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/</id>
+    <published>2017-12-26T07:57:34.000Z</published>
+    <updated>2017-12-26T07:57:34.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>1、 exec() 用来处理非结果集的 Insert update delete create 等</p><p>返回影响行数</p><p>如果是插入语句可以使用id $pdo-&gt;lastinsertid();获取最后增加的id</p><p>&nbsp;</p><p>2、query() 用来处理有结果集的语句 select desc show</p><p>例：</p><p>$result=$pdo-&gt;query(“select * From student”);</p><p>返回来的是 PDOstatement类的对象，在通过这个类的方法获取结果，也可以直接foreach遍历结果<strong>但不常用</strong></p><p>&nbsp;</p><p>如果要设置utf8编码集</p><p>set names utf8</p><p>$pdo-&gt;  query(“set names utf8”);</p><p>等同于$pdo-&gt;exec(“set names utf8”);</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;1、 exec() 用来处理非结果集的 Insert update delete create 等&lt;/p&gt;
+&lt;p&gt;返回影响行数&lt;/p&gt;
+&lt;p&gt;如果是插入语句可以使用id $pdo-&amp;gt;lastinsertid();获取最后增加的id&lt;/p&gt;
+&lt;p&gt;&amp;nbsp;&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/categories/PHP/"/>
+    
+    
+      <category term="PDO" scheme="http://blog.psonlyweb.cn/tags/PDO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>PDO的预处理语句</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/PDO%E7%9A%84%E9%A2%84%E5%A4%84%E7%90%86%E8%AF%AD%E5%8F%A5/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/PDO的预处理语句/</id>
+    <published>2017-12-26T07:57:15.000Z</published>
+    <updated>2017-12-26T07:57:15.000Z</updated>
+    
+    <content type="html"><![CDATA[<h5 id="预处理的好处？"><a href="#预处理的好处？" class="headerlink" title="预处理的好处？"></a>预处理的好处？</h5><p>效率要提高 安全性更好 建议：使用这种方式去执行Sql语句</p><p>PDO预处理删除、更新、添加语句：</p><p>//只是将这个语句放在数据库中编译后等待,没有执行<br>$stmt=$pdo-&gt;prepare(“insert into px_shopscore(pid,score)values(？,？)”);//</p><p>为问号参数</p><p>$stmt=$pdo-&gt;prepare(“insert into px_shopscore(pid,score)values(:pid,:score)”);//</p><p>为字符串参数,冒号是必须的</p><p>//绑定参数将问号或字符串与变量进行绑定</p><p>$stmt-&gt;bindParam(1,$pid);<br>$stmt-&gt;bindParam(2,$score);</p><p>方式2</p><p>//绑定参数：为可选参数</p><p>$stmt-&gt;bindParam(“:pid”,$pid);<br>$stmt-&gt;bindParam(“:score”,$score);</p><p>//执行上面的数据库语句,执行语句之前给变量赋值</p><p>$pid=2;<br>$score=3;</p><p>//简化操作execute（）中传入数组（关联数组或者索引数组），对应字符串参数和？参数<br>$stmt-&gt;execute();</p><p>PDO预处理查询语句：</p><p>$stmt=$pdo-&gt;prepare(“select * from px_shopscore”);</p><p>$stmt-&gt;execute();</p><p>//设置结果的模式，以下的代码都使用fetch()或fetchAll都是用这个模式</p><p>$stmt-&gt;setFetchMode(_PDO::FETCH<em>NUM</em>);</p><p>//获取单条语句</p><p>while($row=$stmt-&gt;fetch()){</p><p>print_r($row);</p><p>}</p><p>fetch传值可以获取索引关联数组</p><div id="pdostatement.fetch" class="refentry count_info"><br><div id="refsect1-pdostatement.fetch-parameters" class="refsect1 parameters"><br><br>&nbsp;<br><br>*   _PDO::FETCH<em>ASSOC</em>：返回一个索引为结果集列名的数组<br><div id="refsect1-pdostatement.fetch-parameters" class="refsect1 parameters"></div><ul><li>_PDO::FETCH<em>BOTH</em>（默认）：返回一个索引为结果集列名和以0开始的列号的数组</li><li>_PDO::FETCH<em>NUM</em>：返回一个索引为以0开始的结果集列号的数组<br></li></ul></div><br></div><br>fetchAll()获取整张表的数据（生成二维数组）<p>//绑定栏目(同bindParam)</p><p>$stmt-&gt;bindColumn(1,$pid);</p><p>$stmt-&gt;bindColumn(2,$score);</p><p>返回受上一个 SQL 语句影响的行数</p><div id="pdostatement.rowcount" class="refentry count_info"><br><div class="refnamediv"><br><br><span class="refname">PDOStatement::rowCount</span> — <span class="dc-title">返回受上一个 SQL 语句影响的行数</span><br><br>$stmt-&gt;rowCount();<br><br>获取增加id<br><br>PDO::lastInsertId;<br><br></div><br></div>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h5 id=&quot;预处理的好处？&quot;&gt;&lt;a href=&quot;#预处理的好处？&quot; class=&quot;headerlink&quot; title=&quot;预处理的好处？&quot;&gt;&lt;/a&gt;预处理的好处？&lt;/h5&gt;&lt;p&gt;效率要提高 安全性更好 建议：使用这种方式去执行Sql语句&lt;/p&gt;
+&lt;p&gt;PDO预处理删除、更新、添
+      
+    
+    </summary>
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/categories/PHP/"/>
+    
+    
+      <category term="PDO" scheme="http://blog.psonlyweb.cn/tags/PDO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql主从复制</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/mysql%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/mysql主从复制/</id>
+    <published>2017-12-26T07:56:16.000Z</published>
+    <updated>2017-12-26T07:56:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="mysql主从复制"><a href="#mysql主从复制" class="headerlink" title="mysql主从复制"></a>mysql主从复制</h1><hr><h2 id="一、-配置主服务器"><a href="#一、-配置主服务器" class="headerlink" title="一、 配置主服务器"></a>一、 配置主服务器</h2><blockquote><ol><li>编辑my.cnf文件 默认位置一般在/etc下</li></ol></blockquote><p>在[mysqld]的下面加入下面代码：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">log-bin=mysql-bin</span><br><span class="line">server-id=1</span><br><span class="line">innodb_flush_log_at_trx_commit=1</span><br><span class="line">sync_binlog=1</span><br><span class="line">binlog-do-db=wordpress//表明备份哪个数据库</span><br><span class="line">binlog_ignore_db=mysql //表明忽略mysql库的备份</span><br></pre></td></tr></table></figure><blockquote><p>2.重启mysql </p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service mysqld restart</span><br></pre></td></tr></table></figure><blockquote><p>3.连接mysql数据库 </p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p</span><br></pre></td></tr></table></figure><blockquote><p>4.在主服务器上创建用户并赋予”REPLICATION SLAVE”权限 x.x.x.x为 从属服务器ip</p></blockquote><ul><li>已授权的方式创建用户</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GRANT REPLICATION SLAVE</span><br><span class="line">-&gt; ON *.*</span><br><span class="line">-&gt; TO &apos;ps&apos;@&apos;192.168.199.118&apos;</span><br><span class="line">-&gt; IDENTIFIED BY &apos;123456&apos;;</span><br></pre></td></tr></table></figure><blockquote><p>5.执行以下命令锁定数据库以防止写入数据。</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt;FLUSH TABLES WITH READ LOCK;</span><br></pre></td></tr></table></figure><blockquote><p>6.导出数据库备份文件</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mysqldump -u root -p  --databases work  --lock-tables=false &gt; all.sql</span><br><span class="line">//lock-tables 是否锁定数据表 </span><br><span class="line">//databases 数据库名</span><br></pre></td></tr></table></figure><blockquote><p>7.用scp命令传输数据库文件all.sql到从服务器</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp all.sql root@192.168.199.118:/root</span><br></pre></td></tr></table></figure><ul><li>[注意:] scp命令使用时 主服务器和从服务器都要安装 openssh-clients</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">yum install -y openssh-clients</span><br><span class="line">ssh -v //查看服务器上是否有openssh-clients</span><br></pre></td></tr></table></figure><hr><blockquote><p>8.连接mysql数据库 进入mysql命令行查看master状态</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SHOW MASTER STATUS;</span><br><span class="line">+------------------+----------+--------------+------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+------------------+----------+--------------+------------------+</span><br><span class="line">| mysql-bin.000001 |      260 | work         | mysql            |</span><br><span class="line">+------------------+----------+--------------+------------------+</span><br></pre></td></tr></table></figure><blockquote><p>9.解锁数据表</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; UNLOCK TABLES;</span><br></pre></td></tr></table></figure><h2 id="二、-配置从属数据库"><a href="#二、-配置从属数据库" class="headerlink" title="二、 配置从属数据库"></a>二、 配置从属数据库</h2><blockquote><p>1.导入主数据库数据表</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql -u root -p work &lt; all.sql</span><br></pre></td></tr></table></figure><ul><li>[注释]  &lt; 导入 &gt; 导出</li></ul><blockquote><p>2.编辑my.cnf,在[mysqld]下面加入</p></blockquote><p>server-id=2</p><p>可以自己定义,保证唯一</p><blockquote><p>3.登录mysql服务器，执行以下命令。</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CHANGE MASTER TO</span><br><span class="line">    -&gt; MASTER_HOST=&apos;192.168.199.163&apos;,</span><br><span class="line">    -&gt; MASTER_USER=&apos;ps&apos;,</span><br><span class="line">    -&gt; MASTER_PASSWORD=&apos;123456&apos;,</span><br><span class="line">    -&gt; MASTER_PORT=3306,</span><br><span class="line">    -&gt; MASTER_LOG_FILE=&apos;mysql-bin.000001&apos;,</span><br><span class="line">    -&gt; MASTER_LOG_POS=260,</span><br><span class="line">    -&gt; MASTER_CONNECT_RETRY=10;</span><br></pre></td></tr></table></figure><ul><li>[注意:] MASTER_HOST:主服务器的IP。</li><li>MASTER_HOST:主服务器的IP。</li><li>MASTER_USER：配置主服务器时建立的用户名</li><li>MASTER_PASSWORD：用户密码</li><li>MASTER_PORT：主服务器mysql端口，如果未曾修改，默认即可。</li></ul><blockquote><p>4.启动slave进程。</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">START SLAVE;//开启SLAVE进程</span><br><span class="line">show slave status\G //查看SLAVE进程状态</span><br></pre></td></tr></table></figure><ul><li>[注意]连接不上mysql数据库 有可能是防火墙的原因 </li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service iptables stop</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;mysql主从复制&quot;&gt;&lt;a href=&quot;#mysql主从复制&quot; class=&quot;headerlink&quot; title=&quot;mysql主从复制&quot;&gt;&lt;/a&gt;mysql主从复制&lt;/h1&gt;&lt;hr&gt;
+&lt;h2 id=&quot;一、-配置主服务器&quot;&gt;&lt;a href=&quot;#一、-配置主服务器&quot; 
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://blog.psonlyweb.cn/categories/Mysql/"/>
+    
+    
+      <category term="主从复制" scheme="http://blog.psonlyweb.cn/tags/%E4%B8%BB%E4%BB%8E%E5%A4%8D%E5%88%B6/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“angularJS里的$http.post传数据到php接收问题”</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/angularJS%E9%87%8C%E7%9A%84$http.post%E4%BC%A0%E6%95%B0%E6%8D%AE%E5%88%B0php%E6%8E%A5%E6%94%B6%E9%97%AE%E9%A2%98/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/angularJS里的$http.post传数据到php接收问题/</id>
+    <published>2017-12-26T07:55:16.000Z</published>
+    <updated>2017-12-26T07:55:16.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>有两种方式解决这个问题：</p><p>1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。</p><p>2.修改php代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$postData = file_get_contents(‘php:<span class="comment">//input’, true);</span></span><br><span class="line">$obj=json_decode($postData);</span><br><span class="line">$query1 = “SELECT * FROM role_roleRight WHERE roleId=$obj-&gt;rr”;</span><br></pre></td></tr></table></figure></p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;有两种方式解决这个问题：&lt;/p&gt;
+&lt;p&gt;1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。&lt;/p&gt;
+&lt;p&gt;2.修改php代码&lt;br&gt;&lt;figure class=&quot;highlight php
+      
+    
+    </summary>
+    
+      <category term="前端" scheme="http://blog.psonlyweb.cn/categories/%E5%89%8D%E7%AB%AF/"/>
+    
+    
+      <category term="angularJS" scheme="http://blog.psonlyweb.cn/tags/angularJS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“单例模式”</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B9%8B%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/设计模式之单例模式/</id>
+    <published>2017-12-26T07:53:42.000Z</published>
+    <updated>2017-12-26T07:53:42.000Z</updated>
+    
+    <content type="html"><![CDATA[<h4 id="设计模式之单例模式"><a href="#设计模式之单例模式" class="headerlink" title="设计模式之单例模式"></a>设计模式之单例模式</h4><hr><pre><code>&lt;?phpclass Single{    protected  $rnd;    protected static $ins =null ;    //将自动加载 设置为 protected类型    //这样没法new 类名进行实例化    protected function __construct() {        $this-&gt;rnd =rand(0,1000);    }    //声明一个静态方法    public static function getins(){        //判断self::$ins 保存着实例化之后的对象        if (self::$ins == null) {            self::$ins = new self();        }        return self::$ins;    }}?&gt;</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h4 id=&quot;设计模式之单例模式&quot;&gt;&lt;a href=&quot;#设计模式之单例模式&quot; class=&quot;headerlink&quot; title=&quot;设计模式之单例模式&quot;&gt;&lt;/a&gt;设计模式之单例模式&lt;/h4&gt;&lt;hr&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?php
+class Single
+{
+    p
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="PHP" scheme="http://blog.psonlyweb.cn/tags/PHP/"/>
+    
+      <category term="单例模式" scheme="http://blog.psonlyweb.cn/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>拥有相同字段值的记录某个字段合并</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/%E6%8B%A5%E6%9C%89%E7%9B%B8%E5%90%8C%E5%AD%97%E6%AE%B5%E5%80%BC%E7%9A%84%E8%AE%B0%E5%BD%95%E6%9F%90%E4%B8%AA%E5%AD%97%E6%AE%B5%E5%90%88%E5%B9%B6/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/拥有相同字段值的记录某个字段合并/</id>
+    <published>2017-12-26T07:48:43.000Z</published>
+    <updated>2017-12-26T07:48:43.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>想生成上面的数据将门诊科室进行合并</p><p>使用</p><p><pre>group_concat(合并字段) group by 唯一标识</pre><br>这种方式可以实现</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;想生成上面的数据将门诊科室进行合并&lt;/p&gt;
+&lt;p&gt;使用&lt;/p&gt;
+&lt;p&gt;&lt;pre&gt;group_concat(合并字段) group by 唯一标识&lt;/pre&gt;&lt;br&gt;这种方式可以实现&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+      <category term="Mysql" scheme="http://blog.psonlyweb.cn/categories/Mysql/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>编译安装PHP扩展</title>
+    <link href="http://blog.psonlyweb.cn/2017/12/26/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85PHP%E6%89%A9%E5%B1%95/"/>
+    <id>http://blog.psonlyweb.cn/2017/12/26/编译安装PHP扩展/</id>
+    <published>2017-12-26T07:30:47.000Z</published>
+    <updated>2017-12-26T07:30:47.000Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="编译安装PHP扩展"><a href="#编译安装PHP扩展" class="headerlink" title="编译安装PHP扩展"></a>编译安装PHP扩展</h1><p>1、下载PHP环境安装包 php-7.1.4<br>2、解压php安装包<br><code>tar -zxf php-7.1.4.tar.gz</code><br>3、进入ext和你要安装的扩展的目录<br>4、执行phpize<br><code>/usr/local/php7-bht/bin/phpize</code><br>5、执行编译命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure --with-php-config=/usr/local/php7-bht/bin/php-config --with-curl=DIR</span><br></pre></td></tr></table></figure><p><strong>ps:</strong> –with-curl 根据安装扩展不同更改</p><p>6、执行</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make &amp;&amp; make install</span><br></pre></td></tr></table></figure><p>7、然后会生成扩展名.so的文件<br>目录在extensions下</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php7-bht/lib/php/extensions/no-debug-non-zts-20160303/</span><br></pre></td></tr></table></figure><p>8、执行加载模块</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/php/bin/php -m |grep curl</span><br></pre></td></tr></table></figure>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;编译安装PHP扩展&quot;&gt;&lt;a href=&quot;#编译安装PHP扩展&quot; class=&quot;headerlink&quot; title=&quot;编译安装PHP扩展&quot;&gt;&lt;/a&gt;编译安装PHP扩展&lt;/h1&gt;&lt;p&gt;1、下载PHP环境安装包 php-7.1.4&lt;br&gt;2、解压php安装包&lt;br&gt;&lt;c
+      
+    
+    </summary>
+    
+      <category term="编译安装" scheme="http://blog.psonlyweb.cn/categories/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/"/>
+    
+    
+      <category term="Linux" scheme="http://blog.psonlyweb.cn/tags/Linux/"/>
+    
+      <category term="PHP扩展" scheme="http://blog.psonlyweb.cn/tags/PHP%E6%89%A9%E5%B1%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>“插入排序”</title>
+    <link href="http://blog.psonlyweb.cn/2017/10/09/%E2%80%9C%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%E2%80%9D/"/>
+    <id>http://blog.psonlyweb.cn/2017/10/09/“插入排序”/</id>
+    <published>2017-10-09T05:25:11.000Z</published>
+    <updated>2018-04-13T11:51:20.000Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="PHP实现插入排序算法"><a href="#PHP实现插入排序算法" class="headerlink" title="PHP实现插入排序算法"></a>PHP实现插入排序算法</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">function insert_sort($arr)&#123;</span><br><span class="line">    for ($i=1;$i&lt;count($arr);$i++)&#123;</span><br><span class="line">        $key=$arr[$i];</span><br><span class="line">        $j=$i-1;</span><br><span class="line">        //插入排序判断条件</span><br><span class="line">        while($j&gt;=0 &amp;&amp; $arr[$j]&gt;$key)&#123;</span><br><span class="line">            $arr[$j+1]=$arr[$j];</span><br><span class="line">            $j=$j-1;</span><br><span class="line">        &#125;</span><br><span class="line">        $arr[$j+1]=$key;</span><br><span class="line">    &#125;</span><br><span class="line">    return $arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$arr= array(5,2,4,6,1,3);</span><br><span class="line">$arr=insert_sort($arr);</span><br><span class="line">var_dump($arr);</span><br><span class="line">?&gt;</span><br></pre></td></tr></table></figure><h3 id="循环不变式（理解算法的正确性）"><a href="#循环不变式（理解算法的正确性）" class="headerlink" title="循环不变式（理解算法的正确性）"></a>循环不变式（理解算法的正确性）</h3><p>循环不变式的三条性质：</p><ol><li>初始化：循环的第一次迭代之前，它为真</li><li>保持：如果循环的某次迭代之前他为真，那么下一次迭代之前它仍为真。</li><li>终止：在循环终止时，不变式为我们提供一个有用的性质，该性质是用于证明算法是正确的。<h3 id="利用循环不变式证明插入排序是正确的"><a href="#利用循环不变式证明插入排序是正确的" class="headerlink" title="利用循环不变式证明插入排序是正确的"></a>利用循环不变式证明插入排序是正确的</h3></li><li>初始化:当$i=2时，进入循环，$i=2所在数组元素前只有一个A[1]，因为只有一个元素，那么这个判断之前，该数组一定是有序的。</li><li>保持:第二条性质，当第一次循环执行下来，A[1]与A[2]进行比较，A[1],A[2]按照由小到大进行排列，保持了初始化中的性质，循环到$i为任意值，那么循环过后1-j一定是有序的，保持数组是有序的性质。</li><li>终止：循环终止的条件是i &gt; 数组.length = n,因为每次循环i都会增加1，最终 1-n一定是有序排列的。<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3>插入一个数据之前，所在位置n之前的数据一定是有序排列的。</li></ol><p>插入排序最坏运行时间为n² 最好的运行时间为n 那么该数组一定是有序的。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;PHP实现插入排序算法&quot;&gt;&lt;a href=&quot;#PHP实现插入排序算法&quot; class=&quot;headerlink&quot; title=&quot;PHP实现插入排序算法&quot;&gt;&lt;/a&gt;PHP实现插入排序算法&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tabl
+      
+    
+    </summary>
+    
+      <category term="算法" scheme="http://blog.psonlyweb.cn/categories/%E7%AE%97%E6%B3%95/"/>
+    
+    
+      <category term="排序" scheme="http://blog.psonlyweb.cn/tags/%E6%8E%92%E5%BA%8F/"/>
+    
+  </entry>
+  
+</feed>

@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>“Mysql优化” | Coding World Without End | Peng Shang&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="Mysql">
+    <meta name="description" content="建表原则 定长与变长相分离 常用字段和不常用字段要分离 1对多，需要关联统计的字段上，添加冗余字段(空间和时间上的转换)  列选择原则 字段类型优先级 整形 &amp;gt; date,time &amp;gt; enum,char &amp;gt; varchar &amp;gt; blob,text  time 定长,运算快，节省空间,考虑时区，写sql时不方便 where &amp;gt; ‘2005-10-12’;enum 能起">
+<meta name="keywords" content="Mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="“Mysql优化”">
+<meta property="og:url" content="http://blog.psonlyweb.cn/2018/01/02/Mysql优化/index.html">
+<meta property="og:site_name" content="Coding World Without End">
+<meta property="og:description" content="建表原则 定长与变长相分离 常用字段和不常用字段要分离 1对多，需要关联统计的字段上，添加冗余字段(空间和时间上的转换)  列选择原则 字段类型优先级 整形 &amp;gt; date,time &amp;gt; enum,char &amp;gt; varchar &amp;gt; blob,text  time 定长,运算快，节省空间,考虑时区，写sql时不方便 where &amp;gt; ‘2005-10-12’;enum 能起">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-26T03:49:35.527Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="“Mysql优化”">
+<meta name="twitter:description" content="建表原则 定长与变长相分离 常用字段和不常用字段要分离 1对多，需要关联统计的字段上，添加冗余字段(空间和时间上的转换)  列选择原则 字段类型优先级 整形 &amp;gt; date,time &amp;gt; enum,char &amp;gt; varchar &amp;gt; blob,text  time 定长,运算快，节省空间,考虑时区，写sql时不方便 where &amp;gt; ‘2005-10-12’;enum 能起">
+    
+        <link rel="alternate" type="application/atom+xml" title="Coding World Without End" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+   
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+     <!-- highlight.js代码高亮主题 css 引入-->
+    <link rel="stylesheet" href="/plugins/highlight/styles/monokai-sublime.css">
+    <style>
+        pre {
+            position: relative;
+            margin-bottom: 24px;
+            border-radius: 3px;
+            border: 1px solid #263238;
+            background: #263238;
+            overflow: hidden;
+        }
+
+        code {
+            display: block;
+            padding: 12px 24px;
+            overflow-y: auto;
+            font-weight: 300;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+        }
+
+        code.has-numbering {
+            margin-left: 21px;
+        }
+        .pre-numbering li {
+           list-style-type: none;
+        }
+        .pre-numbering {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            padding: 12px 2px 12px 0;
+            border-right: 1px solid #263238;
+            border-radius: 3px 0 0 3px;
+            background-color: #263238;
+            text-align: right;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+            color: #AAA;
+        }
+    </style>
+    <!-- highlight.js代码高亮主题 css 引入-->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Peng Shang</h5>
+          <a href="mailto:pengshang1995@gmail.com" title="pengshang1995@gmail.com" class="mail">pengshang1995@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                日程
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/pengshang1995" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">“Mysql优化”</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">“Mysql优化”</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2018-01-02T07:38:03.319Z" itemprop="datePublished" class="page-time">
+  2018-01-02
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mysql/">Mysql</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#建表原则"><span class="post-toc-number">1.</span> <span class="post-toc-text">建表原则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#列选择原则"><span class="post-toc-number">2.</span> <span class="post-toc-text">列选择原则</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#索引"><span class="post-toc-number">3.</span> <span class="post-toc-text">索引</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#索引的类型"><span class="post-toc-number">3.1.</span> <span class="post-toc-text">索引的类型</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#btree索引的误区"><span class="post-toc-number">3.1.1.</span> <span class="post-toc-text">btree索引的误区</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#聚簇索引和非聚簇索引"><span class="post-toc-number">4.</span> <span class="post-toc-text">聚簇索引和非聚簇索引</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#理想的索引"><span class="post-toc-number">4.1.</span> <span class="post-toc-text">理想的索引</span></a></li><li class="post-toc-item post-toc-level-4"><a class="post-toc-link" href="#SQL语句优化"><span class="post-toc-number">4.2.</span> <span class="post-toc-text">SQL语句优化</span></a></li></ol></li></ol></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#sql语句的优化思路"><span class="post-toc-number"></span> <span class="post-toc-text">sql语句的优化思路</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#explain-的列分析"><span class="post-toc-number"></span> <span class="post-toc-text">explain 的列分析</span></a>
+        </nav>
+    </aside>
+    
+<article id="post-Mysql优化"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">“Mysql优化”</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2018-01-02 15:38:03" datetime="2018-01-02T07:38:03.319Z"  itemprop="datePublished">2018-01-02</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mysql/">Mysql</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h3 id="建表原则"><a href="#建表原则" class="headerlink" title="建表原则"></a>建表原则</h3><ol>
+<li>定长与变长相分离</li>
+<li>常用字段和不常用字段要分离</li>
+<li>1对多，需要关联统计的字段上，添加冗余字段(空间和时间上的转换)</li>
+</ol>
+<h3 id="列选择原则"><a href="#列选择原则" class="headerlink" title="列选择原则"></a>列选择原则</h3><ol>
+<li><p>字段类型优先级 整形 &gt; date,time &gt; enum,char &gt; varchar &gt; blob,text</p>
+<blockquote>
+<p>time 定长,运算快，节省空间,考虑时区，写sql时不方便 where &gt; ‘2005-10-12’;<br>enum 能起到约束值的目的，内部用整形来存储<br>char 定长 需要考虑字符集和(排序校对集)<br>varchar 不定长 要考虑字符集的转换与排序时校对集，速度慢<br>text/Blob 无法使用内存临时表（排序等操作只能在磁盘上进行）</p>
+</blockquote>
+</li>
+<li><p>够用就行，不要慷慨</p>
+<blockquote>
+<p>原因：大的字段浪费内存，影响速度<br>以年龄为例，tinyint unsigned not null 可以存储255岁,足够使用 ,用int浪费了3个字节<br>以varchar(10) 和 varchar(300) 存储的内容相同，但是在表的联查上varchar(300)要花费更多的内存。</p>
+</blockquote>
+</li>
+<li><p>尽量避免使用NULL</p>
+<blockquote>
+<p>原因：NULL 不利于索引 要用特殊字节来标注</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h3><h4 id="索引的类型"><a href="#索引的类型" class="headerlink" title="索引的类型"></a>索引的类型</h4><blockquote>
+<p>索引类型分为bTree索引和hash索引</p>
+</blockquote>
+<ol>
+<li>btree 索引原理 二叉树</li>
+<li>hash索引 在memory里，默认是hash索引，hash索引的理论上时间复杂度为O(1)。(拉链算法)</li>
+</ol>
+<h5 id="btree索引的误区"><a href="#btree索引的误区" class="headerlink" title="btree索引的误区"></a>btree索引的误区</h5><ol>
+<li>where 条件常用列上都加上索引(错误)</li>
+<li>在多列上建立索引发挥作用，需要满足左前缀要求</li>
+</ol>
+<p>以index(a,b,c)为例(注意和顺序有关)</p>
+<table>
+<thead>
+<tr>
+<th>语句</th>
+<th>索引是否发挥作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>where a =3</td>
+<td>是 只使用了a列</td>
+</tr>
+<tr>
+<td>where a=3 and b=5</td>
+<td>是 使用了a,b列</td>
+</tr>
+<tr>
+<td>where a=3 and b=5 and c=5</td>
+<td>是 a,b,c均使用</td>
+</tr>
+<tr>
+<td>where c=3 where b=4</td>
+<td>否</td>
+</tr>
+<tr>
+<td>where a=3 and c=4</td>
+<td>a列能发挥索引,c不能</td>
+</tr>
+<tr>
+<td>where a=3 and b&gt;10 and c=7</td>
+<td>a能利用，b能利用，c不能利用</td>
+</tr>
+</tbody>
+</table>
+<h3 id="聚簇索引和非聚簇索引"><a href="#聚簇索引和非聚簇索引" class="headerlink" title="聚簇索引和非聚簇索引"></a>聚簇索引和非聚簇索引</h3><ol>
+<li>非聚簇索引<ul>
+<li style="list-style: none"><input type="checkbox"> Myisam 索引与数据的关系</li>
+<li style="list-style: none"><input type="checkbox"> Myisam 索引指向行所在磁盘的位置</li>
+<li style="list-style: none"><input type="checkbox"> 数据都有自己的地址</li>
+<li style="list-style: none"><input type="checkbox"> 数据和索引相互独立</li>
+</ul>
+</li>
+<li>聚簇索引<ul>
+<li style="list-style: none"><input type="checkbox"> 主键索引 既存索引值，又在叶子中存储行的数据</li>
+<li style="list-style: none"><input type="checkbox"> 如果没有主键（primary key），则会Unique key做主键</li>
+<li style="list-style: none"><input type="checkbox"> 如果没有unique，则系统生成一个内部的rowid做主键</li>
+<li style="list-style: none"><input type="checkbox"> 像innodb中，主键的索引结构中既存储了主键值，又存储了行数据的这样的结构c称为“聚簇索引”   </li>
+</ul>
+</li>
+<li><p>聚簇索引和非聚簇索引的优缺点</p>
+<p> 优势：根据主键查询条目比较少，不用回行(数据就在主键节点下)<br> 劣势: 如果碰到不规则数据插入时会造成频繁的页分裂。<br>####索引覆盖<br>索引覆盖是指查询的列恰好是索引的一部分，那么查询只需要在索引文件上进行，不需要回行到磁盘在查找数据，这样查询速度非常快</p>
+</li>
+</ol>
+<h4 id="理想的索引"><a href="#理想的索引" class="headerlink" title="理想的索引"></a>理想的索引</h4><ol>
+<li>查询频繁</li>
+<li>区分度高</li>
+<li>长度小</li>
+<li>尽可能覆盖常用字段</li>
+</ol>
+<h4 id="SQL语句优化"><a href="#SQL语句优化" class="headerlink" title="SQL语句优化"></a>SQL语句优化</h4><blockquote>
+<p><strong>提高查询速度的方法</strong></p>
+<ol>
+<li>查询的快，联合索引的顺序，区分度，长度</li>
+<li>取得快，采用索引覆盖</li>
+<li>传输的少，更少的行和列</li>
+</ol>
+<p><strong>切分查询： 按数据拆分多次</strong><br>例如：插入10000行数据，每1000条为单位插入</p>
+<p><strong>分解查询</strong><br>将逻辑把多表连接查询分解成多个简单的sql</p>
+</blockquote>
+<h2 id="sql语句的优化思路"><a href="#sql语句的优化思路" class="headerlink" title="sql语句的优化思路"></a>sql语句的优化思路</h2><p>不查 -&gt; 少查 -&gt; 高效的查</p>
+<ol>
+<li>不查，通过业务逻辑来计算<br>2.少查 尽量精准数据，少取行<br>3.必须要查 尽量在索引上查询</li>
+</ol>
+<h2 id="explain-的列分析"><a href="#explain-的列分析" class="headerlink" title="explain 的列分析"></a>explain 的列分析</h2><p><strong>id 代表select语句的编号</strong></p>
+<blockquote>
+<p><strong>select_type类型</strong> </p>
+<ol>
+<li>简单查询 SIMPLE</li>
+<li>子查询派生子查询 </li>
+<li>PRIMARY 主语句</li>
+<li>subquery 非from子查询</li>
+<li>derived  from子查询</li>
+<li>union</li>
+<li>union result</li>
+</ol>
+</blockquote>
+<p><strong>table 表名</strong><br><strong>key</strong><br>使用的索引列<br><strong>type</strong><br>查数据过程的重要依据<br>可选项 </p>
+<ol>
+<li>all 意味着从表的第一行，往后逐行做全表扫描</li>
+<li>index 扫描所有的索引节点</li>
+<li>range 查询</li>
+<li>const </li>
+<li>ref 通过索引列,可以直接引用某行数据<br><strong>ref</strong><br>连接查询 表之间的引用关系<br><strong>rows</strong><br>估计要扫描多少行<br><strong>extra</strong><br>index:是指用到了索引覆盖效率非常高<br>using where 是光靠索引定位不了还得where判断一下<br>using temporary 是指用到了临时表<br>using filesort 文件排序<br>注:如果取出的列含有text，filesort会发生在磁盘上</li>
+</ol>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2018-01-26T03:49:35.527Z" itemprop="dateUpdated">2018-01-26 11:49:35</time>
+</span><br>
+
+
+        
+        本文链接：<a href="/2018/01/02/Mysql优化/" target="_blank" rel="external">http://blog.psonlyweb.cn/2018/01/02/Mysql优化/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.psonlyweb.cn">
+            <img src="/img/avatar.jpg" alt="Peng Shang">
+            Peng Shang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Mysql/">Mysql</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/&title=《“Mysql优化”》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/&title=《“Mysql优化”》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《“Mysql优化”》 — Coding World Without End&url=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/26/Vagrant/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">Vagrant使用</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2018/01/02/设计模式之装饰器模式/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">设计模式之装饰器模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Peng Shang &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/&title=《“Mysql优化”》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/&title=《“Mysql优化”》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《“Mysql优化”》 — Coding World Without End&url=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2018/01/02/Mysql优化/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJklEQVR42u3aQZLDIAwF0dz/0p4LxEp/gafKollNTYLhZSGDpM8Hj6sc9Tfvnlav8nliyJAh47UMskWy6Xq7BE9m3a4oQ4aMAxhkE/Wj61k1vvcEGTJkyODLkG3xkC1DhgwZexm9bxKwDBkyZPQusTxxxo+D5EfZfBeXIUPGCxl8E///9yP1DRkyZLyKcYWDU58Lsl92JUOGjNEMHuDSUiWPir1mCxkyZJzDqCekYZcXA3g4RjAZMmSMZqShM03690qSaVlUhgwZsxlpk0S9dfJpWrBEoVaGDBnHM0hCbeWol74ZftRgZciQMY7BU2krJUZ+1ONzZciQcTIjvYjWIZX/NLx34jb4ypAhYygjbXrg6bk0ud9bS4YMGWcyehktUhztwbZ1i8iQIWMcI20eTcM0B6P/yJAhYzQjLRauJ/3Tcml83JQhQ8Y4Rq/dYW8JYf3qK0OGjNkMHnDTdBsvYfKmMXT0lCFDxgEMch0lxcU6WKfl0iCUy5AhYyijXiwNjk8cHBFGhgwZxzBWtssTcDzRFlxxZciQcRgjDZe9guXe4CtDhoypjCscP9qzeFIsvCQH928ZMmSMY/DBE2RpmO4FZR7iZciQMYPRu0DyZXghgQdcGTJknMlIGyl6ybX1NwC6i8uQIeN4xt4S5srBcalzTYYMGaMZJOm2skUeoDe8N2TIkPEqRtpmsdJykZYQEFiGDBmjGXxa2jrGn9krP8iQIeMAxh9NcUHPEY+xDwAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+<script
+  src="http://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
+  <script>
+  $(function(){
+          $('pre code').each(function(){
+              var lines = $(this).text().split('\n').length - 1;
+              var $numbering = $('<ul/>').addClass('pre-numbering');
+              $(this)
+                  .addClass('has-numbering')
+                  .parent()
+                  .append($numbering);
+              for(i=1;i<=lines;i++){
+                  $numbering.append($('<li/>').text(i));
+              }
+          });
+      });
+  </script>
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+
+
+</body>
+</html>

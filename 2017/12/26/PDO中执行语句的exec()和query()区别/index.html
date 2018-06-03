@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>PDO中执行语句的exec()和query()区别 | Coding World Without End | Peng Shang&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="PDO">
+    <meta name="description" content="1、 exec() 用来处理非结果集的 Insert update delete create 等 返回影响行数 如果是插入语句可以使用id $pdo-&amp;gt;lastinsertid();获取最后增加的id &amp;nbsp; 2、query() 用来处理有结果集的语句 select desc show 例： $result=$pdo-&amp;gt;query(“select * From student”">
+<meta name="keywords" content="PDO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PDO中执行语句的exec()和query()区别">
+<meta property="og:url" content="http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/index.html">
+<meta property="og:site_name" content="Coding World Without End">
+<meta property="og:description" content="1、 exec() 用来处理非结果集的 Insert update delete create 等 返回影响行数 如果是插入语句可以使用id $pdo-&amp;gt;lastinsertid();获取最后增加的id &amp;nbsp; 2、query() 用来处理有结果集的语句 select desc show 例： $result=$pdo-&amp;gt;query(“select * From student”">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-26T07:57:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="PDO中执行语句的exec()和query()区别">
+<meta name="twitter:description" content="1、 exec() 用来处理非结果集的 Insert update delete create 等 返回影响行数 如果是插入语句可以使用id $pdo-&amp;gt;lastinsertid();获取最后增加的id &amp;nbsp; 2、query() 用来处理有结果集的语句 select desc show 例： $result=$pdo-&amp;gt;query(“select * From student”">
+    
+        <link rel="alternate" type="application/atom+xml" title="Coding World Without End" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+   
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+     <!-- highlight.js代码高亮主题 css 引入-->
+    <link rel="stylesheet" href="/plugins/highlight/styles/monokai-sublime.css">
+    <style>
+        pre {
+            position: relative;
+            margin-bottom: 24px;
+            border-radius: 3px;
+            border: 1px solid #263238;
+            background: #263238;
+            overflow: hidden;
+        }
+
+        code {
+            display: block;
+            padding: 12px 24px;
+            overflow-y: auto;
+            font-weight: 300;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+        }
+
+        code.has-numbering {
+            margin-left: 21px;
+        }
+        .pre-numbering li {
+           list-style-type: none;
+        }
+        .pre-numbering {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            padding: 12px 2px 12px 0;
+            border-right: 1px solid #263238;
+            border-radius: 3px 0 0 3px;
+            background-color: #263238;
+            text-align: right;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+            color: #AAA;
+        }
+    </style>
+    <!-- highlight.js代码高亮主题 css 引入-->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Peng Shang</h5>
+          <a href="mailto:pengshang1995@gmail.com" title="pengshang1995@gmail.com" class="mail">pengshang1995@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                日程
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/pengshang1995" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">PDO中执行语句的exec()和query()区别</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">PDO中执行语句的exec()和query()区别</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-26T07:57:34.000Z" itemprop="datePublished" class="page-time">
+  2017-12-26
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-PDO中执行语句的exec()和query()区别"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">PDO中执行语句的exec()和query()区别</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-26 15:57:34" datetime="2017-12-26T07:57:34.000Z"  itemprop="datePublished">2017-12-26</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>1、 exec() 用来处理非结果集的 Insert update delete create 等</p>
+<p>返回影响行数</p>
+<p>如果是插入语句可以使用id $pdo-&gt;lastinsertid();获取最后增加的id</p>
+<p>&nbsp;</p>
+<p>2、query() 用来处理有结果集的语句 select desc show</p>
+<p>例：</p>
+<p>$result=$pdo-&gt;query(“select * From student”);</p>
+<p>返回来的是 PDOstatement类的对象，在通过这个类的方法获取结果，也可以直接foreach遍历结果<strong>但不常用</strong></p>
+<p>&nbsp;</p>
+<p>如果要设置utf8编码集</p>
+<p>set names utf8</p>
+<p>$pdo-&gt;  query(“set names utf8”);</p>
+<p>等同于$pdo-&gt;exec(“set names utf8”);</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-12-26T07:57:34.000Z" itemprop="dateUpdated">2017-12-26 15:57:34</time>
+</span><br>
+
+
+        
+        本文链接：<a href="/2017/12/26/PDO中执行语句的exec()和query()区别/" target="_blank" rel="external">http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.psonlyweb.cn">
+            <img src="/img/avatar.jpg" alt="Peng Shang">
+            Peng Shang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PDO/">PDO</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/&title=《PDO中执行语句的exec()和query()区别》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/&title=《PDO中执行语句的exec()和query()区别》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PDO中执行语句的exec()和query()区别》 — Coding World Without End&url=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/12/26/移动设备上设置原始大小显示和是否缩放声明/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">移动设备上设置原始大小显示和是否缩放声明</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/26/PDO的预处理语句/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">PDO的预处理语句</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Peng Shang &copy; 2015 - 2018</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/&title=《PDO中执行语句的exec()和query()区别》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/&title=《PDO中执行语句的exec()和query()区别》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《PDO中执行语句的exec()和query()区别》 — Coding World Without End&url=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2017/12/26/PDO中执行语句的exec()和query()区别/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3awU7rQAwF0P7/T8P2PUHSa3tcBelkhQpJ52QxHq79esXX1z/Xz8+vPrm6K7n36mmvjQsPDw9vsPSf19Xf3D/tfkH3z8+ffL9mPDw8vG1evtB7QLLo+V15scHDw8N7Au++qOTH32qxwcPDw/vrvGRZ1cXld+Hh4eE9gZeEEdUoIQoLBkfqw1kLHh4eXszLu0jP+Xmlv4eHh4c37qrfb7jVsLUXT+TF4Je78PDw8BZ482ggYc+HribBBx4eHt5ZXhI35EViPgQwjzz+ew4eHh7ex3kTQB7UJoWk+e14eHh4a99e/ec/GTvIj9e98pOPOODh4eFt8KLEonjMTRbUKyoHen14eHh4A171n/8EUx2xygtJtSWGh4eHt8FLikFvICA5pm+UCjw8PLzP8PLtvreV54Wh2kKLXgoeHh7eAq8alU5eSt70yjHNjh8eHh5ei5dsqUkjP9+g8+ZWEkO8WTMeHh7eMq8awk6O2tVYoXlMx8PDw1vg5cvqfZ68jpWSgIeHh/cRXvV4nS+6+oJ64cgbBR4eHt4aLw9b7zfrSWOsOnRVzqfx8PDwxrxqGFFtWZ0qLfmruRy6wsPDw1vg9YKGPDvtbe54eHh4z+S94ispGzk1Z/QGtvDw8PC2edWHViOJakCclJZCYcDDw8Nb4E22/nw4oLpvV4/pr2Q2AQ8PD+8Qr9r0qoa51W29+uoLQwN4eHh4R3k9TK/FNYk2IjYeHh7eUd5X8crjid5gQV5UorEtPDw8vAXeXtMrPwpXX1814MDDw8Pb4OXFII9re8fxSeF5E+Pi4eHhLfAmran8OF4dBZgEE3h4eHjP4VWDgF4Jqd5VON3j4eHhfZyXIycFIy8/60dqPDw8vEEYMfltL8ioHqAvJyPw8PDwjvJOPWLyOo516ubpBR4eHt7d9Q0YmWhtNZBjGgAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+<script
+  src="http://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
+  <script>
+  $(function(){
+          $('pre code').each(function(){
+              var lines = $(this).text().split('\n').length - 1;
+              var $numbering = $('<ul/>').addClass('pre-numbering');
+              $(this)
+                  .addClass('has-numbering')
+                  .parent()
+                  .append($numbering);
+              for(i=1;i<=lines;i++){
+                  $numbering.append($('<li/>').text(i));
+              }
+          });
+      });
+  </script>
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+
+
+</body>
+</html>
