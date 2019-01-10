@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.psonlyweb.cn/"/>
-  <updated>2018-05-14T09:12:52.000Z</updated>
+  <updated>2019-01-10T10:06:15.370Z</updated>
   <id>http://blog.psonlyweb.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>适配器模式（Adapter Design Pattern）</title>
+    <link href="http://blog.psonlyweb.cn/2019/01/10/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.psonlyweb.cn/2019/01/10/适配器模式/</id>
+    <published>2019-01-10T09:00:45.000Z</published>
+    <updated>2019-01-10T10:06:15.370Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>适配器设计模式只是将某个对象的接口适配为另一个对象所期望的接口。</p><h3 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h3><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/19-1-10/65425576.jpg" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>###代码实现</p><pre><code>class errorObject{    private $_error;    public function __construct($error)    {        $this-&gt;_error = $error;    }    public function getError() {        return $this-&gt;_error;    }}class LogToCsvErrorObject extends  errorObject{    private $error_num;    private $error_msg;    public function __construct($error)    {        parent::__construct($error);        $error = $this-&gt;getError();        $parts = explode(&quot;:&quot;,$error);        $this-&gt;error_num = $parts[0];        $this-&gt;error_msg = $parts[1];    }    public function getErrorNum() {        return $this-&gt;error_num;    }    public function getErrorMsg() {        return $this-&gt;error_msg;    }}class LogToConsole {    private $_errorObject;    public function __construct(errorObject $errorObject)    {        $this-&gt;_errorObject = $errorObject;    }    public function write() {        fwrite(STDERR,$this-&gt;_errorObject-&gt;getError());    }}class LogToCSV {    private $_errorObject;    public function __construct(LogToCsvErrorObject $errorObject)    {        $this-&gt;_errorObject = $errorObject;    }    public function write() {        $error_num = $this-&gt;_errorObject-&gt;getErrorNum();        $error_msg = $this-&gt;_errorObject-&gt;getErrorMsg();        fwrite(STDERR,$error_msg.&quot;错误码:&quot;.$error_num);    }}$error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);(new LogToCSV($error_obj))-&gt;write();</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;p&gt;适配器设计模式只是将某个对象的接口适配为另一个对象所期望的接口。&lt;/p&gt;
+&lt;h3 id=&quot;UML图&quot;&gt;&lt;a href=&quot;#UML图&quot; cla
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="适配器模式" scheme="http://blog.psonlyweb.cn/tags/%E9%80%82%E9%85%8D%E5%99%A8%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>快速排序</title>
