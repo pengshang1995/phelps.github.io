@@ -195,55 +195,6 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-Laravel学习笔记"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-02-08 11:04:07" datetime="2018-02-08T03:04:07.000Z"  itemprop="datePublished">2018-02-08</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Laravel/">Laravel</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Laravel/PHP/">PHP</a></li></ul></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/02/08/Laravel学习笔记/">Laravel学习笔记</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        任务管理内容任务 Taskartisan make:model Task -m -m 生成数据库迁移文件工程 Projectartisan make:model Project -m用户 User理解需求：一个用户可以拥有多个Project一个用户通过Project可以拥有多个TaskUser.php
-public function projects() {
-    return $this...
-    
-
-        <a href="/2018/02/08/Laravel学习笔记/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/笔记/">笔记</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
             <article id="post-laravel目录"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -731,6 +682,62 @@ class FD
 
         </li>
     
+        <li class="post-list-item fade">
+            <article id="post-设计模式之责任链"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-29 10:46:17" datetime="2017-12-29T02:46:17.000Z"  itemprop="datePublished">2017-12-29</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/29/设计模式之责任链/">“设计模式之责任链”</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        设计模式之责任链
+
+定义子类首先定义三个类，要声明power权值,以power来判断是否有权利去操作，传过来的数据，还需要声明上一级，责任链模式，要有层级关系
+
+class Banzhu extends Admin
+{
+   protected $power = 1;
+   protected $top = &#39;Police&#39;;
+
+   public function doPr...
+    
+
+        <a href="/2017/12/29/设计模式之责任链/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
     </ul>
 
     
@@ -764,7 +771,7 @@ class FD
         </p>
     </div>
     <div class="bottom">
-        <p><span>Peng Shang &copy; 2015 - 2018</span>
+        <p><span>Peng Shang &copy; 2015 - 2019</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

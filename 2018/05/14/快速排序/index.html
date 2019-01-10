@@ -237,9 +237,46 @@
 <li><strong>解决</strong>：通过递归调用快速排序，对子数组A[start,postion-1]和A[postion+1,end]进行排序。</li>
 <li><strong>合并</strong>：因为数组是原址排序，因此A[start,end]是有序的。</li>
 </ol>
-<h4 id="数组的划分（解决）实现思想图"><a href="#数组的划分（解决）实现思想图" class="headerlink" title="数组的划分（解决）实现思想图"></a>数组的划分（解决）实现思想图</h4><p><img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-14/60412907.jpg" alt=""></p>
-<h4 id="PHP实现快速排序"><a href="#PHP实现快速排序" class="headerlink" title="PHP实现快速排序"></a>PHP实现快速排序</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">function quickSort(&amp;$array,$start,$end)</span><br><span class="line">&#123;</span><br><span class="line">    if ($start &lt; $end) &#123;</span><br><span class="line">        $postion = partition($array, $start, $end);</span><br><span class="line">        quickSort($array,$start,$postion-1);</span><br><span class="line">        quickSort($array,$postion+1,$end);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function partition(&amp;$arr,$start,$end) &#123;</span><br><span class="line">    $flag = $arr[$end];</span><br><span class="line">    $i = $start-1;</span><br><span class="line">    for ( $j=$start; $j&lt;= $end-1; $j++) &#123;</span><br><span class="line">        if($arr[$j] &lt;= $flag) &#123;</span><br><span class="line">            $i = $i+1;</span><br><span class="line">            swap($arr,$i,$j);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    swap($arr,$i+1,$end);</span><br><span class="line"></span><br><span class="line">    return $i+1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">function swap (&amp;$arr,$exist,$replace) &#123;</span><br><span class="line">    $temp = $arr[$exist];</span><br><span class="line">    $arr[$exist] = $arr[$replace];</span><br><span class="line">    $arr[$replace] = $temp;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">$array = array(1,6,5,4);</span><br><span class="line">quickSort($array,0,3);</span><br><span class="line">var_dump($array);</span><br></pre></td></tr></table></figure>
+<h4 id="数组的划分（解决）实现思想图"><a href="#数组的划分（解决）实现思想图" class="headerlink" title="数组的划分（解决）实现思想图"></a>数组的划分（解决）实现思想图</h4><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/18-5-14/60412907.jpg" alt="" title="">
+                </div>
+                <div class="image-caption"></div>
+            </figure>
+<h4 id="PHP实现快速排序"><a href="#PHP实现快速排序" class="headerlink" title="PHP实现快速排序"></a>PHP实现快速排序</h4><pre><code>function quickSort(&amp;$array,$start,$end)
+{
+    if ($start &lt; $end) {
+        $postion = partition($array, $start, $end);
+        quickSort($array,$start,$postion-1);
+        quickSort($array,$postion+1,$end);
+    }
+}
 
+function partition(&amp;$arr,$start,$end) {
+    $flag = $arr[$end];
+    $i = $start-1;
+    for ( $j=$start; $j&lt;= $end-1; $j++) {
+        if($arr[$j] &lt;= $flag) {
+            $i = $i+1;
+            swap($arr,$i,$j);
+        }
+    }
+    swap($arr,$i+1,$end);
+
+    return $i+1;
+}
+
+function swap (&amp;$arr,$exist,$replace) {
+    $temp = $arr[$exist];
+    $arr[$exist] = $arr[$replace];
+    $arr[$replace] = $temp;
+}
+
+$array = array(1,6,5,4);
+quickSort($array,0,3);
+var_dump($array);
+</code></pre>
         </div>
 
         <blockquote class="post-copyright">
@@ -322,14 +359,7 @@
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2018/05/16/计数排序/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">计数排序</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
@@ -386,7 +416,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>Peng Shang &copy; 2015 - 2018</span>
+        <p><span>Peng Shang &copy; 2015 - 2019</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

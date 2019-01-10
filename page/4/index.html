@@ -195,55 +195,6 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-angularJS里的$http.post传数据到php接收问题"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-12-26 15:55:16" datetime="2017-12-26T07:55:16.000Z"  itemprop="datePublished">2017-12-26</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/angularJS里的$http.post传数据到php接收问题/">“angularJS里的$http.post传数据到php接收问题”</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        有两种方式解决这个问题：
-1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。
-2.修改php代码123$postData = file_get_contents(‘php://input’, true);$obj=json_decode($postData);$query1 = “SELECT * FROM...
-    
-
-        <a href="/2017/12/26/angularJS里的$http.post传数据到php接收问题/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/angularJS/">angularJS</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
             <article id="post-设计模式之单例模式"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -374,7 +325,7 @@ group_concat(合并字段) group by 唯一标识这种方式可以实现
 
     
         编译安装PHP扩展1、下载PHP环境安装包 php-7.1.42、解压php安装包tar -zxf php-7.1.4.tar.gz3、进入ext和你要安装的扩展的目录4、执行phpize/usr/local/php7-bht/bin/phpize5、执行编译命令
-1./configure --with-php-config=/usr/local/php7-bht/bin/php-confi...
+./configure --with-php-config=/usr/local/php7-bht/bin/php-config...
     
 
         <a href="/2017/12/26/编译安装PHP扩展/" class="post-more waves-effect waves-button">
@@ -421,7 +372,13 @@ group_concat(合并字段) group by 唯一标识这种方式可以实现
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        PHP实现插入排序算法12345678910111213141516171819&lt;?phpfunction insert_sort($arr)&#123;    for ($i=1;$i&lt;count($arr);$i++)&#123;        $key=$arr[$i];        $j=$i-1;        //插入排序判断条件        while($j&g...
+        PHP实现插入排序算法&lt;?php
+function insert_sort($arr){
+    for ($i=1;$i&lt;count($arr);$i++){
+        $key=$arr[$i];
+        $j=$i-1;
+        //插入排序判断条件
+        while($j&gt;=0 &amp;&amp; $arr[$j]&gt;$key)...
     
 
         <a href="/2017/10/09/“插入排序”/" class="post-more waves-effect waves-button">
@@ -472,7 +429,7 @@ group_concat(合并字段) group by 唯一标识这种方式可以实现
         </p>
     </div>
     <div class="bottom">
-        <p><span>Peng Shang &copy; 2015 - 2018</span>
+        <p><span>Peng Shang &copy; 2015 - 2019</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

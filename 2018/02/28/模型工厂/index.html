@@ -231,21 +231,94 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>实际项目开发中我们经常会用到一些假数据来对数据库进行填充以方便调试程序,原始的做法是手工的一个个在数据创建。Laravel提供了一套更加现代化、非常简单易用的数据填充方案。接下来让我们使用Laravel提供的数据填充来批量生成一批假数据。<br>假数据的生成分为两个阶段：<br>1.对要生成假数据的模型指定字段进行赋值- {模型工厂}<br>2.批量生成假数据模型 - {数据填充}</p>
 <h2 id="模型工厂"><a href="#模型工厂" class="headerlink" title="模型工厂"></a>模型工厂</h2><p>Laravel默认集成了<a href="https://github.com/fzaninotto/Faker" target="_blank" rel="noopener">Faker</a>扩展包，使用该扩展包可以方便我们生成一些假数据。<br>示例如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//使用factory 来创建一个Faker\Generator实例</span><br><span class="line">$faker = Faker\Factory::create();</span><br><span class="line">$faker-&gt;name;</span><br><span class="line">$faker-&gt;safeEmail;</span><br><span class="line">$faker-&gt;date;</span><br><span class="line">$faker-&gt;time;</span><br></pre></td></tr></table></figure>
-<p>借助Faker和Eloquent模型工厂来为指定模型的每个字段设置随机值。<br>Laravel生成模型工厂<br><code>php artisan make:factory UserFactory</code><br>实例UserFactory如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Faker\Generator as Faker;</span><br><span class="line"></span><br><span class="line">/*</span><br><span class="line">|--------------------------------------------------------------------------</span><br><span class="line">| Model Factories</span><br><span class="line">|--------------------------------------------------------------------------</span><br><span class="line">|</span><br><span class="line">| This directory should contain each of the model factory definitions for</span><br><span class="line">| your application. Factories provide a convenient way to generate new</span><br><span class="line">| model instances for testing / seeding your application&apos;s database.</span><br><span class="line">|</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">$factory-&gt;define(App\Models\User::class, function (Faker $faker) &#123;</span><br><span class="line">    static $password;</span><br><span class="line"></span><br><span class="line">    return [</span><br><span class="line">        &apos;name&apos; =&gt; $faker-&gt;name,</span><br><span class="line">        &apos;email&apos; =&gt; $faker-&gt;unique()-&gt;safeEmail,</span><br><span class="line">        &apos;password&apos; =&gt; $password ?: $password = bcrypt(&apos;secret&apos;),</span><br><span class="line">        &apos;remember_token&apos; =&gt; str_random(10),</span><br><span class="line">    ];</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<p><strong>define</strong>定义了一个指定数据模型(如此例子<strong>User</strong>)的模型工厂。define方法接收两个参数,第一个参数指定的Eloquent模型类,第二个参数为一个闭包函数，该闭包函数接受一个<strong>Faker</strong>PHP函数库的实例，让我们可以在函数内部使用Faker方法生成假数据。</p>
-<h2 id="数据填充"><a href="#数据填充" class="headerlink" title="数据填充"></a>数据填充</h2><p>Laravel中我们使用<strong>Seeder</strong>类来给数据库填充测试数据。所有seeder类在<strong>database/seeds</strong>，文件名需要按照【驼峰式】来命名,且严格遵循大小写规范。Laravel默认定义了<strong>DatabaseSeeder</strong>类，可在该类中使用<strong>call</strong>方法来运行其他的<strong>Seeder</strong>类，以此控制数据填充的顺序。我们可以使用如下命令生成 UserTableSeeder文件。<br><code>$ php artisan make:seeder UserTableSeeder</code><br>定义好模型工厂后,在UserTableSeeder中使用<strong>factory</strong>方法来生成一个使用假数据的用户对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">use Illuminate\Database\Seeder;</span><br><span class="line">use App\Models\User;</span><br><span class="line"></span><br><span class="line">class UserSeeder extends Seeder</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the database seeds.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        //</span><br><span class="line">        $user = factory(User::class);</span><br><span class="line">        User::insert($user-&gt;makeVisible([&apos;password&apos;,&apos;remember_token&apos;]));</span><br><span class="line"></span><br><span class="line">        $user = User::find(1);</span><br><span class="line">        $user-&gt;name = &apos;PS&apos;;</span><br><span class="line">        $user-&gt;email = &apos;ps@qq.com&apos;;</span><br><span class="line">        $user-&gt;password = bcrypt(&apos;password&apos;);</span><br><span class="line">        $user-&gt;save();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后一步 在<strong>DatabaseSeeder</strong>中调用<strong>call</strong>方法来指定我们要运行假数据填充的文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line"></span><br><span class="line">use Illuminate\Database\Seeder;</span><br><span class="line">use Illuminate\Database\Eloquent\Model;</span><br><span class="line"></span><br><span class="line">class DatabaseSeeder extends Seeder</span><br><span class="line">&#123;</span><br><span class="line">    /**</span><br><span class="line">     * Run the database seeds.</span><br><span class="line">     *</span><br><span class="line">     * @return void</span><br><span class="line">     */</span><br><span class="line">    public function run()</span><br><span class="line">    &#123;</span><br><span class="line">        // $this-&gt;call(UsersTableSeeder::class);</span><br><span class="line">        Model::unguard();</span><br><span class="line">        $this-&gt;call(UserSeeder::class);</span><br><span class="line">        Model::reguard();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>运行命令重置数据库，执行数据填充</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan migrate:refresh</span><br><span class="line">$ php artisan db:seed</span><br></pre></td></tr></table></figure>
-<p>单独执行某个UserSeeder文件如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan migrate:refresh</span><br><span class="line">$ php artisan db:seed --class=UserSeeder</span><br></pre></td></tr></table></figure>
-<p>一条命令同时完成数据库重置和填充操作:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ php artisan migrate:refresh --seed</span><br></pre></td></tr></table></figure>
+<pre><code>//使用factory 来创建一个Faker\Generator实例
+$faker = Faker\Factory::create();
+$faker-&gt;name;
+$faker-&gt;safeEmail;
+$faker-&gt;date;
+$faker-&gt;time;
+</code></pre><p>借助Faker和Eloquent模型工厂来为指定模型的每个字段设置随机值。<br>Laravel生成模型工厂<br><code>php artisan make:factory UserFactory</code><br>实例UserFactory如下：</p>
+<pre><code>&lt;?php
 
+use Faker\Generator as Faker;
+
+/*
+|--------------------------------------------------------------------------
+| Model Factories
+|--------------------------------------------------------------------------
+|
+| This directory should contain each of the model factory definitions for
+| your application. Factories provide a convenient way to generate new
+| model instances for testing / seeding your application&#39;s database.
+|
+*/
+
+$factory-&gt;define(App\Models\User::class, function (Faker $faker) {
+    static $password;
+
+    return [
+        &#39;name&#39; =&gt; $faker-&gt;name,
+        &#39;email&#39; =&gt; $faker-&gt;unique()-&gt;safeEmail,
+        &#39;password&#39; =&gt; $password ?: $password = bcrypt(&#39;secret&#39;),
+        &#39;remember_token&#39; =&gt; str_random(10),
+    ];
+});
+</code></pre><p><strong>define</strong>定义了一个指定数据模型(如此例子<strong>User</strong>)的模型工厂。define方法接收两个参数,第一个参数指定的Eloquent模型类,第二个参数为一个闭包函数，该闭包函数接受一个<strong>Faker</strong>PHP函数库的实例，让我们可以在函数内部使用Faker方法生成假数据。</p>
+<h2 id="数据填充"><a href="#数据填充" class="headerlink" title="数据填充"></a>数据填充</h2><p>Laravel中我们使用<strong>Seeder</strong>类来给数据库填充测试数据。所有seeder类在<strong>database/seeds</strong>，文件名需要按照【驼峰式】来命名,且严格遵循大小写规范。Laravel默认定义了<strong>DatabaseSeeder</strong>类，可在该类中使用<strong>call</strong>方法来运行其他的<strong>Seeder</strong>类，以此控制数据填充的顺序。我们可以使用如下命令生成 UserTableSeeder文件。<br><code>$ php artisan make:seeder UserTableSeeder</code><br>定义好模型工厂后,在UserTableSeeder中使用<strong>factory</strong>方法来生成一个使用假数据的用户对象。</p>
+<pre><code>&lt;?php
+use Illuminate\Database\Seeder;
+use App\Models\User;
+
+class UserSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        //
+        $user = factory(User::class);
+        User::insert($user-&gt;makeVisible([&#39;password&#39;,&#39;remember_token&#39;]));
+
+        $user = User::find(1);
+        $user-&gt;name = &#39;PS&#39;;
+        $user-&gt;email = &#39;ps@qq.com&#39;;
+        $user-&gt;password = bcrypt(&#39;password&#39;);
+        $user-&gt;save();
+    }
+}
+</code></pre><p>最后一步 在<strong>DatabaseSeeder</strong>中调用<strong>call</strong>方法来指定我们要运行假数据填充的文件。</p>
+<pre><code>&lt;?php
+
+use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
+
+class DatabaseSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        // $this-&gt;call(UsersTableSeeder::class);
+        Model::unguard();
+        $this-&gt;call(UserSeeder::class);
+        Model::reguard();
+    }
+}
+</code></pre><p>运行命令重置数据库，执行数据填充</p>
+<pre><code>$ php artisan migrate:refresh
+$ php artisan db:seed
+</code></pre><p>单独执行某个UserSeeder文件如下：</p>
+<pre><code>$ php artisan migrate:refresh
+$ php artisan db:seed --class=UserSeeder
+</code></pre><p>一条命令同时完成数据库重置和填充操作:</p>
+<pre><code>$ php artisan migrate:refresh --seed
+</code></pre>
         </div>
 
         <blockquote class="post-copyright">
@@ -392,7 +465,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>Peng Shang &copy; 2015 - 2018</span>
+        <p><span>Peng Shang &copy; 2015 - 2019</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

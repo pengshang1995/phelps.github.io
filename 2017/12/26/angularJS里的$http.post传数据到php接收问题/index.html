@@ -20,18 +20,18 @@
     
     
     <meta name="keywords" content="angularJS">
-    <meta name="description" content="有两种方式解决这个问题： 1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。 2.修改php代码123$postData = file_get_contents(‘php://input’, true);$obj=json_decode($postData);$query1 = “SELECT * FROM ro">
+    <meta name="description" content="有两种方式解决这个问题： 1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。 2.修改php代码     $postData = file_get_contents(‘php://input’, true);     $obj=json_decode($postData);     $query1 = “SELE">
 <meta name="keywords" content="angularJS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="“angularJS里的$http.post传数据到php接收问题”">
 <meta property="og:url" content="http://blog.psonlyweb.cn/2017/12/26/angularJS里的$http.post传数据到php接收问题/index.html">
 <meta property="og:site_name" content="Coding World Without End">
-<meta property="og:description" content="有两种方式解决这个问题： 1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。 2.修改php代码123$postData = file_get_contents(‘php://input’, true);$obj=json_decode($postData);$query1 = “SELECT * FROM ro">
+<meta property="og:description" content="有两种方式解决这个问题： 1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。 2.修改php代码     $postData = file_get_contents(‘php://input’, true);     $obj=json_decode($postData);     $query1 = “SELE">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-12-26T07:55:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="“angularJS里的$http.post传数据到php接收问题”">
-<meta name="twitter:description" content="有两种方式解决这个问题： 1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。 2.修改php代码123$postData = file_get_contents(‘php://input’, true);$obj=json_decode($postData);$query1 = “SELECT * FROM ro">
+<meta name="twitter:description" content="有两种方式解决这个问题： 1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。 2.修改php代码     $postData = file_get_contents(‘php://input’, true);     $obj=json_decode($postData);     $query1 = “SELE">
     
         <link rel="alternate" type="application/atom+xml" title="Coding World Without End" href="/atom.xml">
     
@@ -224,7 +224,11 @@
         <div class="post-content" id="post-content" itemprop="postContent">
             <p>有两种方式解决这个问题：</p>
 <p>1.简单粗暴的直接改成$.post()方法，这样后台不用作任何修改，但是网上一些比较有经验的网友称这样可能违背使用angular的初衷。</p>
-<p>2.修改php代码<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$postData = file_get_contents(‘php:<span class="comment">//input’, true);</span></span><br><span class="line">$obj=json_decode($postData);</span><br><span class="line">$query1 = “SELECT * FROM role_roleRight WHERE roleId=$obj-&gt;rr”;</span><br></pre></td></tr></table></figure></p>
+<p>2.修改php代码</p>
+<pre><code class="PHP">    $postData = file_get_contents(‘php://input’, true);
+    $obj=json_decode($postData);
+    $query1 = “SELECT * FROM role_roleRight WHERE roleId=$obj-&gt;rr”;
+</code></pre>
 
         </div>
 
@@ -372,7 +376,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>Peng Shang &copy; 2015 - 2018</span>
+        <p><span>Peng Shang &copy; 2015 - 2019</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

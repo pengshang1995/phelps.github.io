@@ -20,18 +20,18 @@
     
     
     <meta name="keywords" content="事务处理">
-    <meta name="description" content="1234567891011121314151617181920212223242526/** * @param $sqls 执行语句数组 * @return bool 返回真假 是否执行成功 */public function transExecuteSql($sqls)&amp;#123;    $this-&amp;amp;gt;startTrans();    if(is_array($sqls)) &amp;#1">
+    <meta name="description" content="/**  * @param $sqls 执行语句数组  * @return bool 返回真假 是否执行成功  */ public function transExecuteSql($sqls) {     $this-&amp;amp;gt;startTrans();     if(is_array($sqls)) {         foreach($sqls as $k =&amp;amp;gt; $sql">
 <meta name="keywords" content="事务处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="“事务处理封装方法 Thinkphp”">
 <meta property="og:url" content="http://blog.psonlyweb.cn/2017/12/26/事务处理封装方法 Thinkphp/index.html">
 <meta property="og:site_name" content="Coding World Without End">
-<meta property="og:description" content="1234567891011121314151617181920212223242526/** * @param $sqls 执行语句数组 * @return bool 返回真假 是否执行成功 */public function transExecuteSql($sqls)&amp;#123;    $this-&amp;amp;gt;startTrans();    if(is_array($sqls)) &amp;#1">
+<meta property="og:description" content="/**  * @param $sqls 执行语句数组  * @return bool 返回真假 是否执行成功  */ public function transExecuteSql($sqls) {     $this-&amp;amp;gt;startTrans();     if(is_array($sqls)) {         foreach($sqls as $k =&amp;amp;gt; $sql">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2017-12-26T07:59:17.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="“事务处理封装方法 Thinkphp”">
-<meta name="twitter:description" content="1234567891011121314151617181920212223242526/** * @param $sqls 执行语句数组 * @return bool 返回真假 是否执行成功 */public function transExecuteSql($sqls)&amp;#123;    $this-&amp;amp;gt;startTrans();    if(is_array($sqls)) &amp;#1">
+<meta name="twitter:description" content="/**  * @param $sqls 执行语句数组  * @return bool 返回真假 是否执行成功  */ public function transExecuteSql($sqls) {     $this-&amp;amp;gt;startTrans();     if(is_array($sqls)) {         foreach($sqls as $k =&amp;amp;gt; $sql">
     
         <link rel="alternate" type="application/atom+xml" title="Coding World Without End" href="/atom.xml">
     
@@ -222,7 +222,33 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> $sqls 执行语句数组</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> bool 返回真假 是否执行成功</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">transExecuteSql</span><span class="params">($sqls)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">$this</span>-&amp;gt;startTrans();</span><br><span class="line">    <span class="keyword">if</span>(is_array($sqls)) &#123;</span><br><span class="line">        <span class="keyword">foreach</span>($sqls <span class="keyword">as</span> $k =&amp;gt; $sql)</span><br><span class="line">        &#123;</span><br><span class="line">            $result=<span class="keyword">$this</span>-&amp;gt;db-&amp;gt;execute($sql);</span><br><span class="line">            <span class="keyword">if</span>(!$result) &#123;</span><br><span class="line">                <span class="keyword">$this</span>-&amp;gt;rollBack();</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        $result=<span class="keyword">$this</span>-&amp;gt;db-&amp;gt;execute($sqls);</span><br><span class="line">        <span class="keyword">if</span>(!$result) &#123;</span><br><span class="line">            <span class="keyword">$this</span>-&amp;gt;rollBack();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">$this</span>-&amp;gt;commit();</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <pre><code class="PHP">/**
+ * @param $sqls 执行语句数组
+ * @return bool 返回真假 是否执行成功
+ */
+public function transExecuteSql($sqls)
+{
+    $this-&amp;gt;startTrans();
+    if(is_array($sqls)) {
+        foreach($sqls as $k =&amp;gt; $sql)
+        {
+            $result=$this-&amp;gt;db-&amp;gt;execute($sql);
+            if(!$result) {
+                $this-&amp;gt;rollBack();
+                return false;
+            }
+        }
+    }else{
+        $result=$this-&amp;gt;db-&amp;gt;execute($sqls);
+        if(!$result) {
+            $this-&amp;gt;rollBack();
+            return false;
+        }
+    }
+    $this-&amp;gt;commit();
+    return true;
+}
+</code></pre>
 
         </div>
 
@@ -370,7 +396,7 @@
         </p>
     </div>
     <div class="bottom">
-        <p><span>Peng Shang &copy; 2015 - 2018</span>
+        <p><span>Peng Shang &copy; 2015 - 2019</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
