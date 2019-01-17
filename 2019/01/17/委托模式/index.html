@@ -13,27 +13,27 @@
     
     
     
-    <title>适配器模式（Adapter Design Pattern） | Coding World Without End | Peng Shang&#39;s Blog</title>
+    <title>委托模式 | Coding World Without End | Peng Shang&#39;s Blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
     <meta name="theme-color" content="#3F51B5">
     
     
-    <meta name="keywords" content="适配器模式">
-    <meta name="description" content="概念适配器设计模式只是将某个对象的接口适配为另一个对象所期望的接口。 UML图                                                                                                           ###代码实现 class errorObject {     private $_error;     p">
-<meta name="keywords" content="适配器模式">
+    <meta name="keywords" content="委托模式">
+    <meta name="description" content="概念通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。 实现场景添加音乐、并且根据音乐类型获取不同的音乐列表（返回字段形式均不一样） 使用委托模式 VS 简单实现 （UML）">
+<meta name="keywords" content="委托模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="适配器模式（Adapter Design Pattern）">
-<meta property="og:url" content="http://blog.psonlyweb.cn/2019/01/10/适配器模式/index.html">
+<meta property="og:title" content="委托模式">
+<meta property="og:url" content="http://blog.psonlyweb.cn/2019/01/17/委托模式/index.html">
 <meta property="og:site_name" content="Coding World Without End">
-<meta property="og:description" content="概念适配器设计模式只是将某个对象的接口适配为另一个对象所期望的接口。 UML图                                                                                                           ###代码实现 class errorObject {     private $_error;     p">
+<meta property="og:description" content="概念通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。 实现场景添加音乐、并且根据音乐类型获取不同的音乐列表（返回字段形式均不一样） 使用委托模式 VS 简单实现 （UML）">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://ps-blog.oss-cn-beijing.aliyuncs.com/19-1-10/65425576.jpg">
-<meta property="og:updated_time" content="2019-01-10T10:06:15.370Z">
+<meta property="og:image" content="http://ps-blog.oss-cn-beijing.aliyuncs.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.jpg">
+<meta property="og:updated_time" content="2019-01-17T08:12:50.686Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="适配器模式（Adapter Design Pattern）">
-<meta name="twitter:description" content="概念适配器设计模式只是将某个对象的接口适配为另一个对象所期望的接口。 UML图                                                                                                           ###代码实现 class errorObject {     private $_error;     p">
-<meta name="twitter:image" content="http://ps-blog.oss-cn-beijing.aliyuncs.com/19-1-10/65425576.jpg">
+<meta name="twitter:title" content="委托模式">
+<meta name="twitter:description" content="概念通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。 实现场景添加音乐、并且根据音乐类型获取不同的音乐列表（返回字段形式均不一样） 使用委托模式 VS 简单实现 （UML）">
+<meta name="twitter:image" content="http://ps-blog.oss-cn-beijing.aliyuncs.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.jpg">
     
         <link rel="alternate" type="application/atom+xml" title="Coding World Without End" href="/atom.xml">
     
@@ -159,7 +159,7 @@
         <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
           <i class="icon icon-lg icon-navicon"></i>
         </a>
-        <div class="flex-col header-title ellipsis">适配器模式（Adapter Design Pattern）</div>
+        <div class="flex-col header-title ellipsis">委托模式</div>
         
         <div class="search-wrap" id="search-wrap">
             <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
@@ -181,11 +181,11 @@
 <header class="content-header post-header">
 
     <div class="container fade-scale">
-        <h1 class="title">适配器模式（Adapter Design Pattern）</h1>
+        <h1 class="title">委托模式</h1>
         <h5 class="subtitle">
             
-                <time datetime="2019-01-10T09:00:45.000Z" itemprop="datePublished" class="page-time">
-  2019-01-10
+                <time datetime="2019-01-17T03:22:53.000Z" itemprop="datePublished" class="page-time">
+  2019-01-17
 </time>
 
 
@@ -206,17 +206,17 @@
     <aside class="post-widget">
         <nav class="post-toc-wrap" id="post-toc">
             <h4>TOC</h4>
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#UML图"><span class="post-toc-number">2.</span> <span class="post-toc-text">UML图</span></a></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">概念</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#实现场景"><span class="post-toc-number">2.</span> <span class="post-toc-text">实现场景</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#使用委托模式-VS-简单实现-（UML）"><span class="post-toc-number">3.</span> <span class="post-toc-text">使用委托模式 VS 简单实现 （UML）</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#代码实现"><span class="post-toc-number">4.</span> <span class="post-toc-text">代码实现</span></a></li></ol>
         </nav>
     </aside>
     
-<article id="post-适配器模式"
+<article id="post-委托模式"
   class="post-article article-type-post fade" itemprop="blogPost">
 
     <div class="post-card">
-        <h1 class="post-card-title">适配器模式（Adapter Design Pattern）</h1>
+        <h1 class="post-card-title">委托模式</h1>
         <div class="post-meta">
-            <time class="post-time" title="2019-01-10 17:00:45" datetime="2019-01-10T09:00:45.000Z"  itemprop="datePublished">2019-01-10</time>
+            <time class="post-time" title="2019-01-17 11:22:53" datetime="2019-01-17T03:22:53.000Z"  itemprop="datePublished">2019-01-17</time>
 
             
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
@@ -231,81 +231,106 @@
 
         </div>
         <div class="post-content" id="post-content" itemprop="postContent">
-            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>适配器设计模式只是将某个对象的接口适配为另一个对象所期望的接口。</p>
-<h3 id="UML图"><a href="#UML图" class="headerlink" title="UML图"></a>UML图</h3><figure class="image-bubble">
+            <h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。</p>
+<h3 id="实现场景"><a href="#实现场景" class="headerlink" title="实现场景"></a>实现场景</h3><p>添加音乐、并且根据音乐类型获取不同的音乐列表（返回字段形式均不一样）</p>
+<h3 id="使用委托模式-VS-简单实现-（UML）"><a href="#使用委托模式-VS-简单实现-（UML）" class="headerlink" title="使用委托模式 VS 简单实现 （UML）"></a>使用委托模式 VS 简单实现 （UML）</h3><figure class="image-bubble">
                 <div class="img-lightbox">
                     <div class="overlay"></div>
-                    <img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/19-1-10/65425576.jpg" alt="" title="">
+                    <img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.jpg" alt="" title="">
                 </div>
                 <div class="image-caption"></div>
             </figure>
-<p>###代码实现</p>
-<pre><code>class errorObject
+<p>使用基本实现方式调用时，需要if-else的判断，并且音乐类型不断增加，会导致PlayList类无限扩大。但是使用委托模式，在初始化类时，已经声明音乐类型$type,例如M3U，根据类型找到M3UPlaySong类，其余的查询列表均在委托类中进行实现。</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>&lt;?php
+
+class Playlist
 {
-    private $_error;
-    public function __construct($error)
+    private $_song;
+
+    public function __construct()
     {
-        $this-&gt;_error = $error;
+        $this-&gt;_song = [];
     }
 
-    public function getError() {
-        return $this-&gt;_error;
+    public function addSong($location, $title)
+    {
+        $song = [&#39;loc&#39;=&gt;$location,&#39;title&#39;=&gt;$title];
+        $this-&gt;_song[] = $song;
+    }
+
+    public function getM3UList() {
+        $m3u = &quot;#M3U#\n&quot;;
+
+        foreach ($this-&gt;_song as $song) {
+            $m3u .= &quot;音乐位置&quot;.$song[&#39;loc&#39;];
+            $m3u .= &quot;音乐名称&quot;.$song[&#39;title&#39;];
+        }
+
+        return $m3u;
+    }
+
+    public function getPLSList() {
+        $m3u = &quot;#PLS#\n&quot;;
+
+        foreach ($this-&gt;_song as $song) {
+            $m3u .= &quot;music loc&quot;.$song[&#39;loc&#39;];
+            $m3u .= &quot;music title&quot;.$song[&#39;title&#39;];
+        }
+
+        return $m3u;
     }
 }
 
-class LogToCsvErrorObject extends  errorObject{
-    private $error_num;
-    private $error_msg;
+$obj = new Playlist();
+$obj-&gt;addSong(&#39;ssss&#39;,&#39;every&#39;);
+$obj-&gt;addSong(&#39;dsdsda&#39;,&#39;one&#39;);
 
-    public function __construct($error)
+$ext = &#39;m3u&#39;;
+if ($ext == &#39;m3u&#39;) {
+    var_dump($obj-&gt;getM3UList());
+} else {
+    var_dump($obj-&gt;getPLSList());
+}
+echo &quot;\n&quot;;
+class NewPlaySong {
+    private $_song;
+    private $_SongType;
+    public function __construct($type)
     {
-        parent::__construct($error);
-        $error = $this-&gt;getError();
-        $parts = explode(&quot;:&quot;,$error);
-        $this-&gt;error_num = $parts[0];
-        $this-&gt;error_msg = $parts[1];
-    }
-    public function getErrorNum() {
-        return $this-&gt;error_num;
+         $this-&gt;_song =[];
+         $song_type = strtoupper($type).&#39;PlaySong&#39;;
+         $this-&gt;_SongType = new $song_type ();
     }
 
-    public function getErrorMsg() {
-        return $this-&gt;error_msg;
+    public function addSong($location, $title)
+    {
+        $song = [&#39;loc&#39;=&gt;$location,&#39;title&#39;=&gt;$title];
+        $this-&gt;_song[] = $song;
+    }
+
+    public function getPlayList() {
+        $play_list = $this-&gt;_SongType-&gt;getPlayList($this-&gt;_song);
+        return $play_list;
     }
 }
 
-class LogToConsole {
-    private $_errorObject;
+class M3UPlaySong {
+    public function getPlayList($song_list) {
+        $m3u = &quot;#M3U#\n&quot;;
 
-    public function __construct(errorObject $errorObject)
-    {
-        $this-&gt;_errorObject = $errorObject;
-    }
-
-    public function write() {
-        fwrite(STDERR,$this-&gt;_errorObject-&gt;getError());
-    }
-}
-
-class LogToCSV {
-    private $_errorObject;
-
-    public function __construct(LogToCsvErrorObject $errorObject)
-    {
-        $this-&gt;_errorObject = $errorObject;
-    }
-
-    public function write() {
-        $error_num = $this-&gt;_errorObject-&gt;getErrorNum();
-        $error_msg = $this-&gt;_errorObject-&gt;getErrorMsg();
-
-        fwrite(STDERR,$error_msg.&quot;错误码:&quot;.$error_num);
+        foreach ($song_list as $song) {
+            $m3u .= &quot;音乐位置&quot;.$song[&#39;loc&#39;];
+            $m3u .= &quot;音乐名称&quot;.$song[&#39;title&#39;];
+        }
+        return $m3u;
     }
 }
 
-$error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);
+$obj = new NewPlaySong(&#39;m3u&#39;);
+$obj-&gt;addSong(&#39;ssss&#39;,&#39;every&#39;);
+$obj-&gt;addSong(&#39;dsdsda&#39;,&#39;one&#39;);
 
-(new LogToCSV($error_obj))-&gt;write();
+var_dump($obj-&gt;getPlayList());
 </code></pre>
         </div>
 
@@ -313,12 +338,12 @@ $error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);
     <div class="content">
         
 <span class="post-time">
-    最后更新时间：<time datetime="2019-01-10T10:06:15.370Z" itemprop="dateUpdated">2019-01-10 18:06:15</time>
+    最后更新时间：<time datetime="2019-01-17T08:12:50.686Z" itemprop="dateUpdated">2019-01-17 16:12:50</time>
 </span><br>
 
 
         
-        本文链接：<a href="/2019/01/10/适配器模式/" target="_blank" rel="external">http://blog.psonlyweb.cn/2019/01/10/适配器模式/</a>
+        本文链接：<a href="/2019/01/17/委托模式/" target="_blank" rel="external">http://blog.psonlyweb.cn/2019/01/17/委托模式/</a>
         
     </div>
     <footer>
@@ -334,7 +359,7 @@ $error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);
 
         <div class="post-footer">
             
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/适配器模式/">适配器模式</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/委托模式/">委托模式</a></li></ul>
 
 
             
@@ -344,7 +369,7 @@ $error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);
 <div class="page-share" id="pageShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2019/01/10/适配器模式/&title=《适配器模式（Adapter Design Pattern）》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2019/01/17/委托模式/&title=《委托模式》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -354,22 +379,22 @@ $error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2019/01/10/适配器模式/&title=《适配器模式（Adapter Design Pattern）》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2019/01/17/委托模式/&title=《委托模式》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2019/01/10/适配器模式/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2019/01/17/委托模式/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《适配器模式（Adapter Design Pattern）》 — Coding World Without End&url=http://blog.psonlyweb.cn/2019/01/10/适配器模式/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《委托模式》 — Coding World Without End&url=http://blog.psonlyweb.cn/2019/01/17/委托模式/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2019/01/10/适配器模式/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2019/01/17/委托模式/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -389,21 +414,14 @@ $error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);
     </div>
 
     
-<nav class="post-nav flex-row flex-justify-between">
-  
-    <div class="waves-block waves-effect prev">
-      <a href="/2019/01/17/委托模式/" id="post-prev" class="post-nav-link">
-        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
-        <h4 class="title">委托模式</h4>
-      </a>
-    </div>
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
   
 
   
     <div class="waves-block waves-effect next">
-      <a href="/2018/05/14/快速排序/" id="post-next" class="post-nav-link">
+      <a href="/2019/01/10/适配器模式/" id="post-next" class="post-nav-link">
         <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
-        <h4 class="title">快速排序</h4>
+        <h4 class="title">适配器模式（Adapter Design Pattern）</h4>
       </a>
     </div>
   
@@ -471,7 +489,7 @@ $error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);
 <div class="global-share" id="globalShare">
     <ul class="reset share-icons">
       <li>
-        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2019/01/10/适配器模式/&title=《适配器模式（Adapter Design Pattern）》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2019/01/17/委托模式/&title=《委托模式》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
           <i class="icon icon-weibo"></i>
         </a>
       </li>
@@ -481,22 +499,22 @@ $error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);
         </a>
       </li>
       <li>
-        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2019/01/10/适配器模式/&title=《适配器模式（Adapter Design Pattern）》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2019/01/17/委托模式/&title=《委托模式》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
           <i class="icon icon-qq"></i>
         </a>
       </li>
       <li>
-        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2019/01/10/适配器模式/" data-title=" Facebook">
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2019/01/17/委托模式/" data-title=" Facebook">
           <i class="icon icon-facebook"></i>
         </a>
       </li>
       <li>
-        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《适配器模式（Adapter Design Pattern）》 — Coding World Without End&url=http://blog.psonlyweb.cn/2019/01/10/适配器模式/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《委托模式》 — Coding World Without End&url=http://blog.psonlyweb.cn/2019/01/17/委托模式/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
           <i class="icon icon-twitter"></i>
         </a>
       </li>
       <li>
-        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2019/01/10/适配器模式/" data-title=" Google+">
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2019/01/17/委托模式/" data-title=" Google+">
           <i class="icon icon-google-plus"></i>
         </a>
       </li>
@@ -507,7 +525,7 @@ $error_obj = new LogToCsvErrorObject(&quot;404:NOT FOUND&quot;);
 <div class="page-modal wx-share" id="wxShare">
     <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIUlEQVR42u3ay26DMBAF0Pz/T6fbSC3kXhsqYR+vUJJiDovpPPx6xev9sY4+//w2vz5arzsWBgbGYxnJ7Y62//3t+Scze32hYmBgbMA4imDnv8nDa0Jq74CBgYFx1QOdB0oMDAyMaxntBu1DY2BgYJwzxkJnvs15wD1HXlyLY2BgPJCRd93///qW+QYGBsajGO9yzZSv7aspngoDA2Npxh0jzLGSuE0o//g9BgbGooyZtn4bmmcOmX1JWDEwMDZjtEcrku3Hitgi6GNgYCzNmL/dfEM/SRkv6AhiYGAswcgD3FWziDwNjX6DgYGxAaP4g9NYN9aeu2C0iYGBsRkjf9yZ1n9eDBfzDQwMjOUY9x2YSB6rPU5xuBcGBsZmjLHkLyeN3e1L0MfAwFiaMT+SLDLQsoRuD5BhYGDswBhrirUN/ZzdHhHDwMDYgdEOF5PUrQ247XA0GmFiYGA8nNG2uuqZQ9lcG3utGBgYazNmDlu0h7qSMJoPJzAwMPZktEOCu49i1I0/DAyMbRjzw8uxFt7YYQsMDIx9GDMJ3NgraEN8HtYxMDDWY7zLNTZDbEcIeRsOAwNjB0a+2iRvPq1MrmsYBgbGYxljI8z5gna+AC7+e2BgYCzByFv5YyVrfiAsD/1fJrEYGBgbM9pHbBO+NsRjYGBgzLfG8qQzKXcxMDB2ZswUse3IMy9ui5IYAwNjaUZeOuapXlu4jgVcDAyMDRg/vFkzCOO9h5EAAAAASUVORK5CYII=" alt="微信分享二维码">
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aS46DQAwFwNz/0pntSBHh2YZIdBerKOLTxcLYbb9e8fH+OP7/f3TO5/mfVx095XXHgYGB8VhG8vjvC8oXndy592owMDB2YBxFsKNzesh86fnaMDAwMJIg2AvcGBgYGL8PuHmN+f3pGBgYGJMitrq4asj+US2OgYHxQEa+6/7737f0NzAwMB7FeBePPO3rJY7NVWFgYCzN6JWgSWI3bySUS2IMDIxFGb0xiF4Irobawn0wMDCWZkwKy+q21/fzJxt2GBgY+zAmW/xXNT5HDQAMDIylGZOkLR/a6KV9eTMVAwNjVcZktPS+Mrj6PwYGxtqMapibD2xVR83yu2FgYKzKyMNfzug1PqsB+mRmBAMDYyHGKPEal7Lzkrj+KcHAwHgeIy9cq+OkvfCakzAwMPZhzIcheqXvpGyOUkMMDIwNGHlgnWycTdgn7UwMDIyFGNXl9jbue23O5J4YGBg7MKqhNh/RuKotessXAwMD47GMaiuxCotK0Bh/uHeIgYGxNCPZaJvAeoG4UDxjYGBsySg0DotL7413nMAwMDAWZUwGKaohON84S557QU8DAwPjIYxesKte1Ru8yF8ZBgbGDoxqkO2Fy/x1NDfsMDAwNmBUi9Jq6TtJIgvDFhgYGBjFIjMJ09V2wklFjoGBgVEMrJOkMCmGL/tuYGBgPISRhMJqepckf71GKQYGxm6M+RZ/b4Si2ja4oKmJgYHxPMYfQb9Bz9cJYhYAAAAASUVORK5CYII=" alt="微信分享二维码">
 </div>
 
 

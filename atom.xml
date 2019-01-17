@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.psonlyweb.cn/"/>
-  <updated>2019-01-10T10:06:15.370Z</updated>
+  <updated>2019-01-17T08:12:50.686Z</updated>
   <id>http://blog.psonlyweb.cn/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>委托模式</title>
+    <link href="http://blog.psonlyweb.cn/2019/01/17/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://blog.psonlyweb.cn/2019/01/17/委托模式/</id>
+    <published>2019-01-17T03:22:53.000Z</published>
+    <updated>2019-01-17T08:12:50.686Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。</p><h3 id="实现场景"><a href="#实现场景" class="headerlink" title="实现场景"></a>实现场景</h3><p>添加音乐、并且根据音乐类型获取不同的音乐列表（返回字段形式均不一样）</p><h3 id="使用委托模式-VS-简单实现-（UML）"><a href="#使用委托模式-VS-简单实现-（UML）" class="headerlink" title="使用委托模式 VS 简单实现 （UML）"></a>使用委托模式 VS 简单实现 （UML）</h3><figure class="image-bubble">                <div class="img-lightbox">                    <div class="overlay"></div>                    <img src="http://ps-blog.oss-cn-beijing.aliyuncs.com/%E6%9C%AA%E5%91%BD%E5%90%8D%E6%96%87%E4%BB%B6.jpg" alt="" title="">                </div>                <div class="image-caption"></div>            </figure><p>使用基本实现方式调用时，需要if-else的判断，并且音乐类型不断增加，会导致PlayList类无限扩大。但是使用委托模式，在初始化类时，已经声明音乐类型$type,例如M3U，根据类型找到M3UPlaySong类，其余的查询列表均在委托类中进行实现。</p><h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>&lt;?phpclass Playlist{    private $_song;    public function __construct()    {        $this-&gt;_song = [];    }    public function addSong($location, $title)    {        $song = [&#39;loc&#39;=&gt;$location,&#39;title&#39;=&gt;$title];        $this-&gt;_song[] = $song;    }    public function getM3UList() {        $m3u = &quot;#M3U#\n&quot;;        foreach ($this-&gt;_song as $song) {            $m3u .= &quot;音乐位置&quot;.$song[&#39;loc&#39;];            $m3u .= &quot;音乐名称&quot;.$song[&#39;title&#39;];        }        return $m3u;    }    public function getPLSList() {        $m3u = &quot;#PLS#\n&quot;;        foreach ($this-&gt;_song as $song) {            $m3u .= &quot;music loc&quot;.$song[&#39;loc&#39;];            $m3u .= &quot;music title&quot;.$song[&#39;title&#39;];        }        return $m3u;    }}$obj = new Playlist();$obj-&gt;addSong(&#39;ssss&#39;,&#39;every&#39;);$obj-&gt;addSong(&#39;dsdsda&#39;,&#39;one&#39;);$ext = &#39;m3u&#39;;if ($ext == &#39;m3u&#39;) {    var_dump($obj-&gt;getM3UList());} else {    var_dump($obj-&gt;getPLSList());}echo &quot;\n&quot;;class NewPlaySong {    private $_song;    private $_SongType;    public function __construct($type)    {         $this-&gt;_song =[];         $song_type = strtoupper($type).&#39;PlaySong&#39;;         $this-&gt;_SongType = new $song_type ();    }    public function addSong($location, $title)    {        $song = [&#39;loc&#39;=&gt;$location,&#39;title&#39;=&gt;$title];        $this-&gt;_song[] = $song;    }    public function getPlayList() {        $play_list = $this-&gt;_SongType-&gt;getPlayList($this-&gt;_song);        return $play_list;    }}class M3UPlaySong {    public function getPlayList($song_list) {        $m3u = &quot;#M3U#\n&quot;;        foreach ($song_list as $song) {            $m3u .= &quot;音乐位置&quot;.$song[&#39;loc&#39;];            $m3u .= &quot;音乐名称&quot;.$song[&#39;title&#39;];        }        return $m3u;    }}$obj = new NewPlaySong(&#39;m3u&#39;);$obj-&gt;addSong(&#39;ssss&#39;,&#39;every&#39;);$obj-&gt;addSong(&#39;dsdsda&#39;,&#39;one&#39;);var_dump($obj-&gt;getPlayList());</code></pre>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h3 id=&quot;概念&quot;&gt;&lt;a href=&quot;#概念&quot; class=&quot;headerlink&quot; title=&quot;概念&quot;&gt;&lt;/a&gt;概念&lt;/h3&gt;&lt;p&gt;通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。&lt;/p&gt;
+&lt;h3 id=&quot;实现场景&quot;&gt;&lt;a href=&quot;#实现场景
+      
+    
+    </summary>
+    
+      <category term="设计模式" scheme="http://blog.psonlyweb.cn/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+    
+      <category term="委托模式" scheme="http://blog.psonlyweb.cn/tags/%E5%A7%94%E6%89%98%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>适配器模式（Adapter Design Pattern）</title>

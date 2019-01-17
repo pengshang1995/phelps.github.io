@@ -195,6 +195,65 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-mysql主从复制"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2017-12-26 15:56:16" datetime="2017-12-26T07:56:16.000Z"  itemprop="datePublished">2017-12-26</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mysql/">Mysql</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/12/26/mysql主从复制/">mysql主从复制</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        mysql主从复制
+一、 配置主服务器
+
+编辑my.cnf文件 默认位置一般在/etc下
+
+
+在[mysqld]的下面加入下面代码：
+log-bin=mysql-bin
+server-id=1
+innodb_flush_log_at_trx_commit=1
+sync_binlog=1
+binlog-do-db=wordpress//表明备份哪个数据库
+binlog_ignore_db=my...
+    
+
+        <a href="/2017/12/26/mysql主从复制/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/主从复制/">主从复制</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-angularJS里的$http.post传数据到php接收问题"
   class="article-card article-type-post" itemprop="blogPost">
 

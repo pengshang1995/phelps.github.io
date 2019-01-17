@@ -195,6 +195,63 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
+            <article id="post-设计模式之策略模式"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-01-02 10:01:34" datetime="2018-01-02T02:01:34.000Z"  itemprop="datePublished">2018-01-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/01/02/设计模式之策略模式/">设计模式之策略模式</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        设计模式之策略模式
+
+ 面向对象中有什么比是什么更灵活 
+ 组合比继承更灵活
+ 饭店和厨师的关系  是 一对多
+ 比如新开饭店 如果单纯的复制饭店 这样不能会造成很多浪费的方法 但是如果以饭店拥有厨师的方式处理 那么 饭店的样式可以随机变换，因此首先声明一个饭店类
+
+class FD
+{
+    protected $tangCreator = null;
+    protected $ca...
+    
+
+        <a href="/2018/01/02/设计模式之策略模式/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
             <article id="post-设计模式之责任链"
   class="article-card article-type-post" itemprop="blogPost">
 
@@ -688,65 +745,6 @@ $stmt=$pdo-&gt;prepare(“insert into...
     <div class="post-footer">
         
 	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PDO/">PDO</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-mysql主从复制"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-12-26 15:56:16" datetime="2017-12-26T07:56:16.000Z"  itemprop="datePublished">2017-12-26</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mysql/">Mysql</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/mysql主从复制/">mysql主从复制</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        mysql主从复制
-一、 配置主服务器
-
-编辑my.cnf文件 默认位置一般在/etc下
-
-
-在[mysqld]的下面加入下面代码：
-log-bin=mysql-bin
-server-id=1
-innodb_flush_log_at_trx_commit=1
-sync_binlog=1
-binlog-do-db=wordpress//表明备份哪个数据库
-binlog_ignore_db=my...
-    
-
-        <a href="/2017/12/26/mysql主从复制/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/主从复制/">主从复制</a></li></ul>
 
     </div>
     
