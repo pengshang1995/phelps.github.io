@@ -195,7 +195,172 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-设计模式之策略模式"
+            <article id="post-PHP/PHP异步并行"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-02-01 10:33:59" datetime="2018-02-01T02:33:59.000Z"  itemprop="datePublished">2018-02-01</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/02/01/PHP/PHP异步并行/">PHP异步并行</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        一个PHP Web程序的执行过程
+请求开始 (GET/Post/Cookie/Session)
+Mysql数据库查询/Redis查询
+模板渲染输出HTML/json_encode
+请求结束(回收所有内存和资源)
+
+PHP-FPM进程的完整流程
+请求1 处理请求 发送响应
+请求2 处理请求 发送响应
+请求3 处理请求 发送响应
+。。。。
+
+Accept-&gt;Recv(处理)-&gt;Sen...
+    
+
+        <a href="/2018/02/01/PHP/PHP异步并行/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-Vagrant"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-01-26 16:50:16" datetime="2018-01-26T08:50:16.000Z"  itemprop="datePublished">2018-01-26</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/01/26/Vagrant/">Vagrant使用</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Vagrant常用命令
+vagrant box list  查看目前已有的box
+vagrant box add  新增一个box
+vagrant box remove 删除指定的box
+vagrant init 初始化配置vagrantfile
+vagrant up 启动虚拟机
+vagrant ssh ssh登录虚拟机
+vagrant suspend 挂起虚拟机
+vagrant reloa...
+    
+
+        <a href="/2018/01/26/Vagrant/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-设计模式/设计模式之装饰器模式"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2018-01-02 11:07:36" datetime="2018-01-02T03:07:36.000Z"  itemprop="datePublished">2018-01-02</time>
+
+        
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2018/01/02/设计模式/设计模式之装饰器模式/">设计模式之装饰器模式</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        
+文章类获取初始的文章内容
+
+class Art
+{
+    protected $content = null;
+
+    public function __construct($content) {
+        $this-&gt;content = $content;
+    }
+
+    public function decorator() {
+        return ...
+    
+
+        <a href="/2018/01/02/设计模式/设计模式之装饰器模式/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+    <div class="post-footer">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-设计模式/设计模式之策略模式"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -213,7 +378,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/01/02/设计模式之策略模式/">设计模式之策略模式</a>
+      <a class="post-title-link" href="/2018/01/02/设计模式/设计模式之策略模式/">设计模式之策略模式</a>
     </h3>
   
 
@@ -236,7 +401,7 @@ class FD
     protected $ca...
     
 
-        <a href="/2018/01/02/设计模式之策略模式/" class="post-more waves-effect waves-button">
+        <a href="/2018/01/02/设计模式/设计模式之策略模式/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
@@ -252,11 +417,11 @@ class FD
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-设计模式之责任链"
+            <article id="post-设计模式/设计模式之责任链"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-12-29 10:46:17" datetime="2017-12-29T02:46:17.000Z"  itemprop="datePublished">2017-12-29</time>
+        <time class="post-time" title="2017-12-29 10:46:16" datetime="2017-12-29T02:46:16.000Z"  itemprop="datePublished">2017-12-29</time>
 
         
 	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
@@ -270,7 +435,7 @@ class FD
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/29/设计模式之责任链/">“设计模式之责任链”</a>
+      <a class="post-title-link" href="/2017/12/29/设计模式/设计模式之责任链/">“设计模式之责任链”</a>
     </h3>
   
 
@@ -292,7 +457,7 @@ class Banzhu extends Admin
    public function doPr...
     
 
-        <a href="/2017/12/29/设计模式之责任链/" class="post-more waves-effect waves-button">
+        <a href="/2017/12/29/设计模式/设计模式之责任链/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
@@ -308,62 +473,7 @@ class Banzhu extends Admin
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-Mysql的事务处理"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-12-26 17:22:07" datetime="2017-12-26T09:22:07.000Z"  itemprop="datePublished">2017-12-26</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mysql/">Mysql</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/Mysql的事务处理/">Mysql的事务处理</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        事务的定义：将多条sql操作（增删改）作为一个操作单元，要么都成功，要么都失败Mysql 对事务的支持：
-–被操作的表必须是InnoDB类型的表（支持事务）
-–Mysql常用的表类型：
-MylSAM(非事务)增删改查速度快
-InnoDB(事务类型)安全性高
-事务处理MYSQL 命令行处理
-
-Mysql&gt; set autocommit =0;
-Mysql&gt; start transa...
-    
-
-        <a href="/2017/12/26/Mysql的事务处理/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务处理/">事务处理</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-设计模式之工厂模式 抽象工厂"
+            <article id="post-设计模式/设计模式之工厂模式 抽象工厂"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -381,7 +491,7 @@ Mysql&gt; start transa...
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/设计模式之工厂模式 抽象工厂/">“设计模式之工厂模式 抽象工厂”</a>
+      <a class="post-title-link" href="/2017/12/26/设计模式/设计模式之工厂模式 抽象工厂/">“设计模式之工厂模式 抽象工厂”</a>
     </h3>
   
 
@@ -416,7 +526,7 @@ interface Factory {
 3.然后声明抽象工厂类 实现工厂类接口中的...
     
 
-        <a href="/2017/12/26/设计模式之工厂模式 抽象工厂/" class="post-more waves-effect waves-button">
+        <a href="/2017/12/26/设计模式/设计模式之工厂模式 抽象工厂/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
@@ -432,62 +542,7 @@ interface Factory {
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-事务处理封装方法 Thinkphp"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-12-26 15:59:17" datetime="2017-12-26T07:59:17.000Z"  itemprop="datePublished">2017-12-26</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/事务处理封装方法 Thinkphp/">“事务处理封装方法 Thinkphp”</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        /**
- * @param $sqls 执行语句数组
- * @return bool 返回真假 是否执行成功
- */
-public function transExecuteSql($sqls)
-{
-    $this-&amp;gt;startTrans();
-    if(is_array($sqls)) {
-        foreach($sqls as $k =&amp;gt; $...
-    
-
-        <a href="/2017/12/26/事务处理封装方法 Thinkphp/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/事务处理/">事务处理</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-设计模式之观察者模式"
+            <article id="post-设计模式/设计模式之观察者模式"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
@@ -505,7 +560,7 @@ public function transExecuteSql($sqls)
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/设计模式之观察者模式/">“JS设计模式之观察者模式”</a>
+      <a class="post-title-link" href="/2017/12/26/设计模式/设计模式之观察者模式/">“JS设计模式之观察者模式”</a>
     </h3>
   
 
@@ -526,7 +581,7 @@ var sel =document.getElementById(&#39;sel&#39;);
     sel.de...
     
 
-        <a href="/2017/12/26/设计模式之观察者模式/" class="post-more waves-effect waves-button">
+        <a href="/2017/12/26/设计模式/设计模式之观察者模式/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
@@ -542,14 +597,14 @@ var sel =document.getElementById(&#39;sel&#39;);
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-JQ 1.6 获取属性  prop方法"
+            <article id="post-Mysql/mysql主从复制"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-12-26 15:58:00" datetime="2017-12-26T07:58:00.000Z"  itemprop="datePublished">2017-12-26</time>
+        <time class="post-time" title="2017-12-26 15:56:16" datetime="2017-12-26T07:56:16.000Z"  itemprop="datePublished">2017-12-26</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Mysql/">Mysql</a></li></ul>
 
 
 
@@ -560,7 +615,7 @@ var sel =document.getElementById(&#39;sel&#39;);
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/JQ 1.6 获取属性  prop方法/">“JQ 1.6 获取属性 prop方法”</a>
+      <a class="post-title-link" href="/2017/12/26/Mysql/mysql主从复制/">mysql主从复制</a>
     </h3>
   
 
@@ -570,24 +625,29 @@ var sel =document.getElementById(&#39;sel&#39;);
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        在JQ1.6之前的版本，我们会这样写我们的代码：
+        mysql主从复制
+一、 配置主服务器
 
-&lt;input type=‘checkbox’ id=‘cb’/&gt;
-&lt;script&gt;
-//获取是否选中 
-var isChecked = $(‘#cb’).attr(‘checked’);5.6.  //设置选中 
-$(‘#cb’).attr(‘checked’,true);
-&lt;/script&gt;可是当我们升...
+编辑my.cnf文件 默认位置一般在/etc下
+
+
+在[mysqld]的下面加入下面代码：
+log-bin=mysql-bin
+server-id=1
+innodb_flush_log_at_trx_commit=1
+sync_binlog=1
+binlog-do-db=wordpress//表明备份哪个数据库
+binlog_ignore_db=my...
     
 
-        <a href="/2017/12/26/JQ 1.6 获取属性  prop方法/" class="post-more waves-effect waves-button">
+        <a href="/2017/12/26/Mysql/mysql主从复制/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/JS/">JS</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/主从复制/">主从复制</a></li></ul>
 
     </div>
     
@@ -596,14 +656,14 @@ $(‘#cb’).attr(‘checked’,true);
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-移动设备上设置原始大小显示和是否缩放声明"
+            <article id="post-设计模式/设计模式之单例模式"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-12-26 15:57:52" datetime="2017-12-26T07:57:52.000Z"  itemprop="datePublished">2017-12-26</time>
+        <time class="post-time" title="2017-12-26 15:53:42" datetime="2017-12-26T07:53:42.000Z"  itemprop="datePublished">2017-12-26</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
 
 
 
@@ -614,7 +674,7 @@ $(‘#cb’).attr(‘checked’,true);
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/移动设备上设置原始大小显示和是否缩放声明/">移动设备上设置原始大小显示和是否缩放声明</a>
+      <a class="post-title-link" href="/2017/12/26/设计模式/设计模式之单例模式/">“单例模式”</a>
     </h3>
   
 
@@ -624,23 +684,27 @@ $(‘#cb’).attr(‘checked’,true);
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        在页面的头部&lt;head&gt;&lt;/head&gt;之间加上下面语句：
-&lt;meta name=”viewport” content=”width=device-width;initial-scale=1.0”/&gt;
-或者&lt;meta name=”viewport” content=”width=600px”/&gt;
-&nbsp;
-&nbsp;
-&nbsp;
+        设计模式之单例模式
+&lt;?php
+class Single
+{
+    protected  $rnd;
+    protected static $ins =null ;
 
+    //将自动加载 设置为 protected类型
+    //这样没法new 类名进行实例化
+    protected function __construct() {
+        $this-&gt;...
     
 
-        <a href="/2017/12/26/移动设备上设置原始大小显示和是否缩放声明/" class="post-more waves-effect waves-button">
+        <a href="/2017/12/26/设计模式/设计模式之单例模式/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/HTML/">HTML</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/单例模式/">单例模式</a></li></ul>
 
     </div>
     
@@ -649,14 +713,14 @@ $(‘#cb’).attr(‘checked’,true);
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-PDO中执行语句的exec()和query()区别"
+            <article id="post-PHP/编译安装PHP扩展"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2017-12-26 15:57:34" datetime="2017-12-26T07:57:34.000Z"  itemprop="datePublished">2017-12-26</time>
+        <time class="post-time" title="2017-12-26 15:30:46" datetime="2017-12-26T07:30:46.000Z"  itemprop="datePublished">2017-12-26</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/编译安装/">编译安装</a></li></ul>
 
 
 
@@ -667,7 +731,7 @@ $(‘#cb’).attr(‘checked’,true);
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/PDO中执行语句的exec()和query()区别/">PDO中执行语句的exec()和query()区别</a>
+      <a class="post-title-link" href="/2017/12/26/PHP/编译安装PHP扩展/">编译安装PHP扩展</a>
     </h3>
   
 
@@ -677,74 +741,18 @@ $(‘#cb’).attr(‘checked’,true);
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        1、 exec() 用来处理非结果集的 Insert update delete create 等
-返回影响行数
-如果是插入语句可以使用id $pdo-&gt;lastinsertid();获取最后增加的id
-&nbsp;
-2、query() 用来处理有结果集的语句 select desc show
-例：
-$result=$pdo-&gt;query(“select * From stude...
+        编译安装PHP扩展1、下载PHP环境安装包 php-7.1.42、解压php安装包tar -zxf php-7.1.4.tar.gz3、进入ext和你要安装的扩展的目录4、执行phpize/usr/local/php7-bht/bin/phpize5、执行编译命令
+./configure --with-php-config=/usr/local/php7-bht/bin/php-config...
     
 
-        <a href="/2017/12/26/PDO中执行语句的exec()和query()区别/" class="post-more waves-effect waves-button">
+        <a href="/2017/12/26/PHP/编译安装PHP扩展/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
     </div>
     
     <div class="post-footer">
         
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PDO/">PDO</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-PDO的预处理语句"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2017-12-26 15:57:15" datetime="2017-12-26T07:57:15.000Z"  itemprop="datePublished">2017-12-26</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/PHP/">PHP</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2017/12/26/PDO的预处理语句/">PDO的预处理语句</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        预处理的好处？效率要提高 安全性更好 建议：使用这种方式去执行Sql语句
-PDO预处理删除、更新、添加语句：
-//只是将这个语句放在数据库中编译后等待,没有执行$stmt=$pdo-&gt;prepare(“insert into px_shopscore(pid,score)values(？,？)”);//
-为问号参数
-$stmt=$pdo-&gt;prepare(“insert into...
-    
-
-        <a href="/2017/12/26/PDO的预处理语句/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PDO/">PDO</a></li></ul>
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP扩展/">PHP扩展</a></li></ul>
 
     </div>
     
@@ -785,7 +793,7 @@ $stmt=$pdo-&gt;prepare(“insert into...
         </p>
     </div>
     <div class="bottom">
-        <p><span>Peng Shang &copy; 2015 - 2019</span>
+        <p><span>Peng Shang &copy; 2015 - 2022</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>

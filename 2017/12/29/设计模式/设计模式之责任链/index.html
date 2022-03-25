@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>“设计模式之责任链” | Coding World Without End | Peng Shang&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="PHP,设计模式">
+    <meta name="description" content="设计模式之责任链  定义子类首先定义三个类，要声明power权值,以power来判断是否有权利去操作，传过来的数据，还需要声明上一级，责任链模式，要有层级关系  class Banzhu extends Admin {    protected $power = 1;    protected $top = &amp;#39;Police&amp;#39;;     public function doProc(">
+<meta name="keywords" content="PHP,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="“设计模式之责任链”">
+<meta property="og:url" content="http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/index.html">
+<meta property="og:site_name" content="Coding World Without End">
+<meta property="og:description" content="设计模式之责任链  定义子类首先定义三个类，要声明power权值,以power来判断是否有权利去操作，传过来的数据，还需要声明上一级，责任链模式，要有层级关系  class Banzhu extends Admin {    protected $power = 1;    protected $top = &amp;#39;Police&amp;#39;;     public function doProc(">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-29T02:46:16.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="“设计模式之责任链”">
+<meta name="twitter:description" content="设计模式之责任链  定义子类首先定义三个类，要声明power权值,以power来判断是否有权利去操作，传过来的数据，还需要声明上一级，责任链模式，要有层级关系  class Banzhu extends Admin {    protected $power = 1;    protected $top = &amp;#39;Police&amp;#39;;     public function doProc(">
+    
+        <link rel="alternate" type="application/atom+xml" title="Coding World Without End" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+   
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+     <!-- highlight.js代码高亮主题 css 引入-->
+    <link rel="stylesheet" href="/plugins/highlight/styles/monokai-sublime.css">
+    <style>
+        pre {
+            position: relative;
+            margin-bottom: 24px;
+            border-radius: 3px;
+            border: 1px solid #263238;
+            background: #263238;
+            overflow: hidden;
+        }
+
+        code {
+            display: block;
+            padding: 12px 24px;
+            overflow-y: auto;
+            font-weight: 300;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+        }
+
+        code.has-numbering {
+            margin-left: 21px;
+        }
+        .pre-numbering li {
+           list-style-type: none;
+        }
+        .pre-numbering {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            padding: 12px 2px 12px 0;
+            border-right: 1px solid #263238;
+            border-radius: 3px 0 0 3px;
+            background-color: #263238;
+            text-align: right;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+            color: #AAA;
+        }
+    </style>
+    <!-- highlight.js代码高亮主题 css 引入-->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Peng Shang</h5>
+          <a href="mailto:pengshang1995@gmail.com" title="pengshang1995@gmail.com" class="mail">pengshang1995@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                日程
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/pengshang1995" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">“设计模式之责任链”</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">“设计模式之责任链”</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2017-12-29T02:46:16.000Z" itemprop="datePublished" class="page-time">
+  2017-12-29
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#设计模式之责任链"><span class="post-toc-number">1.</span> <span class="post-toc-text">设计模式之责任链</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-设计模式/设计模式之责任链"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">“设计模式之责任链”</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017-12-29 10:46:16" datetime="2017-12-29T02:46:16.000Z"  itemprop="datePublished">2017-12-29</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="设计模式之责任链"><a href="#设计模式之责任链" class="headerlink" title="设计模式之责任链"></a>设计模式之责任链</h2><hr>
+<blockquote>
+<p><strong>定义子类</strong><br>首先定义三个类，要声明power权值,以power来判断是否有权利去操作，传过来的数据，还需要声明上一级，责任链模式，要有层级关系</p>
+</blockquote>
+<pre><code>class Banzhu extends Admin
+{
+   protected $power = 1;
+   protected $top = &#39;Police&#39;;
+
+   public function doProc() {
+       echo &#39;删帖&#39;;
+   }
+}
+
+class Police extends Admin
+{
+   protected $power = 2;
+   protected $top = &#39;Guoan&#39;;
+
+   public function doProc() {
+       echo &#39;抓人&#39;;
+   }
+}
+
+class Guoan extends Admin
+{
+   protected $power = 3;
+   protected $top = null;
+
+   public function doProc() {
+       echo &#39;灭口&#39;;
+   }
+}
+</code></pre><blockquote>
+<p><strong>定义父类</strong><br>子类均要继承父类方法Admin,Admin的__construct构造方法中，首先判断该类的上一级是否为空,如果是，那么该类是这个责任链中的顶级。</p>
+</blockquote>
+<pre><code>class Admin
+{
+  public function __construct() {
+      if ($this-&gt;top == null) {
+          return;
+      }
+      $this-&gt;toper = new $this-&gt;top();
+  }
+
+  public function proc($danger) {
+      if($danger &lt;= $this-&gt;power) {
+          $this-&gt;doProc();
+      } else {
+          $this-&gt;toper-&gt;proc($danger);
+      }
+  }
+}
+</code></pre><blockquote>
+<p><strong>调用</strong><br>实例化最底层类，然后调用方法传入power</p>
+</blockquote>
+<pre><code>$obj = new Banzhu();
+$obj-&gt;proc(3);
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-12-29T02:46:16.000Z" itemprop="dateUpdated">2017-12-29 10:46:16</time>
+</span><br>
+
+
+        
+        本文链接：<a href="/2017/12/29/设计模式/设计模式之责任链/" target="_blank" rel="external">http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.psonlyweb.cn">
+            <img src="/img/avatar.jpg" alt="Peng Shang">
+            Peng Shang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/设计模式/">设计模式</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/&title=《“设计模式之责任链”》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/&title=《“设计模式之责任链”》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《“设计模式之责任链”》 — Coding World Without End&url=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2018/01/02/设计模式/设计模式之策略模式/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">设计模式之策略模式</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/12/26/设计模式/设计模式之工厂模式 抽象工厂/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">“设计模式之工厂模式 抽象工厂”</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Peng Shang &copy; 2015 - 2022</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/&title=《“设计模式之责任链”》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/&title=《“设计模式之责任链”》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《“设计模式之责任链”》 — Coding World Without End&url=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2017/12/29/设计模式/设计模式之责任链/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3a0W7CMAwFUP7/p5m095Z744Ru0ukTYpD6FCnObL9e8fX+va5et+/cr5x8cvOFh4eHtxT61XX1mfsb34dyD0juksSMh4eHd5q3a8tOUshaoFcrf7Dg4eHhPcrLA70PfZ5O8PDw8P4X7/6d5Li8VlzAw8PD+2u8fBPPA52skMewrdaCh4eHF/PmDbDvv/5qfw8PDw8vTgnJhrurbdauH0WLh4eHd4CXlGX3DmatjR0kkRT/MeDh4eEd4OVDA/k6uwq+eSsODw8P7wQv34LzdlcbVv471Cvj4eHhHeNNWk0nqshJ2ogSCR4eHt4xXr5EsomvlR4mowmXjxUPDw/vMK9tLOWDVnnySB5N8Vc8PDy8Y7y11n5ym0mRNy/sviZPCw8PD2+pMpDfLGmMTUa18sZbcXDHw8PD28rbNQ7VJonJCkW6wsPDwzvAWwu63eLzh9XGE7Hx8PDwtvLmBdbJ6NXaIbuIBw8PD+8Ary065Jg8teRjBMlh+vIh4uHh4W3itRtxXsxtt/LJgb6oteDh4eFt4uVbcz4i0BYgJkNXlz8SHh4e3gFevn3n5YM2qeT4xQsPDw9vK2/tKHyfNpINfV6wwMPDw3uW14465W2tfPSqfRwRFQ8PD+8ALz/mrg1U5a2ytVJFdF88PDy8rbx8y24397bM0Q5jRXHi4eHhfYU3GXtqk0QLaMcI8PDw8E7w8rZ9W9KdlznWktblt/Dw8PA28d7l1SaPtuDbMj4UOPDw8PAO8NbKCm2bKr/x2vDWCIaHh4e3xFtLBvMD8d7086G/h4eHh3eAl08r5cXWvGCRJ4B2qgoPDw/vWV7egmoLuJOCb9Tlw8PDw3uUNw99XpYtSiF4eHh4x3iTYkQ7RjDB1EVnPDw8vAO8+RcmwwHzRzYZR8DDw8MreT8jeHOouHMYngAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+<script
+  src="http://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
+  <script>
+  $(function(){
+          $('pre code').each(function(){
+              var lines = $(this).text().split('\n').length - 1;
+              var $numbering = $('<ul/>').addClass('pre-numbering');
+              $(this)
+                  .addClass('has-numbering')
+                  .parent()
+                  .append($numbering);
+              for(i=1;i<=lines;i++){
+                  $numbering.append($('<li/>').text(i));
+              }
+          });
+      });
+  </script>
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+
+
+</body>
+</html>

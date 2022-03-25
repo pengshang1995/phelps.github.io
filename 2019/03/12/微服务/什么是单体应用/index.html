@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>什么是单体应用 | Coding World Without End | Peng Shang&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="">
+    <meta name="description" content="概念什么是单体应用一个归档包包含所有功能的应用程序，比如一些LAMP（Linux+Apache+MySQL+PHP）+和MVC（Spring + iBatis/Hibernate + Tomcat）两大流派。 单体应用架构图###单体应用出现的问题  部署效率低下：单体应用代码和依赖的资源越来越多，应用打包和部署测试，耗时久。 团队协作开发成本高： 系统高可用差  服务化拆分的两种姿势 纵向拆分，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="什么是单体应用">
+<meta property="og:url" content="http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/index.html">
+<meta property="og:site_name" content="Coding World Without End">
+<meta property="og:description" content="概念什么是单体应用一个归档包包含所有功能的应用程序，比如一些LAMP（Linux+Apache+MySQL+PHP）+和MVC（Spring + iBatis/Hibernate + Tomcat）两大流派。 单体应用架构图###单体应用出现的问题  部署效率低下：单体应用代码和依赖的资源越来越多，应用打包和部署测试，耗时久。 团队协作开发成本高： 系统高可用差  服务化拆分的两种姿势 纵向拆分，">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-21T07:29:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="什么是单体应用">
+<meta name="twitter:description" content="概念什么是单体应用一个归档包包含所有功能的应用程序，比如一些LAMP（Linux+Apache+MySQL+PHP）+和MVC（Spring + iBatis/Hibernate + Tomcat）两大流派。 单体应用架构图###单体应用出现的问题  部署效率低下：单体应用代码和依赖的资源越来越多，应用打包和部署测试，耗时久。 团队协作开发成本高： 系统高可用差  服务化拆分的两种姿势 纵向拆分，">
+    
+        <link rel="alternate" type="application/atom+xml" title="Coding World Without End" href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.0">
+   
+    <script>window.lazyScripts=[]</script>
+
+    <!-- custom head -->
+    
+
+     <!-- highlight.js代码高亮主题 css 引入-->
+    <link rel="stylesheet" href="/plugins/highlight/styles/monokai-sublime.css">
+    <style>
+        pre {
+            position: relative;
+            margin-bottom: 24px;
+            border-radius: 3px;
+            border: 1px solid #263238;
+            background: #263238;
+            overflow: hidden;
+        }
+
+        code {
+            display: block;
+            padding: 12px 24px;
+            overflow-y: auto;
+            font-weight: 300;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+        }
+
+        code.has-numbering {
+            margin-left: 21px;
+        }
+        .pre-numbering li {
+           list-style-type: none;
+        }
+        .pre-numbering {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            padding: 12px 2px 12px 0;
+            border-right: 1px solid #263238;
+            border-radius: 3px 0 0 3px;
+            background-color: #263238;
+            text-align: right;
+            font-family: Menlo, monospace;
+            font-size: 0.8em;
+            color: #AAA;
+        }
+    </style>
+    <!-- highlight.js代码高亮主题 css 引入-->
+
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/brand.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">Peng Shang</h5>
+          <a href="mailto:pengshang1995@gmail.com" title="pengshang1995@gmail.com" class="mail">pengshang1995@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                日程
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                标签
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                分类
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/pengshang1995" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">什么是单体应用</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">什么是单体应用</h1>
+        <h5 class="subtitle">
+            
+                <time datetime="2019-03-12T08:37:33.000Z" itemprop="datePublished" class="page-time">
+  2019-03-12
+</time>
+
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#概念"><span class="post-toc-number">1.</span> <span class="post-toc-text">概念</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#什么是单体应用"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">什么是单体应用</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#单体应用架构图"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">单体应用架构图</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#服务化拆分的两种姿势"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">服务化拆分的两种姿势</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#服务化拆分的前置条件"><span class="post-toc-number">1.4.</span> <span class="post-toc-text">服务化拆分的前置条件</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-微服务/什么是单体应用"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">什么是单体应用</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2019-03-12 16:37:33" datetime="2019-03-12T08:37:33.000Z"  itemprop="datePublished">2019-03-12</time>
+
+            
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><h3 id="什么是单体应用"><a href="#什么是单体应用" class="headerlink" title="什么是单体应用"></a>什么是单体应用</h3><p>一个归档包包含所有功能的应用程序，比如一些LAMP（Linux+Apache+MySQL+PHP）+和MVC（Spring + iBatis/Hibernate + Tomcat）两大流派。</p>
+<h3 id="单体应用架构图"><a href="#单体应用架构图" class="headerlink" title="单体应用架构图"></a>单体应用架构图</h3><p>###单体应用出现的问题</p>
+<ol>
+<li>部署效率低下：单体应用代码和依赖的资源越来越多，应用打包和部署测试，耗时久。</li>
+<li>团队协作开发成本高：</li>
+<li>系统高可用差</li>
+</ol>
+<h3 id="服务化拆分的两种姿势"><a href="#服务化拆分的两种姿势" class="headerlink" title="服务化拆分的两种姿势"></a>服务化拆分的两种姿势</h3><ol>
+<li>纵向拆分，是从业务维度进行拆分。标准是按照业务的关联程度来决定，关联比较密切的业务适合拆分为一个微服务，而功能相对比较独立的业务适合单独拆分为一个微服务。</li>
+<li>横向拆分，是从公共且独立功能维度拆分。标准是按照是否有公共的被多个其他服务调用，且依赖的资源独立不与其他业务耦合。</li>
+</ol>
+<h3 id="服务化拆分的前置条件"><a href="#服务化拆分的前置条件" class="headerlink" title="服务化拆分的前置条件"></a>服务化拆分的前置条件</h3><blockquote>
+<p><strong>服务如何定义？</strong><br>对于单体应用来说，不同功能模块之前相互交互时，通常是以类库的方式来提供各个模块的功能。对于微服务来说，每个服务都运行在各自的进程之中，应该以何种形式向外界传达自己的信息呢？答案就是接口，无论采用哪种通讯协议，是HTTP还是RPC，服务之间的调用都通过接口描述来约定，约定内容包括接口名、接口参数以及接口返回值 </p>
+<p><strong>服务如何发布和订阅</strong><br>单体应用由于部署在同一个WAR包里，接口之间的调用属于进程内的调用。而拆分为微服务独立部署后，服务提供者该如何对外暴露自己的地址，服务调用者该如何查询所需要调用的服务的地址呢？这个时候你就需要一个类似登记处的地方，能够记录每个服务提供者的地址以供服务调用者查询，在微服务架构里，这个地方就是注册中心。</p>
+<p><strong>服务如何监控</strong><br>通常对于一个服务，我们最关心的是QPS（调用量）、AvgTime（平均耗时）以及P999（99.9%的请求性能在多少毫秒以内）这些指标。这时候你就需要一种通用的监控方案，能够覆盖业务埋点、数据收集、数据处理，最后到数据展示的全链路功能。</p>
+<p><strong>服务如何治理</strong><br>可以想象，拆分为微服务架构后，服务的数量变多了，依赖关系也变复杂了。比如一个服务的性能有问题时，依赖的服务都势必会受到影响。可以设定一个调用性能阈值，如果一段时间内一直超过这个值，那么依赖服务的调用可以直接返回，这就是熔断，也是服务治理最常用的手段之一。</p>
+<p><strong>故障如何定位</strong><br>在单体应用拆分为微服务之后，一次用户调用可能依赖多个服务，每个服务又部署在不同的节点上，如果用户调用出现问题，你需要有一种解决方案能够将一次用户请求进行标记，并在多个依赖的服务系统中继续传递，以便串联所有路径，从而进行故障定位。</p>
+</blockquote>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2019-03-21T07:29:14.000Z" itemprop="dateUpdated">2019-03-21 15:29:14</time>
+</span><br>
+
+
+        
+        本文链接：<a href="/2019/03/12/微服务/什么是单体应用/" target="_blank" rel="external">http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/</a>
+        
+    </div>
+    <footer>
+        <a href="http://blog.psonlyweb.cn">
+            <img src="/img/avatar.jpg" alt="Peng Shang">
+            Peng Shang
+        </a>
+    </footer>
+</blockquote>
+
+        
+
+
+        <div class="post-footer">
+            
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/&title=《什么是单体应用》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/&title=《什么是单体应用》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《什么是单体应用》 — Coding World Without End&url=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2019/03/21/微服务/浅谈微服务架构/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">浅谈微服务架构</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2019/01/17/设计模式/委托模式/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">委托模式</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</article>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            
+                <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>博客内容遵循 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名 - 非商业性 - 相同方式共享 4.0 国际协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p><span>Peng Shang &copy; 2015 - 2022</span>
+            <span>
+                
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/&title=《什么是单体应用》 — Coding World Without End&pic=http://blog.psonlyweb.cn/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/&title=《什么是单体应用》 — Coding World Without End&source=彭尚的个人博客" data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《什么是单体应用》 — Coding World Without End&url=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/&via=http://blog.psonlyweb.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://blog.psonlyweb.cn/2019/03/12/微服务/什么是单体应用/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtklEQVR42u3awZIaMQwEUP7/p5OqPW0qCXRL9sLhzYkCivGbgy1aejzi69fXlX/n7+8/f+f56+/X48aFh4eHN1r6/658KWep+XdePAI8PDy8a7x8iclyn2/rG0y+Zjw8PLxP4OXI54vOC/TNgYSHh4f3CbzZYZBv/bPXeHh4eO/iJWHE8w09OQw2wcT1rAUPDw8v5rUNsE94fbG/h4eHh7foqs9aYvtDYlas/+OX8fDw8C7w2mj1VGs/L82T4v7FyvHw8PCO8jZb8KZxdft3/jj38PDw8K7x2gI6D3lnI1n5XV4U03h4eHgXeO0WvN/0kwhjNnZQPD88PDy8EW8GziOJzeBUvoYiUsHDw8Nb82btqPydNlHO1xN9ioeHh3eBl58eyTttyZsHxJvwFw8PD+8srw1S29K5jSdmpTkeHh7eu3j5pj8blspbZW2B/mJ0AA8PD+8oLw8U8kGofGxr3yQrym48PDy8Q7z9WMBsWGqz6NXQFR4eHt6alzf4h0NOo4MnByd3wcPDw/sZXhKVborv5IG24cjwHwMeHh7egjeLTTdBcN54S0rq4tDCw8PDO8Q7FRYkMe7+QbRHCx4eHt49Xh49JMVry07wq4MBDw8Pb81rS9WEWmzWi3tF7TE8PDy8C7xZNJCPHbRNrLy11t4RDw8P7yd5ebiwiST2h8TweeDh4eGNePmmvym+20iiHQKrZyLw8PDw1rwkwG03+rZt1sbEh1tfeHh4eKMOUbtN5y382Ua/GQXDw8PDu8HLr6KEjdtd7cHQHlp4eHh493izOCBv3s+Omc3B8Gj/B+Dh4eGNeHWGERfEZwOOYSSBh4eH95G8drBg1h6rHwoeHh7eW3mbyLUNYZNfLvp7eHh4eBd4s0Vsmlt58DELL/Dw8PDu8VZ/9cthgnzgYBP14uHh4V3j/QaTZ4i9W5SvZQAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: false };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.0"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.0" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+<script
+  src="http://code.jquery.com/jquery-1.12.4.js"
+  integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU="
+  crossorigin="anonymous"></script>
+  <script>
+  $(function(){
+          $('pre code').each(function(){
+              var lines = $(this).text().split('\n').length - 1;
+              var $numbering = $('<ul/>').addClass('pre-numbering');
+              $(this)
+                  .addClass('has-numbering')
+                  .parent()
+                  .append($numbering);
+              for(i=1;i<=lines;i++){
+                  $numbering.append($('<li/>').text(i));
+              }
+          });
+      });
+  </script>
+
+
+<!-- highlight.js代码高亮主题 script 引入-->
+
+
+</body>
+</html>

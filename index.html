@@ -195,15 +195,13 @@
     <ul class="post-list">
     
         <li class="post-list-item fade">
-            <article id="post-委托模式"
+            <article id="post-数据库"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2019-01-17 11:22:53" datetime="2019-01-17T03:22:53.000Z"  itemprop="datePublished">2019-01-17</time>
+        <time class="post-time" title="2022-03-25 15:50:32" datetime="2022-03-25T07:50:32.000Z"  itemprop="datePublished">2022-03-25</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
-
 
 
     </div>
@@ -213,7 +211,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/01/17/委托模式/">委托模式</a>
+      <a class="post-title-link" href="/2022/03/25/数据库/">No title</a>
     </h3>
   
 
@@ -223,26 +221,188 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        概念通过分配或委托至其他对象，委托模式能够去除核心对象中的判决和复杂的功能性。
-实现场景添加音乐、并且根据音乐类型获取不同的音乐列表（返回字段形式均不一样）
-使用委托模式 VS 简单实现 （UML）
+        数据库Mysql 四大特性(ACID)原子性事务必须是原子工作单元；对于其数据修改，要么全都执行，要么全都不执行。通常，与某个事务关联的操作具有共同的目标，并且是相互依赖的。如果系统只执行这些操作的一个子集，则可能会破坏事务的总体目标。原子性消除了系统处理操作子集的可能性。
+一致性事务在完成时，必须使所有的数据都保持一致状态。在相关数据库中，所有规则都必须应用于事务的修改，以保持所有数据的完...
+    
+
+        <a href="/2022/03/25/数据库/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-Go"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2022-03-08 18:47:20" datetime="2022-03-08T10:47:20.000Z"  itemprop="datePublished">2022-03-08</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2022/03/08/Go/">No title</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        GoGo协程简单用法对于IO密集型计算可以采用go协程进行处理，使用这三个协程的操作，同时处理可以有效降低耗时。
+go学习之- cas的理解https://blog.csdn.net/chenxun_2010/article/details/103598252
+make和new的区别
+new 和 make 都用于分配内存；
+new 和 make 都是在堆上分配内存；
+new 对指针类型分配内...
+    
+
+        <a href="/2022/03/08/Go/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-架构"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2022-03-06 11:57:42" datetime="2022-03-06T03:57:42.000Z"  itemprop="datePublished">2022-03-06</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2022/03/06/架构/">No title</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        架构分布式系统CAP理论概念一个分布式系统最多只能同时满足一致性（Consistency）、可用性（Availability）和分区容错性（Partition tolerance）这三项中的两项
+定义Consistency 一致性
+一致性是因为多个数据拷贝下并发读写才有的问题，因此理解时一定要注意结合考虑多个数据拷贝下并发读写的场景。
+Availability 可用性可用性指“Reads a...
+    
+
+        <a href="/2022/03/06/架构/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-Redis"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2022-03-06 11:16:48" datetime="2022-03-06T03:16:48.000Z"  itemprop="datePublished">2022-03-06</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2022/03/06/Redis/">No title</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        Redis缓存穿透、缓存击穿、缓存雪崩缓存穿透描述：
+
+缓存穿透是指缓存和数据库中都没有的数据，而用户不断发起请求。由于缓存是不命中时被动写的，并且出于容错考虑，如果从存储层查不到数据则不写入缓存，这将导致这个不存在的数据每次请求都要到存储层去查询，失去了缓存的意义。
+
+在流量大时，可能DB就挂掉了，要是有人利用不存在的key频繁攻击我们的应用，这就是漏洞。
+如发起为id为“-1”的数据或i...
+    
+
+        <a href="/2022/03/06/Redis/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-网络基础"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2022-03-06 10:45:56" datetime="2022-03-06T02:45:56.000Z"  itemprop="datePublished">2022-03-06</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2022/03/06/网络基础/">No title</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        网络基础TCPTCP滑动窗口滑动窗口tcp通过滑动窗口进行流量控制，所谓的窗口可以理解为接收端所能提供的缓冲区大小。
                 
                     
                     
                 
                 
-    ...
+            TCP是一个滑动窗口协议，即一个TCP连接的发送端在某个时刻能发多...
     
 
-        <a href="/2019/01/17/委托模式/" class="post-more waves-effect waves-button">
+        <a href="/2022/03/06/网络基础/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/委托模式/">委托模式</a></li></ul>
-
     </div>
     
 </article>
@@ -250,15 +410,13 @@
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-适配器模式"
+            <article id="post-算法"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2019-01-10 17:00:45" datetime="2019-01-10T09:00:45.000Z"  itemprop="datePublished">2019-01-10</time>
+        <time class="post-time" title="2022-03-01 13:24:34" datetime="2022-03-01T05:24:34.000Z"  itemprop="datePublished">2022-03-01</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/设计模式/">设计模式</a></li></ul>
-
 
 
     </div>
@@ -268,7 +426,7 @@
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2019/01/10/适配器模式/">适配器模式（Adapter Design Pattern）</a>
+      <a class="post-title-link" href="/2022/03/01/算法/">No title</a>
     </h3>
   
 
@@ -278,30 +436,65 @@
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        概念适配器设计模式只是将某个对象的接口适配为另一个对象所期望的接口。
-UML图
+        算法树二叉树L、D、R分别表示遍历左子树、访问根结点和遍历右子树
+
+先序遍历：DLR
+中序遍历：LDR
+后序遍历：LRD
+
+
+仅有前序和后序遍历，不能确定一个二叉树，必须有中序遍历的结果
+
+二叉树的性质
+性质1：在二叉树中第 i 层的结点数最多为 2^i-1 （i ≥ 1）
+性质2：高度为k的二叉树其结点总数最多为 2^k －1 （k ≥ 1）
+性质3：对任意的非空二叉树 T ，如果叶结点的...
+    
+
+        <a href="/2022/03/01/算法/" class="post-more waves-effect waves-button">
+            阅读全文…
+        </a>
+    </div>
+    
+</article>
+
+        </li>
+    
+        <li class="post-list-item fade">
+            <article id="post-kafka"
+  class="article-card article-type-post" itemprop="blogPost">
+
+    <div class="post-meta">
+        <time class="post-time" title="2022-02-27 19:55:12" datetime="2022-02-27T11:55:12.000Z"  itemprop="datePublished">2022-02-27</time>
+
+        
+
+
+    </div>
+
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2022/02/27/kafka/">No title</a>
+    </h3>
+  
+
+
+
+
+    <div class="post-content" id="post-content" itemprop="postContent">
+
+    
+        KafkaTopic和PartitionTopic在 kafka 中，topic 是一个存储消息的逻辑概念，可以认为是一个消息集合。每条消息发送到 kafka 集群的消息都有一个类别。物理上来说，不同的 topic 的消息是分开存储的，每个 topic 可以有多个生产者向它发送消息，也可以有多个消费者去消费其中的消息。
                 
-                    
-                    
-                
-                
-            
-###代码实现
-class errorObject
-{
-    private $_error;
-  ...
+                   ...
     
 
-        <a href="/2019/01/10/适配器模式/" class="post-more waves-effect waves-button">
+        <a href="/2022/02/27/kafka/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/适配器模式/">适配器模式</a></li></ul>
-
     </div>
     
 </article>
@@ -309,15 +502,13 @@ class errorObject
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-快速排序"
+            <article id="post-设计模式/单一抽象层级原则-SLAP"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-05-14 14:55:18" datetime="2018-05-14T06:55:18.000Z"  itemprop="datePublished">2018-05-14</time>
+        <time class="post-time" title="2019-03-22 14:28:42" datetime="2019-03-22T06:28:42.000Z"  itemprop="datePublished">2019-03-22</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
-
 
 
     </div>
@@ -327,7 +518,7 @@ class errorObject
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/14/快速排序/">快速排序</a>
+      <a class="post-title-link" href="/2019/03/22/设计模式/单一抽象层级原则-SLAP/">如何发现代码的坏味道之SLAP原则</a>
     </h3>
   
 
@@ -337,21 +528,21 @@ class errorObject
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        概念快速排序基于分治思想来实现。
+        Long Method (代码的坏味道)
+可读性很差
+复用性差
+难以调试
+难以维护
+冗余代码多
 
-分解：数组A[start,end]被划分为两个（可能为空）子数组A[start,postion-1]和A[postion+1,end]中的,使A[start,postion-1]的每一个元素都小于等于A[postion],A[postion+1,end]的每一个元素都大于等于A[postion]。
-解决：通过递归调用快速排序，对子数组A[start,pos...
+SLAP(单一抽象原则)定义SLAP 是 Single Level of Abstraction 的缩写。解释：指定代码块上的代码应该在单一的抽象层上。
+SLAP优势
+短方法的提取产生，会使得方法更加具有原子性，职责更加单一，更加的符合Unix的哲学 Do one thing, and do i...
     
 
-        <a href="/2018/05/14/快速排序/" class="post-more waves-effect waves-button">
+        <a href="/2019/03/22/设计模式/单一抽象层级原则-SLAP/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li></ul>
-
     </div>
     
 </article>
@@ -359,15 +550,13 @@ class errorObject
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-优先队列PriorityQueue"
+            <article id="post-网络基础/Linux IO模型"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-05-08 11:53:16" datetime="2018-05-08T03:53:16.000Z"  itemprop="datePublished">2018-05-08</time>
+        <time class="post-time" title="2019-03-22 10:26:05" datetime="2019-03-22T02:26:05.000Z"  itemprop="datePublished">2019-03-22</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
-
 
 
     </div>
@@ -377,7 +566,7 @@ class errorObject
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/08/优先队列PriorityQueue/">优先队列(PriorityQueue)</a>
+      <a class="post-title-link" href="/2019/03/22/网络基础/Linux IO模型/">Linux IO模型</a>
     </h3>
   
 
@@ -387,19 +576,21 @@ class errorObject
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        概述优先队列（priority queue）是一种用来维护由一组元素构成的集合S的数据结构，其中每一个元素都有一个相关的值，称为关键字（key）。队列的定义队列属于先进先出型，Frist in Frist out（FIFO）优先队列基于堆排序的方法进行实现的，堆排序每次都要进行建立最大堆，第一个元素为整个队列中的最大值，优先队列也是利用了堆排序这个性质达到优先队列中权值最大的先出的效果。
- ...
+        #概念说明
+
+用户空间和内核空间
+进程切换
+进程堵塞
+文件描述符
+缓存IO
+
+用户空间和内核空间操作系统的核心是内核，独立于普通应用程序，可以访问受保护的内存空间，也有访问底层硬件设备的所有权限。为了保证用户进程不能直接操作内核（kernel），保存内核的安全，操作系统将虚拟空间划分为两部分，一部分是内核空间，一部分为用户空间。
+进程切换为了控制进程的执行，内核必须有能力挂起正在CPU上运行...
     
 
-        <a href="/2018/05/08/优先队列PriorityQueue/" class="post-more waves-effect waves-button">
+        <a href="/2019/03/22/网络基础/Linux IO模型/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/队列/">队列</a></li></ul>
-
     </div>
     
 </article>
@@ -407,15 +598,13 @@ class errorObject
         </li>
     
         <li class="post-list-item fade">
-            <article id="post-网络分层TCP-IP"
+            <article id="post-微服务/浅谈微服务架构"
   class="article-card article-type-post" itemprop="blogPost">
 
     <div class="post-meta">
-        <time class="post-time" title="2018-05-07 10:41:46" datetime="2018-05-07T02:41:46.000Z"  itemprop="datePublished">2018-05-07</time>
+        <time class="post-time" title="2019-03-21 15:43:22" datetime="2019-03-21T07:43:22.000Z"  itemprop="datePublished">2019-03-21</time>
 
         
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/计算机网络/">计算机网络</a></li></ul>
-
 
 
     </div>
@@ -425,7 +614,7 @@ class errorObject
 
   
     <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/07/网络分层TCP-IP/">网络分层TCP/IP</a>
+      <a class="post-title-link" href="/2019/03/21/微服务/浅谈微服务架构/">浅谈微服务架构</a>
     </h3>
   
 
@@ -435,308 +624,24 @@ class errorObject
     <div class="post-content" id="post-content" itemprop="postContent">
 
     
-        概述互联网分为五层，自下而上分为应用层、传输层、网络层、链接层、实体层。
-                
-                    
-                    
-                
-                
-            
-实体层实体层就是把电脑连接在一起的物理手段。它主要规定了网络的一些电气特性，作用是负责传送0和1的电信号。
-...
+        微服务组成部分
+服务描述
+注册中心
+服务框架
+服务监控
+服务追踪
+服务治理
+
+###服务描述常见的服务描述方式包括RESTful API、XML配置以及IDL文件三种。
+
+RESTful API方式通常用于HTTP协议的服务描述
+XML配置方式多用作RPC协议的服务描述，通过*.xml配置文件来定义接口名、参数以及返回值类型等。
+IDL文件方式通常用作Thrift和gRPC这类跨语言服务调用...
     
 
-        <a href="/2018/05/07/网络分层TCP-IP/" class="post-more waves-effect waves-button">
+        <a href="/2019/03/21/微服务/浅谈微服务架构/" class="post-more waves-effect waves-button">
             阅读全文…
         </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/TCP-IP/">TCP/IP</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-堆排序"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-05-04 11:06:56" datetime="2018-05-04T03:06:56.000Z"  itemprop="datePublished">2018-05-04</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/05/04/堆排序/">堆排序</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        堆排序概念堆排序是利用堆这种数据结构而设计的一种排序算法。时间复杂度为O(nlogn)。
-
-堆排序具有如下性质的完全二叉树:每个节点的值都大于或等于其左右孩子节点的值，称为最大堆；或每个节点都小于或者等于其左右孩子节点被称为最小堆。
-
-
-                
-                    
-                    
-                
-  ...
-    
-
-        <a href="/2018/05/04/堆排序/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-最大子数组"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-04-26 17:47:41" datetime="2018-04-26T09:47:41.000Z"  itemprop="datePublished">2018-04-26</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/26/最大子数组/">最大子数组</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        暴力求解最大子数组function violentMax($array,$count,&amp;$start,&amp;$end) {
-    $sum = 0;
-    $max = 0;
-
-    for($i=0; $i &lt;= $count-1; $i++) {
-        for ($j = $i; $j &lt;= $count-1 ; $j++) { 
-        ...
-    
-
-        <a href="/2018/04/26/最大子数组/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/最大子数组/">最大子数组</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-归并排序"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-04-25 11:27:46" datetime="2018-04-25T03:27:46.000Z"  itemprop="datePublished">2018-04-25</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/算法/">算法</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/04/25/归并排序/">归并排序</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        PHP实现归并排序算法&lt;?php
-    function merger_sort(&amp;$arr,$frist,$end) {
-        if($frist &lt; $end) {
-            $middle = floor(($frist+$end)/2);
-            merger_sort($arr,$frist,$middle);
-    ...
-    
-
-        <a href="/2018/04/25/归并排序/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/排序/">排序</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-模型工厂"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-02-28 17:53:56" datetime="2018-02-28T09:53:56.000Z"  itemprop="datePublished">2018-02-28</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Laravel/">Laravel</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/Laravel/PHP/">PHP</a></li></ul></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/02/28/模型工厂/">模型工厂</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        目的实际项目开发中我们经常会用到一些假数据来对数据库进行填充以方便调试程序,原始的做法是手工的一个个在数据创建。Laravel提供了一套更加现代化、非常简单易用的数据填充方案。接下来让我们使用Laravel提供的数据填充来批量生成一批假数据。假数据的生成分为两个阶段：1.对要生成假数据的模型指定字段进行赋值- {模型工厂}2.批量生成假数据模型 - {数据填充}
-模型工厂Laravel默认集...
-    
-
-        <a href="/2018/02/28/模型工厂/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Laravel/">Laravel</a></li></ul>
-
-    </div>
-    
-</article>
-
-        </li>
-    
-        <li class="post-list-item fade">
-            <article id="post-npm相关"
-  class="article-card article-type-post" itemprop="blogPost">
-
-    <div class="post-meta">
-        <time class="post-time" title="2018-02-27 09:16:43" datetime="2018-02-27T01:16:43.000Z"  itemprop="datePublished">2018-02-27</time>
-
-        
-	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/前端/">前端</a></li></ul>
-
-
-
-    </div>
-
-    
-
-
-  
-    <h3 class="post-title" itemprop="name">
-      <a class="post-title-link" href="/2018/02/27/npm相关/">npm相关</a>
-    </h3>
-  
-
-
-
-
-    <div class="post-content" id="post-content" itemprop="postContent">
-
-    
-        npm命令
-
-
-命令
-说明
-
-
-
-
-npm run dev
-编译
-
-
-npm run watch-poll
-当文件发生变化时自动编译
-
-
-npm install
-安装第三方模块(扩展包)
-
-
-npm install -f
-检查是否安装 如果已安装则跳过安装
-
-
-
-sass语法基础1.样式文件导入Sass使用 @import来导入其他的样式文件。2.变量Sass 允许在代码中添加变量，所有变量...
-    
-
-        <a href="/2018/02/27/npm相关/" class="post-more waves-effect waves-button">
-            阅读全文…
-        </a>
-    </div>
-    
-    <div class="post-footer">
-        
-	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/">npm</a></li></ul>
-
     </div>
     
 </article>
@@ -776,7 +681,7 @@ sass语法基础1.样式文件导入Sass使用 @import来导入其他的样式�
         </p>
     </div>
     <div class="bottom">
-        <p><span>Peng Shang &copy; 2015 - 2019</span>
+        <p><span>Peng Shang &copy; 2015 - 2022</span>
             <span>
                 
                 Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a>
